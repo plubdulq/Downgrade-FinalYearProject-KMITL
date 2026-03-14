@@ -1,0 +1,76 @@
+{
+    "devices": 
+    [
+        {
+            "device_type": "router",
+            "total_models": [
+                {
+                    "deviceModel": "c8300",
+                    "basePower": 100.0,
+                    "maxPower": 300.0,
+                    "userLoadRatio": 0.7,
+                    "placementFactor": 1.0,
+                    "rackUnitSize": "2U",
+                    "ambientHeat": 0.0 
+                },
+                {
+                    "deviceModel": "c9200",
+                    "basePower": 100.0,
+                    "maxPower": 600.0,
+                    "userLoadRatio": 0.7,
+                    "placementFactor": 1.0,
+                    "rackUnitSize": "2U",
+                    "ambientHeat": 0.0
+                }
+            ]
+        },
+        {
+            "device_type": "switch",
+            "total_models": [
+                {
+                    "deviceModel": "ISR4000",
+                    "basePower": 100.0,
+                    "maxPower": 250.0,
+                    "userLoadRatio": 0.7,
+                    "placementFactor": 1.0,
+                    "rackUnitSize": "1U",
+                    "ambientHeat": 0.0
+                },
+                {
+                    "deviceModel": "C2960",
+                    "basePower": 100.0,
+                    "maxPower": 300.0,
+                    "userLoadRatio": 0.7,
+                    "placementFactor": 1.0,
+                    "rackUnitSize": "1U",
+                    "ambientHeat": 0.0
+                }
+            ]
+        },
+        {
+            "device_type": "gpu_server",
+            "total_models": [
+                {
+                    "deviceModel": "sky-6420",
+                    "basePower": 400.0,
+                    "maxPower": 600.0,
+                    "userLoadRatio": 0.7,
+                    "placementFactor": 1.0,
+                    "rackUnitSize": "4U",
+                    "ambientHeat": 0.0
+                },
+                {
+                    "deviceModel": "Supermicro SuperServer 4029GP-TRT2",
+                    "basePower": 100.0,
+                    "maxPower": 300.0,
+                    "userLoadRatio": 0.7,
+                    "placementFactor": 1.0,
+                    "rackUnitSize": "4U",
+                    "ambientHeat": 0.0
+                }
+            ]
+            
+        }
+    ]
+
+}

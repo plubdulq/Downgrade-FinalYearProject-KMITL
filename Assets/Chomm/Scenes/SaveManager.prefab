@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8167167655894558594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 534026293985926306}
+  - component: {fileID: 898579213244192946}
+  - component: {fileID: 8483816614639814919}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &534026293985926306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167167655894558594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &898579213244192946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167167655894558594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199a6564c1de1f64fab8f89cdcff81d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRoomWidth: 10
+  currentRoomLength: 10
+  currentRoomHeight: 3
+  equipmentResourcePath: Prefabs/Equipment/
+  cablePrefabs:
+  - typeName: Rj45
+    prefab: {fileID: 8591240308944349287, guid: d588caa9d77fb9241ab8678d640a03b5,
+      type: 3}
+  - typeName: Dsl
+    prefab: {fileID: 8591240308944349287, guid: d588caa9d77fb9241ab8678d640a03b5,
+      type: 3}
+  - typeName: IECC13ToPlug
+    prefab: {fileID: 8591240308944349287, guid: b2c28bd81ed104441917c6f467c63911,
+      type: 3}
+  - typeName: 'IECC13ToC14 '
+    prefab: {fileID: 8591240308944349287, guid: 0484ff68f5986114a8d606d6bc991fd7,
+      type: 3}
+  - typeName: 'IECC19ToC20 '
+    prefab: {fileID: 8591240308944349287, guid: 8a2d2b98e1e368e438d5928c406ecd27,
+      type: 3}
+  - typeName: 'IECC13ToC20 '
+    prefab: {fileID: 8591240308944349287, guid: 76f67df9bd3c0044cb79ebbc8a4ff25d,
+      type: 3}
+  - typeName: 'IECC14ToC19 '
+    prefab: {fileID: 8591240308944349287, guid: 8f5c21cacf34c9644957186048a94254,
+      type: 3}
+  - typeName: 'FiberLCSinglemode '
+    prefab: {fileID: 8591240308944349287, guid: 238dfa1b51aabed44805c37c8c96ab13,
+      type: 3}
+  - typeName: 'FiberLCMultimode '
+    prefab: {fileID: 8591240308944349287, guid: acbc625c71c6ce84eaca49da281929f1,
+      type: 3}
+--- !u!114 &8483816614639814919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167167655894558594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0760e042ce70b044eb5ed72e9f8731f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

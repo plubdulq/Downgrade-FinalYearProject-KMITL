@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7954736015286247799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7573467603421254635}
+  - component: {fileID: 199823199603969042}
+  m_Layer: 0
+  m_Name: PrefabRegistry
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7573467603421254635
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954736015286247799}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 146.56601}
+  m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -362.90002, y: 38.899998}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &199823199603969042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954736015286247799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07a6e8842999e8a458168df6f05ab32b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - deviceId: sky-6420
+    prefab: {fileID: 6850614559164874785, guid: 63e745870d4fffe4086339496bdd3784,
+      type: 3}
+  - deviceId: supermicro 4029GP-TRT2
+    prefab: {fileID: 5413297236465798380, guid: 6ffa07f2c83beee40826455b599b3889,
+      type: 3}
+  - deviceId: Dell EMC PowerEdge R740xd
+    prefab: {fileID: 0}
+  - deviceId: Cisco UCS X9508 Chassis
+    prefab: {fileID: 0}
+  - deviceId: FortiGate 90G
+    prefab: {fileID: 0}
+  - deviceId: Cisco Meraki MX250
+    prefab: {fileID: 0}
+  - deviceId: Juniper SRX340
+    prefab: {fileID: 9214095382882202823, guid: 97d3fda1db73a17498413af1db2aeaa9,
+      type: 3}
+  - deviceId: FortiWAN-3000B
+    prefab: {fileID: 7385045387261227112, guid: 1f36ea6c437f4324cba601bb28fe1cb5,
+      type: 3}
+  - deviceId: APC SRT2200RMXLI-NC
+    prefab: {fileID: 9077722892809516047, guid: 4032245f7c7510347844cc76dad22e90,
+      type: 3}
+  - deviceId: Openetic Basic PDU
+    prefab: {fileID: 0}
+  - deviceId: Tripp lite 12-Outlet PDU
+    prefab: {fileID: 9032207974336521515, guid: 6823e12cdd00581499c123724d1d8614,
+      type: 3}
+  - deviceId: GE Digital Match 1500
+    prefab: {fileID: 0}
+  - deviceId: PX3-5460R
+    prefab: {fileID: 0}
+  - deviceId: APC SMT2200RMI2UC
+    prefab: {fileID: 0}
+  - deviceId: SRV1KRIRK-E APC
+    prefab: {fileID: 0}
+  - deviceId: Blanking Panel 1RU
+    prefab: {fileID: -6689036041284674117, guid: 53c445fb8fb40124ba68548a6c30f329,
+      type: 3}
+  - deviceId: Blanking Panel 2RU
+    prefab: {fileID: -6689036041284674117, guid: 5873c0419e1ce4c4480fb8df4ddf1ab4,
+      type: 3}
+  - deviceId: Blanking Panel 3RU
+    prefab: {fileID: 0}
+  - deviceId: Blanking Panel 4RU
+    prefab: {fileID: -6689036041284674117, guid: ece52ade6787a274a9d008ef89f88963,
+      type: 3}
+  - deviceId: Qnap TS-22
+    prefab: {fileID: 919132149155446097, guid: b196373f313e88843ba0f9ce46363cbf, type: 3}
+  - deviceId: DS920
+    prefab: {fileID: 919132149155446097, guid: d2ee883fbb3e15640b93a99d715199e1, type: 3}
+  - deviceId: air conditioner
+    prefab: {fileID: 919132149155446097, guid: 2ec6c99e225bead4ea67160a4df7ee0e, type: 3}
+  - deviceId: Stulz CRS361A
+    prefab: {fileID: 919132149155446097, guid: e6457458fea39ed4883327c7d6fb37f7, type: 3}
+  - deviceId: rack42U_nodoor
+    prefab: {fileID: 8972081346031370252, guid: 963b81e70bbd71e439f0f0ea970dd57b,
+      type: 3}
+  - deviceId: c8300
+    prefab: {fileID: -6689036041284674117, guid: 25cbda9a808df044ea1050de63e2a741,
+      type: 3}
+  - deviceId: c2900
+    prefab: {fileID: 5336039491203625302, guid: ac09ace3e4d788e40953117243e970ac,
+      type: 3}
+  - deviceId: c8500
+    prefab: {fileID: 4677551825529585952, guid: ff19623d5fa017443967ca58947a23a4,
+      type: 3}
+  - deviceId: c2960
+    prefab: {fileID: 0}
+  - deviceId: c3560
+    prefab: {fileID: 0}
+  - deviceId: sg300
+    prefab: {fileID: 0}
+  - deviceId: rj45
+    prefab: {fileID: 8591240308944349287, guid: d588caa9d77fb9241ab8678d640a03b5,
+      type: 3}
+  - deviceId: dsl
+    prefab: {fileID: 8591240308944349287, guid: c64705df11ac5594f910fd2613de55d4,
+      type: 3}
+  - deviceId: power
+    prefab: {fileID: 8591240308944349287, guid: 84d3e2e07335f9047bdd576c4bd300b6,
+      type: 3}
