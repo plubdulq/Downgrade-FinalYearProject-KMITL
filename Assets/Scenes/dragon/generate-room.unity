@@ -1692,6 +1692,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &218580951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2683195716791022644, guid: 4ac7df741a9c0a2418ec19477729ee3d,
+    type: 3}
+  m_PrefabInstance: {fileID: 534394686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &218580956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218580951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8371a33613e3a34697ca6ac69b64611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &222022803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4855,6 +4873,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2683195716791022644, guid: 4ac7df741a9c0a2418ec19477729ee3d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 218580956}
     - targetCorrespondingSourceObject: {fileID: 5885571433683049865, guid: 4ac7df741a9c0a2418ec19477729ee3d,
         type: 3}
       insertIndex: -1
@@ -5298,7 +5320,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraName: EntranceCCTV_01
-  targetTag: Player
+  debugLogs: 1
+  zoneVisual: {fileID: 0}
+  zoneRenderer: {fileID: 0}
+  normalColor: {r: 0, g: 1, b: 0, a: 0.12}
+  detectedColor: {r: 1, g: 0, b: 0, a: 0.22}
   isPlayerInside: 0
   lastEnterTime: 
   lastExitTime: 
