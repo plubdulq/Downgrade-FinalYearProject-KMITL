@@ -4,12 +4,10 @@ using System.Collections.Generic;
 public class DeviceNetworkState
 {
     public string guid;
-    public string ip;
     public List<PortState> ports = new List<PortState>();
 
     public DeviceNetworkState(string id)
     {
         guid = id;
-        ip = "";
     }
 }

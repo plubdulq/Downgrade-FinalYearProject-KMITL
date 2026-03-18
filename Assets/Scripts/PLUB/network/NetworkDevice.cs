@@ -5,7 +5,6 @@ public class NetworkDevice : MonoBehaviour
 {
     public string deviceType;
     public string guid;
-    public string ip;
 
     private QueryPortSchema repository;
 
