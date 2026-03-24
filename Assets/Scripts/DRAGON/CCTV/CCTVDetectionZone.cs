@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
@@ -18,36 +19,46 @@ public class CCTVDetectionZone : MonoBehaviour
 
     [Header("State (Read Only)")]
     public bool isPlayerInside = false;
+    public int trackedColliderCount = 0;
     public string lastEnterTime = "";
     public string lastExitTime = "";
 
     private BoxCollider boxCol;
+    private readonly HashSet<Collider> trackedPlayerColliders = new HashSet<Collider>();
 
     private void Awake()
     {
         if (string.IsNullOrWhiteSpace(cameraName))
-        cameraName = gameObject.name;
-        
+            cameraName = gameObject.name;
+
         boxCol = GetComponent<BoxCollider>();
+        EnsureTrigger();
         SyncZoneVisual();
+        RefreshState();
         UpdateZoneVisualColor();
     }
 
     private void OnValidate()
     {
         boxCol = GetComponent<BoxCollider>();
+        EnsureTrigger();
         SyncZoneVisual();
+        RefreshState();
         UpdateZoneVisualColor();
     }
 
     private void Start()
     {
-        Debug.Log($"[CCTV] {cameraName} Detection Zone started on object: {gameObject.name}");
+        if (debugLogs)
+            Debug.Log($"[CCTV] {cameraName} Detection Zone started on object: {gameObject.name}");
+
         UpdateZoneVisualColor();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("[CCTV RAW] ENTER by: " + other.name + " | layer: " + LayerMask.LayerToName(other.gameObject.layer));
+
         CCTVPlayerMarker marker = other.GetComponentInParent<CCTVPlayerMarker>();
 
         if (debugLogs)
@@ -60,14 +71,19 @@ public class CCTVDetectionZone : MonoBehaviour
         if (marker == null)
             return;
 
-        if (isPlayerInside)
+        if (!trackedPlayerColliders.Add(other))
             return;
 
-        isPlayerInside = true;
-        lastEnterTime = DateTime.Now.ToString("HH:mm:ss");
-        UpdateZoneVisualColor();
+        trackedColliderCount = trackedPlayerColliders.Count;
 
-        Debug.Log($"[CCTV] {gameObject.name} detected PLAYER ENTER at {lastEnterTime}");
+        if (!isPlayerInside && trackedPlayerColliders.Count > 0)
+        {
+            isPlayerInside = true;
+            lastEnterTime = DateTime.Now.ToString("HH:mm:ss");
+            UpdateZoneVisualColor();
+
+            Debug.Log($"[CCTV] {cameraName} detected PLAYER ENTER at {lastEnterTime}");
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -84,14 +100,39 @@ public class CCTVDetectionZone : MonoBehaviour
         if (marker == null)
             return;
 
-        if (!isPlayerInside)
+        if (!trackedPlayerColliders.Remove(other))
             return;
 
-        isPlayerInside = false;
-        lastExitTime = DateTime.Now.ToString("HH:mm:ss");
-        UpdateZoneVisualColor();
+        trackedColliderCount = trackedPlayerColliders.Count;
 
-        Debug.Log($"[CCTV] {cameraName} detected PLAYER EXIT at {lastExitTime}");
+        // เปลี่ยน state เฉพาะตอนจาก >0 -> 0
+        if (isPlayerInside && trackedPlayerColliders.Count == 0)
+        {
+            isPlayerInside = false;
+            lastExitTime = DateTime.Now.ToString("HH:mm:ss");
+            UpdateZoneVisualColor();
+
+            Debug.Log($"[CCTV] {cameraName} detected PLAYER EXIT at {lastExitTime}");
+        }
+    }
+
+    private void OnDisable()
+    {
+        trackedPlayerColliders.Clear();
+        RefreshState();
+        UpdateZoneVisualColor();
+    }
+
+    private void EnsureTrigger()
+    {
+        if (boxCol != null)
+            boxCol.isTrigger = true;
+    }
+
+    private void RefreshState()
+    {
+        trackedColliderCount = trackedPlayerColliders.Count;
+        isPlayerInside = trackedPlayerColliders.Count > 0;
     }
 
     private void SyncZoneVisual()
@@ -109,9 +150,17 @@ public class CCTVDetectionZone : MonoBehaviour
         if (zoneRenderer == null)
             return;
 
-        if (zoneRenderer.material != null)
+        Color targetColor = isPlayerInside ? detectedColor : normalColor;
+
+        if (Application.isPlaying)
         {
-            zoneRenderer.material.color = isPlayerInside ? detectedColor : normalColor;
+            if (zoneRenderer.material != null)
+                zoneRenderer.material.color = targetColor;
+        }
+        else
+        {
+            if (zoneRenderer.sharedMaterial != null)
+                zoneRenderer.sharedMaterial.color = targetColor;
         }
     }
 
