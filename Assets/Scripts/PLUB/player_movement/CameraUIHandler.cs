@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class CameraUIHandler : MonoBehaviour
 {
-    [SerializeField] private Transform rightHandPointer;
     private Canvas canvas;
     private Camera uiEventCamera;
 
     void Awake()
     {
         canvas = GetComponent<Canvas>();
-        uiEventCamera = rightHandPointer.GetComponentInChildren<Camera>(true);
+        //uiEventCamera = rightHandPointer.GetComponentInChildren<Camera>(true);
     }
 
     void Start()
@@ -30,6 +29,7 @@ public class CameraUIHandler : MonoBehaviour
         }
 
         canvas.renderMode = RenderMode.WorldSpace;
-        canvas.worldCamera = uiEventCamera;
+        //canvas.worldCamera = uiEventCamera;
+        canvas.worldCamera = UICameraManager.Instance.GetUIEventCamera();
     }
 }
