@@ -26,6 +26,35 @@ public class CCTVDetectionZone : MonoBehaviour
     private BoxCollider boxCol;
     private readonly HashSet<Collider> trackedPlayerColliders = new HashSet<Collider>();
 
+    // Event สำหรับส่งต่อให้ dashboard หรือระบบอื่น subscribe ภายหลัง
+    public event Action<string, string> OnPlayerEnteredZone; // (cameraName, time)
+    public event Action<string, string> OnPlayerExitedZone;  // (cameraName, time)
+    public event Action<CCTVZoneLogData> OnZoneStateChanged;
+
+    [Serializable]
+    public struct CCTVZoneLogData
+    {
+        public string cameraName;
+        public bool isPlayerInside;
+        public int trackedColliderCount;
+        public string lastEnterTime;
+        public string lastExitTime;
+
+        public CCTVZoneLogData(
+            string cameraName,
+            bool isPlayerInside,
+            int trackedColliderCount,
+            string lastEnterTime,
+            string lastExitTime)
+        {
+            this.cameraName = cameraName;
+            this.isPlayerInside = isPlayerInside;
+            this.trackedColliderCount = trackedColliderCount;
+            this.lastEnterTime = lastEnterTime;
+            this.lastExitTime = lastExitTime;
+        }
+    }
+
     private void Awake()
     {
         if (string.IsNullOrWhiteSpace(cameraName))
@@ -53,11 +82,15 @@ public class CCTVDetectionZone : MonoBehaviour
             Debug.Log($"[CCTV] {cameraName} Detection Zone started on object: {gameObject.name}");
 
         UpdateZoneVisualColor();
+        NotifyStateChanged();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("[CCTV RAW] ENTER by: " + other.name + " | layer: " + LayerMask.LayerToName(other.gameObject.layer));
+        if (debugLogs)
+        {
+            Debug.Log("[CCTV RAW] ENTER by: " + other.name + " | layer: " + LayerMask.LayerToName(other.gameObject.layer));
+        }
 
         CCTVPlayerMarker marker = other.GetComponentInParent<CCTVPlayerMarker>();
 
@@ -71,11 +104,13 @@ public class CCTVDetectionZone : MonoBehaviour
         if (marker == null)
             return;
 
+        // กันการนับ collider เดิมซ้ำ
         if (!trackedPlayerColliders.Add(other))
             return;
 
         trackedColliderCount = trackedPlayerColliders.Count;
 
+        // เปลี่ยน state เฉพาะตอนจาก 0 -> มากกว่า 0
         if (!isPlayerInside && trackedPlayerColliders.Count > 0)
         {
             isPlayerInside = true;
@@ -83,7 +118,10 @@ public class CCTVDetectionZone : MonoBehaviour
             UpdateZoneVisualColor();
 
             Debug.Log($"[CCTV] {cameraName} detected PLAYER ENTER at {lastEnterTime}");
+            OnPlayerEnteredZone?.Invoke(cameraName, lastEnterTime);
         }
+
+        NotifyStateChanged();
     }
 
     private void OnTriggerExit(Collider other)
@@ -113,7 +151,10 @@ public class CCTVDetectionZone : MonoBehaviour
             UpdateZoneVisualColor();
 
             Debug.Log($"[CCTV] {cameraName} detected PLAYER EXIT at {lastExitTime}");
+            OnPlayerExitedZone?.Invoke(cameraName, lastExitTime);
         }
+
+        NotifyStateChanged();
     }
 
     private void OnDisable()
@@ -121,6 +162,7 @@ public class CCTVDetectionZone : MonoBehaviour
         trackedPlayerColliders.Clear();
         RefreshState();
         UpdateZoneVisualColor();
+        NotifyStateChanged();
     }
 
     private void EnsureTrigger()
@@ -162,6 +204,47 @@ public class CCTVDetectionZone : MonoBehaviour
             if (zoneRenderer.sharedMaterial != null)
                 zoneRenderer.sharedMaterial.color = targetColor;
         }
+    }
+
+    private void NotifyStateChanged()
+    {
+        OnZoneStateChanged?.Invoke(GetLogData());
+    }
+
+    public bool GetIsPlayerInside()
+    {
+        return isPlayerInside;
+    }
+
+    public int GetTrackedColliderCount()
+    {
+        return trackedColliderCount;
+    }
+
+    public string GetLastEnterTime()
+    {
+        return lastEnterTime;
+    }
+
+    public string GetLastExitTime()
+    {
+        return lastExitTime;
+    }
+
+    public string GetCameraName()
+    {
+        return cameraName;
+    }
+
+    public CCTVZoneLogData GetLogData()
+    {
+        return new CCTVZoneLogData(
+            cameraName,
+            isPlayerInside,
+            trackedColliderCount,
+            lastEnterTime,
+            lastExitTime
+        );
     }
 
     private void OnDrawGizmos()
