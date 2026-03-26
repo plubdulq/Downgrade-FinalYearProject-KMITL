@@ -9,6 +9,7 @@ public class DischargeNozzleFX : MonoBehaviour
     public ParticleSystem dischargeParticles;
 
     [Header("Sequence")]
+    public bool useDurationFromFireAlarm = true;
     public float dischargeDuration = 8f;
 
     Coroutine _spray;
@@ -25,43 +26,58 @@ public class DischargeNozzleFX : MonoBehaviour
     void OnEnable()
     {
         if (!fireAlarm) return;
+
         fireAlarm.OnDischarge += HandleDischarge;
-        fireAlarm.OnReset     += HandleReset;
+        fireAlarm.OnReset += HandleReset;
     }
 
     void OnDisable()
     {
         if (!fireAlarm) return;
+
         fireAlarm.OnDischarge -= HandleDischarge;
-        fireAlarm.OnReset     -= HandleReset;
+        fireAlarm.OnReset -= HandleReset;
     }
 
     void HandleDischarge()
     {
-        if (_spray != null) StopCoroutine(_spray);
+        if (_spray != null)
+            StopCoroutine(_spray);
+
         _spray = StartCoroutine(SprayRoutine());
     }
 
     void HandleReset()
     {
-        StopAll();
+        StopAllFx();
     }
 
     IEnumerator SprayRoutine()
     {
-        if (dischargeParticles) dischargeParticles.Play();
+        float duration = dischargeDuration;
 
-        if (dischargeDuration > 0f)
-            yield return new WaitForSeconds(dischargeDuration);
+        if (useDurationFromFireAlarm && fireAlarm != null)
+            duration = fireAlarm.dischargeEffectDuration;
+
+        if (dischargeParticles)
+            dischargeParticles.Play();
+
+        if (duration > 0f)
+            yield return new WaitForSeconds(duration);
 
         if (dischargeParticles)
             dischargeParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+
+        _spray = null;
     }
 
-    void StopAll()
+    void StopAllFx()
     {
-        if (_spray != null) StopCoroutine(_spray);
-        _spray = null;
+        if (_spray != null)
+        {
+            StopCoroutine(_spray);
+            _spray = null;
+        }
 
         if (dischargeParticles)
             dischargeParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);

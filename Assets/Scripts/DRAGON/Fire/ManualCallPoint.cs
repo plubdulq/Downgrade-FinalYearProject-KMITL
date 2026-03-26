@@ -13,25 +13,25 @@ public class ManualCallPoint : MonoBehaviour
     [Header("Debug")]
     public bool debugLogs = true;
 
-    bool _used;
+    private bool _used;
 
-    void Reset()
+    private void Reset()
     {
         var col = GetComponent<Collider>();
         if (col) col.isTrigger = true;
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         if (fireAlarm) fireAlarm.OnReset += HandleReset;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         if (fireAlarm) fireAlarm.OnReset -= HandleReset;
     }
 
-    void HandleReset()
+    private void HandleReset()
     {
         _used = false;
 
@@ -61,21 +61,15 @@ public class ManualCallPoint : MonoBehaviour
             Debug.Log("[MCP] Alarm button pressed.");
     }
 
+    // เก็บ method นี้ไว้กัน script อื่น reference อยู่
+    // แต่ตาม flow ใหม่ MCP จะไม่ทำ Reset แล้ว
     public void PressResetButton()
     {
-        if (!fireAlarm)
-        {
-            Debug.LogWarning("[MCP] FireAlarmSystem is not assigned.");
-            return;
-        }
-
         if (debugLogs)
-            Debug.Log("[MCP] Reset button pressed.");
-
-        fireAlarm.ResetAlarm();
+            Debug.Log("[MCP] PressResetButton() called, but MCP reset is disabled in the new flow.");
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (usePhysicalButtonsOnly)
             return;

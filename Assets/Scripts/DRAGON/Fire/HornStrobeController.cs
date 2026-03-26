@@ -20,12 +20,10 @@ public class HornStrobeController : MonoBehaviour
     public float blinkInterval = 0.25f;
 
     [Header("Timing")]
-    public float sirenDuration = 0f;
     [Tooltip("หน่วง siren + strobe กี่วิ เพื่อให้ beep ดังก่อน")]
     public float sirenDelay = 3f;
 
     Coroutine _blink;
-    Coroutine _autoStop;
     Coroutine _delayed;
 
     void Awake()
@@ -37,54 +35,58 @@ public class HornStrobeController : MonoBehaviour
             siren.spatialBlend = spatialBlend;
             siren.minDistance = minDistance;
             siren.maxDistance = maxDistance;
-            if (sirenClip) siren.clip = sirenClip;
+
+            if (sirenClip)
+                siren.clip = sirenClip;
+
             siren.Stop();
         }
 
-        if (strobeLight) strobeLight.enabled = false;
+        if (strobeLight)
+            strobeLight.enabled = false;
     }
 
     void OnEnable()
     {
         if (!fireAlarm) return;
+
         fireAlarm.OnAlarm += HandleAlarm;
         fireAlarm.OnReset += HandleReset;
-        fireAlarm.OnDischarge += HandleDischarge;
     }
 
     void OnDisable()
     {
         if (!fireAlarm) return;
+
         fireAlarm.OnAlarm -= HandleAlarm;
         fireAlarm.OnReset -= HandleReset;
-        fireAlarm.OnDischarge -= HandleDischarge;
     }
 
     void HandleAlarm()
     {
-        if (_delayed != null) StopCoroutine(_delayed);
+        if (_delayed != null)
+            StopCoroutine(_delayed);
+
         _delayed = StartCoroutine(DelayedAlarmFX());
     }
 
     IEnumerator DelayedAlarmFX()
     {
-        // รอให้ beep ดังก่อน
-        yield return new WaitForSeconds(sirenDelay);
+        if (sirenDelay > 0f)
+            yield return new WaitForSeconds(sirenDelay);
 
-        if (!fireAlarm.IsAlarmOn) yield break;
+        if (fireAlarm == null || !fireAlarm.IsAlarmOn)
+            yield break;
 
-        // เปิด strobe
-        if (_blink != null) StopCoroutine(_blink);
-        if (strobeLight) _blink = StartCoroutine(Blink());
+        if (_blink != null)
+            StopCoroutine(_blink);
 
-        // เปิด siren
-        if (siren && !siren.isPlaying) siren.Play();
+        if (strobeLight)
+            _blink = StartCoroutine(Blink());
 
-        if (sirenDuration > 0f)
-            _autoStop = StartCoroutine(AutoStopAfter(sirenDuration));
+        if (siren && !siren.isPlaying)
+            siren.Play();
     }
-
-    void HandleDischarge() { }
 
     void HandleReset()
     {
@@ -93,34 +95,33 @@ public class HornStrobeController : MonoBehaviour
 
     void StopAllFx()
     {
-        if (_delayed != null) StopCoroutine(_delayed);
-        _delayed = null;
+        if (_delayed != null)
+        {
+            StopCoroutine(_delayed);
+            _delayed = null;
+        }
 
-        if (_autoStop != null) StopCoroutine(_autoStop);
-        _autoStop = null;
+        if (_blink != null)
+        {
+            StopCoroutine(_blink);
+            _blink = null;
+        }
 
-        if (_blink != null) StopCoroutine(_blink);
-        _blink = null;
+        if (siren)
+            siren.Stop();
 
-        if (siren) siren.Stop();
-        if (strobeLight) strobeLight.enabled = false;
+        if (strobeLight)
+            strobeLight.enabled = false;
     }
 
     IEnumerator Blink()
     {
         while (true)
         {
-            strobeLight.enabled = !strobeLight.enabled;
+            if (strobeLight)
+                strobeLight.enabled = !strobeLight.enabled;
+
             yield return new WaitForSeconds(blinkInterval);
         }
-    }
-
-    IEnumerator AutoStopAfter(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        if (siren) siren.Stop();
-        if (_blink != null) StopCoroutine(_blink);
-        _blink = null;
-        if (strobeLight) strobeLight.enabled = false;
     }
 }

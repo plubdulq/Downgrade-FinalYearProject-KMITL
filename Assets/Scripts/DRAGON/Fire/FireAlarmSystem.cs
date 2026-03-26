@@ -13,9 +13,11 @@ public class FireAlarmSystem : MonoBehaviour
         Test = 4
     }
 
-    public bool IsAlarmOn { get; private set; }
-    public bool IsPreDischargeActive { get; private set; }
-    public bool IsDischarged { get; private set; }
+    public bool IsAlarmOn { get; private set; }                  // ระบบฉุกเฉินยัง active
+    public bool IsPreDischargeActive { get; private set; }       // อยู่ช่วง countdown
+    public bool IsDischarged { get; private set; }               // discharge เริ่มแล้ว
+    public bool IsDischargeEffectActive { get; private set; }    // effect กำลังทำงานอยู่
+    public bool IsWaitingForReset { get; private set; }          // effect จบแล้ว แต่ยังรอ reset
     public TriggerReason LastReason { get; private set; } = TriggerReason.Unknown;
 
     [Header("Timing")]
@@ -23,24 +25,28 @@ public class FireAlarmSystem : MonoBehaviour
     public float preDischargeDuration = 10f;
 
     [Tooltip("ถ้าเปิด จะปล่อย Discharge อัตโนมัติหลัง Pre-Discharge")]
-    public bool autoDischarge = false;
-    public float dischargeDelay = 0f;
+    public bool autoDischarge = true;
 
-    // Events (ไฟล์อื่นจะ subscribe)
+    [Header("Discharge")]
+    public float dischargeDelay = 0f;
+    public float dischargeEffectDuration = 5f;
+
+    // Events
     public event Action OnAlarm;
     public event Action<TriggerReason> OnAlarmWithReason;
-    public event Action<float> OnPreDischargeStart;
+    public event Action<int> OnPreDischargeStart;
     public event Action OnDischarge;
+    public event Action OnDischargeComplete;
     public event Action OnReset;
 
     // Exit event (รองรับ RoomExitZone)
     public event Action<GameObject> OnUserExitedRoom;
 
-    Coroutine _flow;
+    private Coroutine _flow;
 
-    // ---- Public API ----
-
-    // Overload กันพัง: เรียกได้แบบไม่ส่ง reason
+    // -------------------------
+    // Public API
+    // -------------------------
     public void TriggerAlarm()
     {
         TriggerAlarm(TriggerReason.Unknown);
@@ -48,9 +54,18 @@ public class FireAlarmSystem : MonoBehaviour
 
     public void TriggerAlarm(TriggerReason reason)
     {
-        if (IsAlarmOn) return;
+        // ถ้าระบบยัง active อยู่แล้ว ไม่ต้อง trigger ซ้ำ
+        if (IsAlarmOn)
+        {
+            Debug.Log($"[FireAlarmSystem] Trigger ignored. Alarm already active. Current reason: {LastReason}");
+            return;
+        }
 
         IsAlarmOn = true;
+        IsPreDischargeActive = false;
+        IsDischarged = false;
+        IsDischargeEffectActive = false;
+        IsWaitingForReset = false;
         LastReason = reason;
 
         Debug.Log($"[FireAlarmSystem] Alarm TRIGGERED (Reason: {reason})");
@@ -58,18 +73,25 @@ public class FireAlarmSystem : MonoBehaviour
         OnAlarm?.Invoke();
         OnAlarmWithReason?.Invoke(reason);
 
-        if (_flow != null) StopCoroutine(_flow);
+        if (_flow != null)
+            StopCoroutine(_flow);
+
         _flow = StartCoroutine(AlarmFlow());
     }
 
     public void ResetAlarm()
     {
-        if (_flow != null) StopCoroutine(_flow);
-        _flow = null;
+        if (_flow != null)
+        {
+            StopCoroutine(_flow);
+            _flow = null;
+        }
 
         IsAlarmOn = false;
         IsPreDischargeActive = false;
         IsDischarged = false;
+        IsDischargeEffectActive = false;
+        IsWaitingForReset = false;
         LastReason = TriggerReason.Unknown;
 
         Debug.Log("[FireAlarmSystem] Alarm RESET");
@@ -78,36 +100,55 @@ public class FireAlarmSystem : MonoBehaviour
 
     public void ForceDischargeNow()
     {
-        if (IsDischarged) return;
+        if (IsDischarged)
+        {
+            Debug.Log("[FireAlarmSystem] ForceDischargeNow ignored. Already discharged.");
+            return;
+        }
 
-        // ถ้าบังคับปล่อยโดยตรง แต่ยังไม่ได้ trigger alarm ก็ถือว่า alarm on
-        if (!IsAlarmOn) IsAlarmOn = true;
+        if (!IsAlarmOn)
+        {
+            IsAlarmOn = true;
+            LastReason = TriggerReason.Unknown;
+            Debug.Log("[FireAlarmSystem] ForceDischargeNow turned alarm on.");
+            OnAlarm?.Invoke();
+            OnAlarmWithReason?.Invoke(LastReason);
+        }
 
-        if (_flow != null) StopCoroutine(_flow);
-        _flow = null;
+        if (_flow != null)
+        {
+            StopCoroutine(_flow);
+            _flow = null;
+        }
 
-        DoDischarge();
+        IsPreDischargeActive = false;
+        StartCoroutine(DischargeSequence());
     }
 
-    // รองรับ RoomExitZone.cs ที่เรียกเมธอดนี้
     public void NotifyUserExitedRoom(GameObject who = null)
     {
         Debug.Log("[FireAlarmSystem] User exited room" + (who ? $" : {who.name}" : ""));
         OnUserExitedRoom?.Invoke(who);
     }
 
-    // ---- Internal Flow ----
-    IEnumerator AlarmFlow()
+    // -------------------------
+    // Internal Flow
+    // -------------------------
+    private IEnumerator AlarmFlow()
     {
         if (usePreDischarge && preDischargeDuration > 0f)
         {
             IsPreDischargeActive = true;
-            OnPreDischargeStart?.Invoke(preDischargeDuration);
+
+            int countdownSeconds = Mathf.CeilToInt(preDischargeDuration);
+            OnPreDischargeStart?.Invoke(countdownSeconds);
 
             float t = 0f;
             while (t < preDischargeDuration)
             {
-                if (!IsAlarmOn) yield break;
+                if (!IsAlarmOn)
+                    yield break;
+
                 t += Time.deltaTime;
                 yield return null;
             }
@@ -115,22 +156,57 @@ public class FireAlarmSystem : MonoBehaviour
             IsPreDischargeActive = false;
         }
 
-        if (autoDischarge)
+        if (!autoDischarge)
         {
-            if (dischargeDelay > 0f)
-                yield return new WaitForSeconds(dischargeDelay);
-
-            DoDischarge();
+            _flow = null;
+            yield break;
         }
 
+        yield return StartCoroutine(DischargeSequence());
         _flow = null;
     }
 
-    void DoDischarge()
+    private IEnumerator DischargeSequence()
     {
-        if (IsDischarged) return;
+        if (dischargeDelay > 0f)
+            yield return new WaitForSeconds(dischargeDelay);
+
+        if (!IsAlarmOn)
+            yield break;
+
+        DoDischarge();
+
+        IsDischargeEffectActive = true;
+        IsWaitingForReset = false;
+
+        if (dischargeEffectDuration > 0f)
+        {
+            float dischargeT = 0f;
+            while (dischargeT < dischargeEffectDuration)
+            {
+                if (!IsAlarmOn)
+                    yield break;
+
+                dischargeT += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        IsDischargeEffectActive = false;
+        IsWaitingForReset = true;
+
+        Debug.Log("[FireAlarmSystem] Discharge effect complete. Waiting for manual reset.");
+        OnDischargeComplete?.Invoke();
+    }
+
+    private void DoDischarge()
+    {
+        if (IsDischarged)
+            return;
 
         IsDischarged = true;
+        IsWaitingForReset = false;
+
         Debug.Log("[FireAlarmSystem] DISCHARGE");
         OnDischarge?.Invoke();
     }
