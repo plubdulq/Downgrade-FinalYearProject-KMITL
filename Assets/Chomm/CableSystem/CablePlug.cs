@@ -8,6 +8,7 @@ namespace Chomm.CableSystem
     public class CablePlug : GrabbableEvents
     {
         public PlugType plugType;
+       // public CableType cableType;
         [Tooltip("The tip of the plug (Connection point)")]
         public Transform Start1;
 

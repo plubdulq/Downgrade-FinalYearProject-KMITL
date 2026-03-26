@@ -3,6 +3,8 @@ using Chomm.CableSystem;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class CableDataUI : MonoBehaviour
 {
@@ -10,11 +12,54 @@ public class CableDataUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI cableTypeText;
     [SerializeField] TextMeshProUGUI device1Text;
     [SerializeField] TextMeshProUGUI device2Text;
+    [SerializeField] TextMeshProUGUI caleTypeText;
     public Cable holdingCable;
     public CablePlug holdingPlug;
+    private Dictionary<(string, string), string> cableMap;
     private void Awake()
     {
         Instance = this;
+        cableMap = new Dictionary<(string, string), string>()
+        {
+            // ===== Juniper SRX340 =====
+            { ("Juniper SRX340", "FortiWAN 3000B"), "RJ45 Straight" },
+            { ("Juniper SRX340", "Cisco 2911"), "RJ45 Straight" },
+            { ("Juniper SRX340", "Cisco Catalyst 8500-12X"), "Fiber LC-LC" },
+            { ("Juniper SRX340", "Cisco Catalyst 2960"), "RJ45 Straight" },
+            { ("Juniper SRX340", "Cisco Catalyst 3560"), "RJ45 Straight" },
+            { ("Juniper SRX340", "Cisco SG300"), "RJ45 Straight" },
+            { ("Juniper SRX340", "Dell PowerEdge R260"), "RJ45 Straight" },
+            { ("Juniper SRX340", "Dell PowerEdge R540"), "RJ45 Straight" },
+            { ("Juniper SRX340", "Sky 6420 GPU Server"), "RJ45 Straight" },
+            { ("Juniper SRX340", "APC Smart-UPS SRT2200"), "Power C13" },
+            { ("Juniper SRX340", "Tripp Lite 12-Outlet PDU"), "Power C13" },
+
+            // ===== FortiWAN 3000B =====
+            { ("FortiWAN 3000B", "Juniper SRX340"), "RJ45 Straight" },
+            { ("FortiWAN 3000B", "Cisco 2911"), "RJ45 Straight" },
+            { ("FortiWAN 3000B", "Cisco Catalyst 8500-12X"), "RJ45 Straight" },
+            { ("FortiWAN 3000B", "Cisco Catalyst 2960"), "RJ45 Straight" },
+            { ("FortiWAN 3000B", "Cisco Catalyst 3560"), "RJ45 Straight" },
+            { ("FortiWAN 3000B", "Cisco SG300"), "RJ45 Straight" },
+            { ("FortiWAN 3000B", "Dell PowerEdge R260"), "RJ45 Straight" },
+            { ("FortiWAN 3000B", "Dell PowerEdge R540"), "RJ45 Straight" },
+            { ("FortiWAN 3000B", "Sky 6420 GPU Server"), "RJ45 Straight" },
+            { ("FortiWAN 3000B", "APC Smart-UPS SRT2200"), "Power C13" },
+            { ("FortiWAN 3000B", "Tripp Lite 12-Outlet PDU"), "Power C13" },
+
+            // ===== Cisco 2911 =====
+            { ("Cisco 2911", "Juniper SRX340"), "RJ45 Straight" },
+            { ("Cisco 2911", "FortiWAN 3000B"), "RJ45 Straight" },
+            { ("Cisco 2911", "Cisco Catalyst 8500-12X"), "RJ45 Crossover" },
+            { ("Cisco 2911", "Cisco Catalyst 2960"), "RJ45 Straight" },
+            { ("Cisco 2911", "Cisco Catalyst 3560"), "RJ45 Straight" },
+            { ("Cisco 2911", "Cisco SG300"), "RJ45 Straight" },
+            { ("Cisco 2911", "Dell PowerEdge R260"), "RJ45 Straight" },
+            { ("Cisco 2911", "Dell PowerEdge R540"), "RJ45 Straight" },
+            { ("Cisco 2911", "Sky 6420 GPU Server"), "RJ45 Straight" },
+            { ("Cisco 2911", "APC Smart-UPS SRT2200"), "Power C13" },
+            { ("Cisco 2911", "Tripp Lite 12-Outlet PDU"), "Power C13" },
+        };
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,7 +73,15 @@ public class CableDataUI : MonoBehaviour
     {
         //UpdateUI();
     }
+ public string GetCable(string col1, string col2)
+    {
+        if (cableMap.TryGetValue((col1, col2), out string result))
+        {
+            caleTypeText.text = result.ToString();
+        }
 
+        return "Unknown";
+    }
     public void UpdateUI(CablePlug holdingPlugIn = null)
     {
         if (holdingPlugIn != null)
@@ -67,7 +120,7 @@ public class CableDataUI : MonoBehaviour
 
         string deviceName = "name"; // Default placeholder
         string portInfo = "port : -/-";
-
+       
         // Find connected port / equipment
         // Logic: Plug is a child of a SnapZone?, or we check what the plug is connected TO?
         // In Cable.cs logic, PlugA/B are the ENDS of the cable. 
@@ -129,6 +182,7 @@ public class CableDataUI : MonoBehaviour
 
         string nameA = GetPlugTypeString(a);
         string nameB = GetPlugTypeString(b);
+        GetCable(nameA, nameB);// Cable type
 
         bool aIsIEC = a == PlugType.IECC13 || a == PlugType.IECC14 || a == PlugType.IECC19 || a == PlugType.IECC20;
         bool bIsIEC = b == PlugType.IECC13 || b == PlugType.IECC14 || b == PlugType.IECC19 || b == PlugType.IECC20;

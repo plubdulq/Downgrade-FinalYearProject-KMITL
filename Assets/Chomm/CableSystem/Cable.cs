@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace Chomm.CableSystem
 {
     public enum PlugType {None, Rj45, Dsl, PowerIn, PowerOut, IECC13, IECC14, IECC19, IECC20, StandardPlug, FiberLCSinglemode, FiberLCMultimode}
+    public enum CableType {None, LB3000B}
     [ExecuteInEditMode]
     [RequireComponent(typeof(TubeRenderer))]
     public class Cable : MonoBehaviour
