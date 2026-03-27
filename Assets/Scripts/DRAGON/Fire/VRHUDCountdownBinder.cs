@@ -90,7 +90,7 @@ public class VRHUDCountdownBinder : MonoBehaviour
         Debug.Log("[VRHUDCountdownBinder] OnDischarge received");
 
         if (vrHudCountdown != null)
-            vrHudCountdown.StopCountdown();
+            vrHudCountdown.StopCountdownKeepHudVisible();
 
         SetActiveSafe(dischargeActivatedUI, true);
         SetActiveSafe(waitingForResetUI, false);

@@ -59,6 +59,23 @@ public class VRHUDCountdown : MonoBehaviour
             hudRoot.SetActive(false);
     }
 
+    public void StopCountdownKeepHudVisible()
+    {
+        Debug.Log("[VRHUDCountdown] StopCountdownKeepHudVisible called");
+
+        if (countdownRoutine != null)
+        {
+            StopCoroutine(countdownRoutine);
+            countdownRoutine = null;
+        }
+
+        if (countdownText != null)
+            countdownText.text = "";
+
+        if (hudRoot != null)
+            hudRoot.SetActive(true);
+    }
+
     private IEnumerator CountdownRoutine(int seconds)
     {
         int remaining = seconds;
@@ -70,11 +87,7 @@ public class VRHUDCountdown : MonoBehaviour
             remaining--;
         }
 
-        countdownText.text = "Discharge activated";
-        yield return new WaitForSeconds(1f);
-
         countdownText.text = "";
-        hudRoot.SetActive(false);
         countdownRoutine = null;
     }
 }
