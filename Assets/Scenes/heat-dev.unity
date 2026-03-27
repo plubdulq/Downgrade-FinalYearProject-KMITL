@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 10
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -42,8 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 13
-  m_BakeOnSceneLoad: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,6 +66,9 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -129,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4623439}
   m_Layer: 0
-  m_Name: 'icon_left [I524:2203;1001:14707;1001:26207]'
+  m_Name: icon_left [I524:2203;1001:14707;1001:26207]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,7 +170,7 @@ GameObject:
   - component: {fileID: 8728546}
   - component: {fileID: 8728545}
   m_Layer: 0
-  m_Name: 'Logo [524:2458]'
+  m_Name: Logo [524:2458]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,7 +247,7 @@ GameObject:
   - component: {fileID: 28959400}
   - component: {fileID: 28959399}
   m_Layer: 0
-  m_Name: 'Menu/Sidebar/OffPanel [524:2457]'
+  m_Name: Menu/Sidebar/OffPanel [524:2457]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,7 +324,7 @@ GameObject:
   - component: {fileID: 57960180}
   - component: {fileID: 57960179}
   m_Layer: 0
-  m_Name: 'CATEGORY [524:2467]'
+  m_Name: CATEGORY [524:2467]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -409,17 +412,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -461,7 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 87592360}
   m_Layer: 0
-  m_Name: 'Vector [I524:2470;1001:15508;1001:24502]'
+  m_Name: Vector [I524:2470;1001:15508;1001:24502]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,7 +497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 89054150}
   m_Layer: 0
-  m_Name: 'Frame 11 [I524:2210;1001:16031]'
+  m_Name: Frame 11 [I524:2210;1001:16031]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -542,7 +543,7 @@ GameObject:
   - component: {fileID: 104441799}
   - component: {fileID: 104441798}
   m_Layer: 0
-  m_Name: 'Cards/Clickable Image [I524:2209;1001:16027]'
+  m_Name: Cards/Clickable Image [I524:2209;1001:16027]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -720,7 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 128241578}
   m_Layer: 0
-  m_Name: 'icon_star [I524:2469;1001:15508]'
+  m_Name: icon_star [I524:2469;1001:15508]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -757,7 +758,7 @@ GameObject:
   - component: {fileID: 137475747}
   - component: {fileID: 137475748}
   m_Layer: 0
-  m_Name: 'Primitives/Sidebar Item [524:2478]'
+  m_Name: Primitives/Sidebar Item [524:2478]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -810,7 +811,7 @@ GameObject:
   - component: {fileID: 186217793}
   - component: {fileID: 186217792}
   m_Layer: 0
-  m_Name: 'Frame 10 [I524:2210;1001:16030]'
+  m_Name: Frame 10 [I524:2210;1001:16030]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -899,7 +900,7 @@ GameObject:
   - component: {fileID: 194431682}
   - component: {fileID: 194431681}
   m_Layer: 0
-  m_Name: 'This is a two line title [I524:2210;1001:16032]'
+  m_Name: This is a two line title [I524:2210;1001:16032]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -989,17 +990,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -1035,7 +1034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 200070014}
   m_Layer: 0
-  m_Name: 'icon_star [I524:2477;1001:15508]'
+  m_Name: icon_star [I524:2477;1001:15508]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1071,7 +1070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 203448102}
   m_Layer: 0
-  m_Name: 'icon_more_horiz [I524:2210;1001:16033;1001:15417]'
+  m_Name: icon_more_horiz [I524:2210;1001:16033;1001:15417]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1115,7 +1114,7 @@ GameObject:
   - component: {fileID: 224467055}
   - component: {fileID: 224467054}
   m_Layer: 0
-  m_Name: 'Vector [I524:2208;1001:16033;1001:15417;1001:19856]'
+  m_Name: Vector [I524:2208;1001:16033;1001:15417;1001:19856]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1192,7 +1191,7 @@ GameObject:
   - component: {fileID: 250474501}
   - component: {fileID: 250474502}
   m_Layer: 0
-  m_Name: 'Menus/Vertical menu item [I524:2477;1001:15507]'
+  m_Name: Menus/Vertical menu item [I524:2477;1001:15507]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1243,7 +1242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 271393094}
   m_Layer: 0
-  m_Name: 'icon_star [I524:2473;1001:15508]'
+  m_Name: icon_star [I524:2473;1001:15508]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1279,7 +1278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 278847172}
   m_Layer: 0
-  m_Name: 'Icon Button [I524:2206;1001:16033]'
+  m_Name: Icon Button [I524:2206;1001:16033]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1370,7 +1369,7 @@ GameObject:
   - component: {fileID: 306833807}
   - component: {fileID: 306833806}
   m_Layer: 0
-  m_Name: 'Cards/Default Placeholder [I524:2210;1001:16028]'
+  m_Name: Cards/Default Placeholder [I524:2210;1001:16028]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1494,7 +1493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 323983881}
   m_Layer: 0
-  m_Name: 'Title Card [524:2205]'
+  m_Name: Title Card [524:2205]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1532,7 +1531,7 @@ GameObject:
   - component: {fileID: 361110113}
   - component: {fileID: 361110114}
   m_Layer: 0
-  m_Name: 'Menus/Vertical menu item [I524:2473;1001:15507]'
+  m_Name: Menus/Vertical menu item [I524:2473;1001:15507]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1774,7 +1773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 387974118}
   m_Layer: 0
-  m_Name: 'Placeholder 1 [I524:2206;1001:16029]'
+  m_Name: Placeholder 1 [I524:2206;1001:16029]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1817,6 +1816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44cccb4bf0173a4ca6fc693209891fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wattPerCelsius: 0.3
 --- !u!23 &388315169
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1834,9 +1834,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1893,7 +1890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 388906786}
   m_Layer: 0
-  m_Name: 'Vector [I524:2477;1001:15508;1001:24502]'
+  m_Name: Vector [I524:2477;1001:15508;1001:24502]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1930,7 +1927,7 @@ GameObject:
   - component: {fileID: 392359753}
   - component: {fileID: 392359752}
   m_Layer: 0
-  m_Name: 'Item [I524:2474;1001:15509]'
+  m_Name: Item [I524:2474;1001:15509]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2018,17 +2015,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -2234,7 +2229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 432139267}
   m_Layer: 0
-  m_Name: 'Title Card [524:2208]'
+  m_Name: Title Card [524:2208]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2273,7 +2268,7 @@ GameObject:
   - component: {fileID: 450482119}
   - component: {fileID: 450482118}
   m_Layer: 0
-  m_Name: 'Panel Empty [I524:2202;1001:15917]'
+  m_Name: Panel Empty [I524:2202;1001:15917]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2346,7 +2341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 464170735}
   m_Layer: 0
-  m_Name: 'Path [I524:2205;1001:16033;1001:15417;1001:19858]'
+  m_Name: Path [I524:2205;1001:16033;1001:15417;1001:19858]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2381,7 +2376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 473138685}
   m_Layer: 0
-  m_Name: 'Vector [524:2463]'
+  m_Name: Vector [524:2463]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2416,7 +2411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 492933698}
   m_Layer: 0
-  m_Name: 'Path [I524:2208;1001:16033;1001:15417;1001:19858]'
+  m_Name: Path [I524:2208;1001:16033;1001:15417;1001:19858]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2451,7 +2446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 502274499}
   m_Layer: 0
-  m_Name: 'Vector [I524:2472;1001:15508;1001:24502]'
+  m_Name: Vector [I524:2472;1001:15508;1001:24502]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2489,7 +2484,7 @@ GameObject:
   - component: {fileID: 533718999}
   - component: {fileID: 533718998}
   m_Layer: 0
-  m_Name: 'Frame 10 [I524:2205;1001:16030]'
+  m_Name: Frame 10 [I524:2205;1001:16030]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2577,7 +2572,7 @@ GameObject:
   - component: {fileID: 540307804}
   - component: {fileID: 540307805}
   m_Layer: 0
-  m_Name: 'Menus/Vertical menu item [I524:2475;1001:15507]'
+  m_Name: Menus/Vertical menu item [I524:2475;1001:15507]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2718,7 +2713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 558958768}
   m_Layer: 0
-  m_Name: 'Panel/Main/Primary View [524:2202]'
+  m_Name: Panel/Main/Primary View [524:2202]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2755,7 +2750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 559591806}
   m_Layer: 0
-  m_Name: 'Title Card [524:2210]'
+  m_Name: Title Card [524:2210]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2818,6 +2813,9 @@ MonoBehaviour:
   overridePerLayerColorScaleAndOffset: 0
   colorScale: {x: 1, y: 1, z: 1, w: 1}
   colorOffset: {x: 0, y: 0, z: 0, w: 0}
+  passthroughLayerResumed:
+    m_PersistentCalls:
+      m_Calls: []
   colorMapEditorType_: 0
   colorMapEditorGradient:
     serializedVersion: 2
@@ -2887,7 +2885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 567323466}
   m_Layer: 0
-  m_Name: 'Icon Button [I524:2210;1001:16033]'
+  m_Name: Icon Button [I524:2210;1001:16033]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2923,7 +2921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 568719773}
   m_Layer: 0
-  m_Name: 'icon_star [I524:2476;1001:15508]'
+  m_Name: icon_star [I524:2476;1001:15508]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3023,7 +3021,7 @@ GameObject:
   - component: {fileID: 579615887}
   - component: {fileID: 579615888}
   m_Layer: 0
-  m_Name: 'Top menu [524:2468]'
+  m_Name: Top menu [524:2468]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3082,7 +3080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 611646666}
   m_Layer: 0
-  m_Name: 'Path [I524:2206;1001:16033;1001:15417;1001:19859]'
+  m_Name: Path [I524:2206;1001:16033;1001:15417;1001:19859]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3107,6 +3105,74 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!1001 &654159859
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 330196958861435807, guid: d1543993f45415b4c9e54d5b209f3b1c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.049239997
+      objectReference: {fileID: 0}
+    - target: {fileID: 330196958861435807, guid: d1543993f45415b4c9e54d5b209f3b1c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09900001
+      objectReference: {fileID: 0}
+    - target: {fileID: 330196958861435807, guid: d1543993f45415b4c9e54d5b209f3b1c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.11275
+      objectReference: {fileID: 0}
+    - target: {fileID: 330196958861435807, guid: d1543993f45415b4c9e54d5b209f3b1c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 330196958861435807, guid: d1543993f45415b4c9e54d5b209f3b1c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330196958861435807, guid: d1543993f45415b4c9e54d5b209f3b1c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330196958861435807, guid: d1543993f45415b4c9e54d5b209f3b1c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330196958861435807, guid: d1543993f45415b4c9e54d5b209f3b1c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330196958861435807, guid: d1543993f45415b4c9e54d5b209f3b1c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330196958861435807, guid: d1543993f45415b4c9e54d5b209f3b1c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3821568423245721946, guid: d1543993f45415b4c9e54d5b209f3b1c,
+        type: 3}
+      propertyPath: m_Name
+      value: Plug V1 Rj45
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d1543993f45415b4c9e54d5b209f3b1c, type: 3}
 --- !u!1 &686857470
 GameObject:
   m_ObjectHideFlags: 0
@@ -3118,7 +3184,7 @@ GameObject:
   - component: {fileID: 686857471}
   - component: {fileID: 686857472}
   m_Layer: 0
-  m_Name: 'Menus/Vertical menu item [I524:2469;1001:15507]'
+  m_Name: Menus/Vertical menu item [I524:2469;1001:15507]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3200,7 +3266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 692978367}
   m_Layer: 0
-  m_Name: 'Path [I524:2205;1001:16033;1001:15417;1001:19857]'
+  m_Name: Path [I524:2205;1001:16033;1001:15417;1001:19857]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3237,7 +3303,7 @@ GameObject:
   - component: {fileID: 707830194}
   - component: {fileID: 707830193}
   m_Layer: 0
-  m_Name: 'Vector [I524:2209;1001:16033;1001:15417;1001:19856]'
+  m_Name: Vector [I524:2209;1001:16033;1001:15417;1001:19856]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3344,7 +3410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 722415007}
   m_Layer: 0
-  m_Name: 'icon_star [I524:2471;1001:15508]'
+  m_Name: icon_star [I524:2471;1001:15508]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3388,7 +3454,7 @@ GameObject:
   - component: {fileID: 728016481}
   - component: {fileID: 728016480}
   m_Layer: 0
-  m_Name: 'Vector [I524:2210;1001:16033;1001:15417;1001:19856]'
+  m_Name: Vector [I524:2210;1001:16033;1001:15417;1001:19856]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3556,6 +3622,8 @@ MonoBehaviour:
     type: 3}
   redMat: {fileID: 2100000, guid: ad051d3b772984b47a4b27afcec8cd89, type: 2}
   gridSize: 20
+  placeObjectAction: {fileID: 0}
+  rightHandPointer: {fileID: 0}
 --- !u!4 &748452622
 Transform:
   m_ObjectHideFlags: 0
@@ -3589,7 +3657,7 @@ GameObject:
   - component: {fileID: 762512816}
   - component: {fileID: 762512815}
   m_Layer: 0
-  m_Name: 'Item [I524:2476;1001:15509]'
+  m_Name: Item [I524:2476;1001:15509]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3677,17 +3745,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -3725,7 +3791,7 @@ GameObject:
   - component: {fileID: 776540866}
   - component: {fileID: 776540865}
   m_Layer: 0
-  m_Name: 'Category [I524:2202;1001:15918]'
+  m_Name: Category [I524:2202;1001:15918]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3813,17 +3879,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -3859,7 +3923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 781024533}
   m_Layer: 0
-  m_Name: 'Vector [I524:2478;1001:15508;1001:24502]'
+  m_Name: Vector [I524:2478;1001:15508;1001:24502]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3896,7 +3960,7 @@ GameObject:
   - component: {fileID: 789655078}
   - component: {fileID: 789655077}
   m_Layer: 0
-  m_Name: 'Cards/Default Placeholder [I524:2208;1001:16028]'
+  m_Name: Cards/Default Placeholder [I524:2208;1001:16028]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3970,7 +4034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 793713934}
   m_Layer: 0
-  m_Name: 'Vector [524:2466]'
+  m_Name: Vector [524:2466]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4005,7 +4069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 800525816}
   m_Layer: 0
-  m_Name: 'Placeholder 1 [I524:2210;1001:16029]'
+  m_Name: Placeholder 1 [I524:2210;1001:16029]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4041,7 +4105,7 @@ GameObject:
   - component: {fileID: 801352248}
   - component: {fileID: 801352249}
   m_Layer: 0
-  m_Name: 'Primitives/Sidebar Item [524:2471]'
+  m_Name: Primitives/Sidebar Item [524:2471]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4124,7 +4188,7 @@ GameObject:
   - component: {fileID: 807893511}
   - component: {fileID: 807893512}
   m_Layer: 0
-  m_Name: 'Device Lists [524:2201]'
+  m_Name: Device Lists [524:2201]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4182,7 +4246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 821176049}
   m_Layer: 0
-  m_Name: 'Icon Button [I524:2205;1001:16033]'
+  m_Name: Icon Button [I524:2205;1001:16033]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4307,6 +4371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44cccb4bf0173a4ca6fc693209891fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wattPerCelsius: 0.3
 --- !u!23 &833212356
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4324,9 +4389,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4365,7 +4427,7 @@ GameObject:
   - component: {fileID: 833524775}
   - component: {fileID: 833524774}
   m_Layer: 0
-  m_Name: 'Frame 10 [I524:2209;1001:16030]'
+  m_Name: Frame 10 [I524:2209;1001:16030]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4454,7 +4516,7 @@ GameObject:
   - component: {fileID: 837754393}
   - component: {fileID: 837754392}
   m_Layer: 0
-  m_Name: 'Item [I524:2469;1001:15509]'
+  m_Name: Item [I524:2469;1001:15509]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4542,17 +4604,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -4588,7 +4648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 855443862}
   m_Layer: 0
-  m_Name: 'icon_more_horiz [I524:2209;1001:16033;1001:15417]'
+  m_Name: icon_more_horiz [I524:2209;1001:16033;1001:15417]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4624,7 +4684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 858230340}
   m_Layer: 0
-  m_Name: 'Icon Button [I524:2209;1001:16033]'
+  m_Name: Icon Button [I524:2209;1001:16033]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4793,7 +4853,7 @@ GameObject:
   m_Component:
   - component: {fileID: 915785749}
   m_Layer: 0
-  m_Name: 'Path [I524:2209;1001:16033;1001:15417;1001:19859]'
+  m_Name: Path [I524:2209;1001:16033;1001:15417;1001:19859]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4895,7 +4955,7 @@ GameObject:
   m_Component:
   - component: {fileID: 939545863}
   m_Layer: 0
-  m_Name: 'icon_star [I524:2472;1001:15508]'
+  m_Name: icon_star [I524:2472;1001:15508]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4932,7 +4992,7 @@ GameObject:
   - component: {fileID: 945270584}
   - component: {fileID: 945270585}
   m_Layer: 0
-  m_Name: 'Primitives/Sidebar Item [524:2474]'
+  m_Name: Primitives/Sidebar Item [524:2474]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4983,7 +5043,7 @@ GameObject:
   - component: {fileID: 953122744}
   - component: {fileID: 953122745}
   m_Layer: 0
-  m_Name: 'Menus/Vertical menu item [I524:2474;1001:15507]'
+  m_Name: Menus/Vertical menu item [I524:2474;1001:15507]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5034,7 +5094,7 @@ GameObject:
   m_Component:
   - component: {fileID: 981186512}
   m_Layer: 0
-  m_Name: 'Vector [I524:2203;1001:14707;1001:26207;1001:24502]'
+  m_Name: Vector [I524:2203;1001:14707;1001:26207;1001:24502]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5069,7 +5129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1020276602}
   m_Layer: 0
-  m_Name: 'Vector [524:2464]'
+  m_Name: Vector [524:2464]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5242,7 +5302,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StorePrefab: {fileID: 0}
   cameraTransform: {fileID: 1932536335}
+  rightHandPointer: {fileID: 0}
   spawnDistance: 35
+  openStoreAction: {fileID: 0}
 --- !u!1 &1041755618
 GameObject:
   m_ObjectHideFlags: 0
@@ -5255,7 +5317,7 @@ GameObject:
   - component: {fileID: 1041755621}
   - component: {fileID: 1041755620}
   m_Layer: 0
-  m_Name: 'Vector [I524:2205;1001:16033;1001:15417;1001:19856]'
+  m_Name: Vector [I524:2205;1001:16033;1001:15417;1001:19856]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5331,7 +5393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1043040124}
   m_Layer: 0
-  m_Name: 'Placeholder 1 [I524:2205;1001:16029]'
+  m_Name: Placeholder 1 [I524:2205;1001:16029]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5366,7 +5428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1047806405}
   m_Layer: 0
-  m_Name: 'Placeholder 1 [I524:2209;1001:16029]'
+  m_Name: Placeholder 1 [I524:2209;1001:16029]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5484,7 +5546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1071821270}
   m_Layer: 0
-  m_Name: 'Path [I524:2210;1001:16033;1001:15417;1001:19857]'
+  m_Name: Path [I524:2210;1001:16033;1001:15417;1001:19857]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5519,7 +5581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1080646726}
   m_Layer: 0
-  m_Name: 'Vector [I524:2476;1001:15508;1001:24502]'
+  m_Name: Vector [I524:2476;1001:15508;1001:24502]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5555,7 +5617,7 @@ GameObject:
   - component: {fileID: 1086533763}
   - component: {fileID: 1086533764}
   m_Layer: 0
-  m_Name: 'Menus/Vertical menu item [I524:2472;1001:15507]'
+  m_Name: Menus/Vertical menu item [I524:2472;1001:15507]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5608,7 +5670,7 @@ GameObject:
   - component: {fileID: 1097889998}
   - component: {fileID: 1097889997}
   m_Layer: 0
-  m_Name: 'Cards/Default Placeholder [I524:2209;1001:16028]'
+  m_Name: Cards/Default Placeholder [I524:2209;1001:16028]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5684,7 +5746,7 @@ GameObject:
   - component: {fileID: 1123510110}
   - component: {fileID: 1123510109}
   m_Layer: 0
-  m_Name: 'Item [I524:2475;1001:15509]'
+  m_Name: Item [I524:2475;1001:15509]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5772,17 +5834,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -5818,7 +5878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1140001940}
   m_Layer: 0
-  m_Name: 'Title Card [524:2209]'
+  m_Name: Title Card [524:2209]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5943,7 +6003,7 @@ GameObject:
   - component: {fileID: 1146578311}
   - component: {fileID: 1146578310}
   m_Layer: 0
-  m_Name: 'This is a two line title [I524:2209;1001:16032]'
+  m_Name: This is a two line title [I524:2209;1001:16032]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6033,17 +6093,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -6184,7 +6242,7 @@ GameObject:
   - component: {fileID: 1190088229}
   - component: {fileID: 1190088228}
   m_Layer: 0
-  m_Name: 'Text Button [I524:2203;1001:14707;1001:26208]'
+  m_Name: Text Button [I524:2203;1001:14707;1001:26208]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6272,17 +6330,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -6357,8 +6413,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204167780}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -6408,12 +6465,8 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
-  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_LightUnit: 1
-  m_LuxAtDistance: 1
-  m_EnableSpotReflector: 1
 --- !u!4 &1204167783
 Transform:
   m_ObjectHideFlags: 0
@@ -6441,7 +6494,7 @@ GameObject:
   - component: {fileID: 1208193056}
   - component: {fileID: 1208193055}
   m_Layer: 0
-  m_Name: 'Item [I524:2471;1001:15509]'
+  m_Name: Item [I524:2471;1001:15509]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6529,17 +6582,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -6575,7 +6626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1210153236}
   m_Layer: 0
-  m_Name: 'Vector [I524:2469;1001:15508;1001:24502]'
+  m_Name: Vector [I524:2469;1001:15508;1001:24502]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6610,7 +6661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1210881817}
   m_Layer: 0
-  m_Name: 'Icon Button [524:2610]'
+  m_Name: Icon Button [524:2610]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6647,7 +6698,7 @@ GameObject:
   - component: {fileID: 1224118645}
   - component: {fileID: 1224118646}
   m_Layer: 0
-  m_Name: 'Primitives/Sidebar Item [524:2476]'
+  m_Name: Primitives/Sidebar Item [524:2476]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6699,7 +6750,7 @@ GameObject:
   - component: {fileID: 1238790231}
   - component: {fileID: 1238790230}
   m_Layer: 0
-  m_Name: 'Cards/Default Placeholder [I524:2206;1001:16028]'
+  m_Name: Cards/Default Placeholder [I524:2206;1001:16028]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6775,7 +6826,7 @@ GameObject:
   - component: {fileID: 1240142213}
   - component: {fileID: 1240142212}
   m_Layer: 0
-  m_Name: 'Button [524:2203]'
+  m_Name: Button [524:2203]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6849,7 +6900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1245182377}
   m_Layer: 0
-  m_Name: 'icon_right [I524:2203;1001:14707;1001:26209]'
+  m_Name: icon_right [I524:2203;1001:14707;1001:26209]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6885,7 +6936,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1250215427}
   m_Layer: 0
-  m_Name: 'Path [I524:2610;1001:15417;1001:19857]'
+  m_Name: Path [I524:2610;1001:15417;1001:19857]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6921,7 +6972,7 @@ GameObject:
   - component: {fileID: 1262677204}
   - component: {fileID: 1262677205}
   m_Layer: 0
-  m_Name: 'Primitives/Sidebar Item [524:2477]'
+  m_Name: Primitives/Sidebar Item [524:2477]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7003,7 +7054,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1271088131}
   m_Layer: 0
-  m_Name: 'Vector [524:2462]'
+  m_Name: Vector [524:2462]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7038,7 +7089,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1288720257}
   m_Layer: 0
-  m_Name: 'Vector [I524:2475;1001:15508;1001:24502]'
+  m_Name: Vector [I524:2475;1001:15508;1001:24502]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7075,7 +7126,7 @@ GameObject:
   - component: {fileID: 1292963696}
   - component: {fileID: 1292963695}
   m_Layer: 0
-  m_Name: 'Item [I524:2477;1001:15509]'
+  m_Name: Item [I524:2477;1001:15509]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7163,17 +7214,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -7209,7 +7258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1312076969}
   m_Layer: 0
-  m_Name: 'Path [I524:2206;1001:16033;1001:15417;1001:19857]'
+  m_Name: Path [I524:2206;1001:16033;1001:15417;1001:19857]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7276,7 +7325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1352848220}
   m_Layer: 0
-  m_Name: 'Frame 11 [I524:2208;1001:16031]'
+  m_Name: Frame 11 [I524:2208;1001:16031]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7320,7 +7369,7 @@ GameObject:
   - component: {fileID: 1362436558}
   - component: {fileID: 1362436559}
   m_Layer: 0
-  m_Name: 'Primitives/Sidebar Item [524:2473]'
+  m_Name: Primitives/Sidebar Item [524:2473]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7370,7 +7419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1370218772}
   m_Layer: 0
-  m_Name: 'Group 14 [524:2460]'
+  m_Name: Group 14 [524:2460]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7407,7 +7456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1370981056}
   m_Layer: 0
-  m_Name: 'Group 4 [524:2459]'
+  m_Name: Group 4 [524:2459]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7443,7 +7492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1391908202}
   m_Layer: 0
-  m_Name: 'Placeholder 1 [I524:2208;1001:16029]'
+  m_Name: Placeholder 1 [I524:2208;1001:16029]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7480,7 +7529,7 @@ GameObject:
   - component: {fileID: 1398178758}
   - component: {fileID: 1398178757}
   m_Layer: 0
-  m_Name: 'Item [I524:2478;1001:15509]'
+  m_Name: Item [I524:2478;1001:15509]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7568,17 +7617,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -7616,7 +7663,7 @@ GameObject:
   - component: {fileID: 1400616088}
   - component: {fileID: 1400616087}
   m_Layer: 0
-  m_Name: 'Cards/Default Placeholder [I524:2205;1001:16028]'
+  m_Name: Cards/Default Placeholder [I524:2205;1001:16028]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7690,7 +7737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1406979663}
   m_Layer: 0
-  m_Name: 'Vector [I524:2473;1001:15508;1001:24502]'
+  m_Name: Vector [I524:2473;1001:15508;1001:24502]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7727,7 +7774,7 @@ GameObject:
   - component: {fileID: 1434784770}
   - component: {fileID: 1434784769}
   m_Layer: 0
-  m_Name: 'This is a two line title [I524:2208;1001:16032]'
+  m_Name: This is a two line title [I524:2208;1001:16032]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7817,17 +7864,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -7864,7 +7909,7 @@ GameObject:
   - component: {fileID: 1436593507}
   - component: {fileID: 1436593508}
   m_Layer: 0
-  m_Name: 'Primitives/Sidebar Item [524:2472]'
+  m_Name: Primitives/Sidebar Item [524:2472]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7922,6 +7967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44cccb4bf0173a4ca6fc693209891fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wattPerCelsius: 0.3
 --- !u!23 &1438893796
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7939,9 +7985,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7977,7 +8020,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1445794223}
   m_Layer: 0
-  m_Name: 'Path [I524:2208;1001:16033;1001:15417;1001:19857]'
+  m_Name: Path [I524:2208;1001:16033;1001:15417;1001:19857]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8014,7 +8057,7 @@ GameObject:
   - component: {fileID: 1460222216}
   - component: {fileID: 1460222215}
   m_Layer: 0
-  m_Name: 'Item [I524:2470;1001:15509]'
+  m_Name: Item [I524:2470;1001:15509]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8102,17 +8145,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -8351,7 +8392,7 @@ GameObject:
   - component: {fileID: 1501566906}
   - component: {fileID: 1501566907}
   m_Layer: 0
-  m_Name: 'Primitives/Sidebar Item [524:2475]'
+  m_Name: Primitives/Sidebar Item [524:2475]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8463,7 +8504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1530816117}
   m_Layer: 0
-  m_Name: 'Path [I524:2610;1001:15417;1001:19858]'
+  m_Name: Path [I524:2610;1001:15417;1001:19858]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8576,7 +8617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1552201343}
   m_Layer: 0
-  m_Name: 'icon_star [I524:2470;1001:15508]'
+  m_Name: icon_star [I524:2470;1001:15508]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8614,7 +8655,7 @@ GameObject:
   - component: {fileID: 1555268271}
   - component: {fileID: 1555268270}
   m_Layer: 0
-  m_Name: 'Vector [I524:2610;1001:15417;1001:19856]'
+  m_Name: Vector [I524:2610;1001:15417;1001:19856]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8690,7 +8731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1555379849}
   m_Layer: 0
-  m_Name: 'icon_star [I524:2475;1001:15508]'
+  m_Name: icon_star [I524:2475;1001:15508]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8726,7 +8767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1562333081}
   m_Layer: 0
-  m_Name: 'Path [I524:2210;1001:16033;1001:15417;1001:19859]'
+  m_Name: Path [I524:2210;1001:16033;1001:15417;1001:19859]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8761,7 +8802,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1586836058}
   m_Layer: 0
-  m_Name: 'Path [I524:2209;1001:16033;1001:15417;1001:19857]'
+  m_Name: Path [I524:2209;1001:16033;1001:15417;1001:19857]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8796,7 +8837,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1595219785}
   m_Layer: 0
-  m_Name: 'Path [I524:2208;1001:16033;1001:15417;1001:19859]'
+  m_Name: Path [I524:2208;1001:16033;1001:15417;1001:19859]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8831,7 +8872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1619607740}
   m_Layer: 0
-  m_Name: 'icon_more_horiz [I524:2610;1001:15417]'
+  m_Name: icon_more_horiz [I524:2610;1001:15417]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8901,10 +8942,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a91cba2d0445c9459f516d8122bde73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneCamera: {fileID: 2033149569}
-  placementlayerMask:
+  rightController: {fileID: 0}
+  placementLayerMask:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 0
 --- !u!1 &1627665994
 GameObject:
   m_ObjectHideFlags: 0
@@ -8915,7 +8956,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1627665995}
   m_Layer: 0
-  m_Name: 'Path [I524:2205;1001:16033;1001:15417;1001:19859]'
+  m_Name: Path [I524:2205;1001:16033;1001:15417;1001:19859]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8950,7 +8991,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1629312014}
   m_Layer: 0
-  m_Name: 'icon_more_horiz [I524:2206;1001:16033;1001:15417]'
+  m_Name: icon_more_horiz [I524:2206;1001:16033;1001:15417]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8987,7 +9028,7 @@ GameObject:
   - component: {fileID: 1629894745}
   - component: {fileID: 1629894746}
   m_Layer: 0
-  m_Name: 'Primitives/Sidebar Item [524:2469]'
+  m_Name: Primitives/Sidebar Item [524:2469]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9037,7 +9078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1630245365}
   m_Layer: 0
-  m_Name: 'icon_star [I524:2474;1001:15508]'
+  m_Name: icon_star [I524:2474;1001:15508]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9165,17 +9206,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -9214,7 +9253,7 @@ GameObject:
   - component: {fileID: 1638570230}
   - component: {fileID: 1638570229}
   m_Layer: 0
-  m_Name: 'Cards/Clickable Image [I524:2210;1001:16027]'
+  m_Name: Cards/Clickable Image [I524:2210;1001:16027]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9303,7 +9342,7 @@ GameObject:
   - component: {fileID: 1653370404}
   - component: {fileID: 1653370403}
   m_Layer: 0
-  m_Name: 'Vector [I524:2206;1001:16033;1001:15417;1001:19856]'
+  m_Name: Vector [I524:2206;1001:16033;1001:15417;1001:19856]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9379,7 +9418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1654032981}
   m_Layer: 0
-  m_Name: 'Vector [I524:2474;1001:15508;1001:24502]'
+  m_Name: Vector [I524:2474;1001:15508;1001:24502]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9414,7 +9453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1678945290}
   m_Layer: 0
-  m_Name: 'Path [I524:2206;1001:16033;1001:15417;1001:19858]'
+  m_Name: Path [I524:2206;1001:16033;1001:15417;1001:19858]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9451,7 +9490,7 @@ GameObject:
   - component: {fileID: 1689139998}
   - component: {fileID: 1689139997}
   m_Layer: 0
-  m_Name: 'Item [I524:2472;1001:15509]'
+  m_Name: Item [I524:2472;1001:15509]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9539,17 +9578,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -9588,7 +9625,7 @@ GameObject:
   - component: {fileID: 1738731420}
   - component: {fileID: 1738731419}
   m_Layer: 0
-  m_Name: 'Frame 10 [I524:2208;1001:16030]'
+  m_Name: Frame 10 [I524:2208;1001:16030]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9743,7 +9780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1753813396}
   m_Layer: 0
-  m_Name: 'Frame 11 [I524:2205;1001:16031]'
+  m_Name: Frame 11 [I524:2205;1001:16031]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9783,7 +9820,7 @@ GameObject:
   - component: {fileID: 1768884372}
   - component: {fileID: 1768884371}
   m_Layer: 0
-  m_Name: 'Cards/Clickable Image [I524:2208;1001:16027]'
+  m_Name: Cards/Clickable Image [I524:2208;1001:16027]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9872,7 +9909,7 @@ GameObject:
   - component: {fileID: 1768987045}
   - component: {fileID: 1768987044}
   m_Layer: 0
-  m_Name: 'This is a two line title [I524:2205;1001:16032]'
+  m_Name: This is a two line title [I524:2205;1001:16032]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9962,17 +9999,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -10008,7 +10043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1796984660}
   m_Layer: 0
-  m_Name: 'Icon Button [I524:2208;1001:16033]'
+  m_Name: Icon Button [I524:2208;1001:16033]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10044,7 +10079,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1799723385}
   m_Layer: 0
-  m_Name: 'Frame 11 [I524:2209;1001:16031]'
+  m_Name: Frame 11 [I524:2209;1001:16031]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10081,7 +10116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1800229572}
   m_Layer: 0
-  m_Name: 'Path [I524:2209;1001:16033;1001:15417;1001:19858]'
+  m_Name: Path [I524:2209;1001:16033;1001:15417;1001:19858]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10289,6 +10324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44cccb4bf0173a4ca6fc693209891fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wattPerCelsius: 0.3
 --- !u!23 &1819528824
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10306,9 +10342,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10449,6 +10482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44cccb4bf0173a4ca6fc693209891fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wattPerCelsius: 0.3
 --- !u!23 &1822355804
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10466,9 +10500,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10506,7 +10537,7 @@ GameObject:
   - component: {fileID: 1824366621}
   - component: {fileID: 1824366620}
   m_Layer: 0
-  m_Name: 'Subtract [524:2461]'
+  m_Name: Subtract [524:2461]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10653,7 +10684,7 @@ GameObject:
   - component: {fileID: 1850033734}
   - component: {fileID: 1850033733}
   m_Layer: 0
-  m_Name: 'Item [I524:2473;1001:15509]'
+  m_Name: Item [I524:2473;1001:15509]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10741,17 +10772,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -10788,7 +10817,7 @@ GameObject:
   - component: {fileID: 1856253388}
   - component: {fileID: 1856253389}
   m_Layer: 0
-  m_Name: 'Menus/Vertical menu item [I524:2470;1001:15507]'
+  m_Name: Menus/Vertical menu item [I524:2470;1001:15507]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10908,7 +10937,7 @@ GameObject:
   - component: {fileID: 1864263706}
   - component: {fileID: 1864263707}
   m_Layer: 0
-  m_Name: 'Menus/Vertical menu item [I524:2478;1001:15507]'
+  m_Name: Menus/Vertical menu item [I524:2478;1001:15507]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10959,7 +10988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1880864977}
   m_Layer: 0
-  m_Name: 'Path [I524:2210;1001:16033;1001:15417;1001:19858]'
+  m_Name: Path [I524:2210;1001:16033;1001:15417;1001:19858]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10997,7 +11026,7 @@ GameObject:
   - component: {fileID: 1887170574}
   - component: {fileID: 1887170573}
   m_Layer: 0
-  m_Name: 'Primitives/Sidebar Item [524:2470]'
+  m_Name: Primitives/Sidebar Item [524:2470]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11087,7 +11116,7 @@ GameObject:
   - component: {fileID: 1907274712}
   - component: {fileID: 1907274711}
   m_Layer: 0
-  m_Name: 'Frame 10 [I524:2206;1001:16030]'
+  m_Name: Frame 10 [I524:2206;1001:16030]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11174,7 +11203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1913734271}
   m_Layer: 0
-  m_Name: 'Vector [I524:2471;1001:15508;1001:24502]'
+  m_Name: Vector [I524:2471;1001:15508;1001:24502]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11212,7 +11241,7 @@ GameObject:
   - component: {fileID: 1922570719}
   - component: {fileID: 1922570718}
   m_Layer: 0
-  m_Name: 'Cards/Clickable Image [I524:2206;1001:16027]'
+  m_Name: Cards/Clickable Image [I524:2206;1001:16027]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11308,7 +11337,7 @@ GameObject:
   - component: {fileID: 1943937763}
   - component: {fileID: 1943937762}
   m_Layer: 0
-  m_Name: 'Cards/Clickable Image [I524:2205;1001:16027]'
+  m_Name: Cards/Clickable Image [I524:2205;1001:16027]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11444,7 +11473,7 @@ GameObject:
   - component: {fileID: 1967775578}
   - component: {fileID: 1967775577}
   m_Layer: 0
-  m_Name: 'Primitive [I524:2203;1001:14707]'
+  m_Name: Primitive [I524:2203;1001:14707]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11520,7 +11549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1982610498}
   m_Layer: 0
-  m_Name: 'Title Card [524:2206]'
+  m_Name: Title Card [524:2206]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11557,7 +11586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2021936179}
   m_Layer: 0
-  m_Name: 'icon_star [I524:2478;1001:15508]'
+  m_Name: icon_star [I524:2478;1001:15508]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11641,9 +11670,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11953,12 +11979,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!20 &2033149569 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2033149560}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2048394213
 GameObject:
   m_ObjectHideFlags: 0
@@ -11969,7 +11989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2048394214}
   m_Layer: 0
-  m_Name: 'Vector [I524:2203;1001:14707;1001:26209;1001:24502]'
+  m_Name: Vector [I524:2203;1001:14707;1001:26209;1001:24502]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12004,7 +12024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2048404904}
   m_Layer: 0
-  m_Name: 'Frame 11 [I524:2206;1001:16031]'
+  m_Name: Frame 11 [I524:2206;1001:16031]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12041,7 +12061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2063186392}
   m_Layer: 0
-  m_Name: 'icon_more_horiz [I524:2208;1001:16033;1001:15417]'
+  m_Name: icon_more_horiz [I524:2208;1001:16033;1001:15417]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12079,7 +12099,7 @@ GameObject:
   - component: {fileID: 2070198671}
   - component: {fileID: 2070198670}
   m_Layer: 0
-  m_Name: 'This is a two line title [I524:2206;1001:16032]'
+  m_Name: This is a two line title [I524:2206;1001:16032]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12169,17 +12189,15 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
-  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -12216,7 +12234,7 @@ GameObject:
   - component: {fileID: 2073320993}
   - component: {fileID: 2073320994}
   m_Layer: 0
-  m_Name: 'Menus/Vertical menu item [I524:2471;1001:15507]'
+  m_Name: Menus/Vertical menu item [I524:2471;1001:15507]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12389,9 +12407,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12427,7 +12442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2105032655}
   m_Layer: 0
-  m_Name: 'Path [I524:2610;1001:15417;1001:19859]'
+  m_Name: Path [I524:2610;1001:15417;1001:19859]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12463,7 +12478,7 @@ GameObject:
   - component: {fileID: 2107485448}
   - component: {fileID: 2107485449}
   m_Layer: 0
-  m_Name: 'Menus/Vertical menu item [I524:2476;1001:15507]'
+  m_Name: Menus/Vertical menu item [I524:2476;1001:15507]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12535,6 +12550,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allDevices: []
   k: 0.024
+  roomTemperature: 25
+  roomVolume: 8
+  totalCoolingCapacity: 0
+  C: 0
 --- !u!4 &2108684541
 Transform:
   m_ObjectHideFlags: 0
@@ -12560,7 +12579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2120301069}
   m_Layer: 0
-  m_Name: 'icon_more_horiz [I524:2205;1001:16033;1001:15417]'
+  m_Name: icon_more_horiz [I524:2205;1001:16033;1001:15417]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12706,6 +12725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44cccb4bf0173a4ca6fc693209891fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wattPerCelsius: 0.3
 --- !u!23 &2121246782
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12723,9 +12743,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12761,7 +12778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2147157061}
   m_Layer: 0
-  m_Name: 'Vector [524:2465]'
+  m_Name: Vector [524:2465]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12806,7 +12823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -649480467741605010, guid: 90aff6c3f13230a4898aef6e6f82d62b,
         type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 4585573660297605713, guid: b8eb22bbef4e12041945f044aeab9469,
         type: 3}
@@ -13216,3 +13233,4 @@ SceneRoots:
   - {fileID: 1748764170}
   - {fileID: 7262167103668012721}
   - {fileID: 7443801300967757678}
+  - {fileID: 654159859}

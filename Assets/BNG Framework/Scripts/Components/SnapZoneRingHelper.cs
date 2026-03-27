@@ -1,73 +1,130 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Chomm.CableSystem;
 
 namespace BNG {
     public class SnapZoneRingHelper : MonoBehaviour {
 
-        /// <summary>
-        /// The Snap Zone to respond to. Change size and color of ring if there is a valid grabbable within
-        /// </summary>
+        [Header("Reference")]
         public SnapZone Snap;
 
+        [Header("Colors")]
         public Color RestingColor = Color.gray;
-        public Color ValidSnapColor = Color.white;
-       
+        public Color ValidColor = Color.green;
+        public Color InvalidColor = Color.red;
 
-        /// <summary>
-        /// Scale in Dynamic Pixels Per Unit
-        /// </summary>
+        [Header("Scale")]
         public float RestingScale = 1000f;
+        public float ActiveScale = 800f;
 
-        /// <summary>
-        /// Scale in Dynamic Pixels Per Unit
-        /// </summary>
-        public float ValidSnapScale = 800f;
+        [Header("Pulse")]
+        public bool usePulse = true;
+        public float pulseSpeed = 5f;
+        public float pulseIntensity = 0.3f;
+
+        [Header("Highlight")]
+        public float highlightDuration = 1.5f;
 
         CanvasScaler ringCanvas;
         Text ringText;
-        GrabbablesInTrigger nearbyGrabbables;
+        GrabbablesInTrigger nearby;
 
-        bool validSnap = false;
+        bool hasObject;
+        bool isValid;
 
-        public float ScaleSpeed = 50f;
+        float highlightTimer = 0f;
+        Color highlightColor;
 
         void Start() {
             ringCanvas = GetComponent<CanvasScaler>();
             ringText = GetComponent<Text>();
-            nearbyGrabbables = Snap.GetComponent<GrabbablesInTrigger>();
+            nearby = Snap.GetComponent<GrabbablesInTrigger>();
         }
 
-        // Update is called once per frame
         void Update() {
 
-            validSnap = checkIsValidSnap();
+            CheckState();
 
-            // Scale
-            float lerpTo = validSnap ? ValidSnapScale : RestingScale;
-            ringCanvas.dynamicPixelsPerUnit = Mathf.Lerp(ringCanvas.dynamicPixelsPerUnit, lerpTo, Time.deltaTime * ScaleSpeed);
+            // 🔥 Scale
+            float targetScale = hasObject ? ActiveScale : RestingScale;
+            ringCanvas.dynamicPixelsPerUnit = Mathf.Lerp(
+                ringCanvas.dynamicPixelsPerUnit,
+                targetScale,
+                Time.deltaTime * 10f
+            );
 
-            // Color
-            ringText.color = validSnap ? ValidSnapColor : RestingColor;
-        }
-
-        bool checkIsValidSnap() {
-            if(nearbyGrabbables != null) {
-
-                // Invalid if we are already  holding something
-                if(Snap.HeldItem != null) {
-                    return false;
-                }
-
-                // Can snap if there is a held object inside our trigger
-                if (Snap.ClosestGrabbable != null) {
-                    return true;
-                }
+            // 🔥 Highlight จาก PlayerScanner
+            if (highlightTimer > 0)
+            {
+                highlightTimer -= Time.deltaTime;
+                ApplyPulse(highlightColor);
+                return;
             }
 
-            return false;
+            // 🔥 Auto Mode
+            if (!hasObject)
+            {
+                ringText.color = RestingColor;
+            }
+            else
+            {
+                if (isValid)
+                    ApplyPulse(ValidColor);   // 🟢
+                else
+                    ApplyPulse(InvalidColor); // 🔴
+            }
+        }
+
+        void CheckState()
+        {
+            hasObject = false;
+            isValid = false;
+
+            if (nearby == null) return;
+
+            if (Snap.HeldItem != null)
+                return;
+
+            if (Snap.ClosestGrabbable != null)
+            {
+                hasObject = true;
+
+                var plug = Snap.ClosestGrabbable.GetComponent<CablePlug>();
+
+                if (plug != null)
+                {
+                    isValid = plug.plugType == Snap.plugType;
+                }
+            }
+        }
+
+        void ApplyPulse(Color baseColor)
+        {
+            if (!usePulse)
+            {
+                ringText.color = baseColor;
+                return;
+            }
+
+            float pulse = Mathf.Sin(Time.time * pulseSpeed) * pulseIntensity + 1f;
+            Color final = baseColor * pulse;
+            final.a = 1f;
+
+            ringText.color = final;
+        }
+
+        // 🔥 เรียกจาก PlayerScanner (Highlight ตอนเข้า)
+        public void Highlight(Color color)
+        {
+            highlightColor = color;
+            highlightTimer = highlightDuration;
+        }
+
+        // 🔥 Reset ตอนออกจาก Zone
+        public void ClearHighlight()
+        {
+            highlightTimer = 0f;
         }
     }
 }
-
