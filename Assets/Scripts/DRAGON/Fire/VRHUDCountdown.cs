@@ -8,10 +8,17 @@ public class VRHUDCountdown : MonoBehaviour
     public GameObject hudRoot;
     public TMP_Text countdownText;
 
+    [Header("Auto Bind")]
+    public bool autoAssignOnAwake = true;
+    public bool debugLogs = true;
+
     private Coroutine countdownRoutine;
 
     private void Awake()
     {
+        if (autoAssignOnAwake)
+            TryAutoAssignReferences();
+
         if (countdownText != null)
             countdownText.text = "";
 
@@ -19,19 +26,63 @@ public class VRHUDCountdown : MonoBehaviour
             hudRoot.SetActive(false);
     }
 
+    public void TryAutoAssignReferences()
+    {
+        if (hudRoot == null)
+            hudRoot = gameObject;
+
+        if (countdownText == null)
+        {
+            Transform t = FindChildRecursiveByName(transform, "HUD_CountdownText");
+            if (t != null)
+                countdownText = t.GetComponent<TMP_Text>();
+        }
+
+        if (debugLogs)
+        {
+            Debug.Log(
+                "[VRHUDCountdown] Auto-assign summary -> " +
+                $"hudRoot: {(hudRoot ? hudRoot.name : "NULL")}, " +
+                $"countdownText: {(countdownText ? countdownText.name : "NULL")}",
+                this
+            );
+        }
+    }
+
+    Transform FindChildRecursiveByName(Transform root, string targetName)
+    {
+        if (root == null)
+            return null;
+
+        if (root.name == targetName)
+            return root;
+
+        for (int i = 0; i < root.childCount; i++)
+        {
+            Transform result = FindChildRecursiveByName(root.GetChild(i), targetName);
+            if (result != null)
+                return result;
+        }
+
+        return null;
+    }
+
     public void StartCountdown(int seconds)
     {
         Debug.Log("[VRHUDCountdown] StartCountdown called with: " + seconds);
 
+        if (hudRoot == null || countdownText == null)
+            TryAutoAssignReferences();
+
         if (hudRoot == null)
         {
-            Debug.LogWarning("[VRHUDCountdown] hudRoot is NULL");
+            Debug.LogWarning("[VRHUDCountdown] hudRoot is NULL", this);
             return;
         }
 
         if (countdownText == null)
         {
-            Debug.LogWarning("[VRHUDCountdown] countdownText is NULL");
+            Debug.LogWarning("[VRHUDCountdown] countdownText is NULL", this);
             return;
         }
 
