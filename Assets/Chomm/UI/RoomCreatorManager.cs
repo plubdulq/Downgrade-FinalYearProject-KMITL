@@ -19,7 +19,7 @@ public class RoomCreatorManager : MonoBehaviour
     public TMP_InputField widthInput;
     public TMP_InputField lengthInput;
     public TMP_InputField heightInput;
-    public string builderSceneName = "PlayScene"; // Default Empty Room Scene
+    public string builderSceneName = "PlayScene";
     [SerializeField] GameObject buttonPrefab;
     [SerializeField] Transform container;
     MainMenuUI mainMenuUI;
@@ -33,6 +33,9 @@ public class RoomCreatorManager : MonoBehaviour
     public GameObject roomNamePanel;
     public InputField roomNameInput;
 
+    [Header("Warning UI")] // 🔥 เพิ่ม
+    public TextMeshProUGUI warningText;
+
     private float pendingWidth;
     private float pendingLength;
     private float pendingHeight;
@@ -42,7 +45,11 @@ public class RoomCreatorManager : MonoBehaviour
     {
         mainMenuUI = GetComponent<MainMenuUI>();
         LoadTemplates();
-        if(roomNamePanel) roomNamePanel.SetActive(false);
+
+        if (roomNamePanel) roomNamePanel.SetActive(false);
+
+        // 🔥 ซ่อนข้อความเตือนตอนเริ่ม
+        if (warningText) warningText.gameObject.SetActive(false);
     }
 
     public void ShowTemplatePanel()
@@ -57,7 +64,7 @@ public class RoomCreatorManager : MonoBehaviour
 
     private void LoadTemplates()
     {
-        foreach (Transform child in templateContent) 
+        foreach (Transform child in templateContent)
         {
             Destroy(child.gameObject);
         }
@@ -66,13 +73,13 @@ public class RoomCreatorManager : MonoBehaviour
         {
             GameObject btnObj = Instantiate(templateButtonPrefab, templateContent);
             RoomButton btn = btnObj.GetComponent<RoomButton>();
+
             if (btn != null)
             {
-                // Template buttons don't need a filename to load from disk, just display info
                 btn.Setup(template.thumbnail, template.templateName, template.description, "", template.sceneName);
-                
+
                 Button b = btn.GetComponent<Button>();
-                if(b)
+                if (b)
                 {
                     b.onClick.RemoveAllListeners();
                     b.onClick.AddListener(() => OnClickTemplate(template));
@@ -80,21 +87,23 @@ public class RoomCreatorManager : MonoBehaviour
             }
         }
     }
+
     public bool isOnValidate = false;
     private void OnValidate()
     {
-        if (!isOnValidate)
-        {
-            return;
-        }
+        if (!isOnValidate) return;
+
         for (int i = 0; i < roomPresets.Count; i++)
         {
             GameObject go = Instantiate(buttonPrefab, container);
             RoomSizePreset rs = roomPresets[i];
+
             string g = $"{rs.width}x{rs.length}x{rs.height}";
             TextMeshProUGUI text = go.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
             if (text != null)
                 text.text = g;
+
             LoadPresetScript sc = go.GetComponent<LoadPresetScript>();
             if (sc != null)
             {
@@ -106,7 +115,6 @@ public class RoomCreatorManager : MonoBehaviour
 
     private void OnClickTemplate(RoomTemplate template)
     {
-        // Load the specific scene for this template
         SceneManager.LoadScene(template.sceneName);
     }
 
@@ -114,13 +122,12 @@ public class RoomCreatorManager : MonoBehaviour
     {
         float w = 10f;
         float l = 10f;
-        float h = 3f; // Default height
+        float h = 3f;
 
         float.TryParse(widthInput.text, out w);
         float.TryParse(lengthInput.text, out l);
-        if(heightInput != null) float.TryParse(heightInput.text, out h);
+        if (heightInput != null) float.TryParse(heightInput.text, out h);
 
-        // Store and show name panel
         pendingWidth = w;
         pendingLength = l;
         pendingHeight = h;
@@ -129,32 +136,20 @@ public class RoomCreatorManager : MonoBehaviour
         if (roomNamePanel)
         {
             roomNamePanel.SetActive(true);
-            if(roomNameInput) roomNameInput.text = ""; // Clear previous
+            if (roomNameInput) roomNameInput.text = "";
         }
         else
         {
-            // Fallback if no panel assigned
             CreateRoom(w, l, h);
         }
     }
-
-    [System.Serializable]
-    public class RoomSizePreset
-    {
-        public string presetName;
-        public float width;
-        public float length;
-        public float height;
-    }
-
 
     public void OnClickCreateCustomRoomByPreset(int presetIndex)
     {
         if (roomPresets != null && presetIndex >= 0 && presetIndex < roomPresets.Count)
         {
             RoomSizePreset p = roomPresets[presetIndex];
-            
-            // Store and show name panel
+
             pendingWidth = p.width;
             pendingLength = p.length;
             pendingHeight = p.height;
@@ -163,7 +158,7 @@ public class RoomCreatorManager : MonoBehaviour
             if (roomNamePanel)
             {
                 roomNamePanel.SetActive(true);
-                if (roomNameInput) roomNameInput.text = ""; // Clear previous
+                if (roomNameInput) roomNameInput.text = "";
             }
             else
             {
@@ -204,16 +199,68 @@ public class RoomCreatorManager : MonoBehaviour
         }
     }
 
+    void AddRoomName(string roomName)
+    {
+        string allRooms = PlayerPrefs.GetString("RoomNameList", "");
+
+        if (string.IsNullOrEmpty(allRooms))
+            allRooms = roomName;
+        else
+            allRooms += "|" + roomName;
+
+        PlayerPrefs.SetString("RoomNameList", allRooms);
+    }
+
+    bool RoomExists(string roomName)
+    {
+        if (string.IsNullOrEmpty(roomName)) return false;
+
+        string allRooms = PlayerPrefs.GetString("RoomNameList", "");
+        if (string.IsNullOrEmpty(allRooms)) return false;
+
+        string[] rooms = allRooms.Split('|');
+
+        foreach (string r in rooms)
+        {
+            if (r == roomName)
+                return true;
+        }
+
+        return false;
+    }
+
     public void OnConfirmCreateRoom()
     {
-        string name = ""; // Default to empty
-        if(roomNameInput != null && !string.IsNullOrEmpty(roomNameInput.text))
+        string name = "";
+
+        if (roomNameInput != null && !string.IsNullOrEmpty(roomNameInput.text))
         {
-            name = roomNameInput.text;
+            name = roomNameInput.text.Trim();
         }
-        // Else stays empty. No auto-generated name.
+
+        if (string.IsNullOrEmpty(name))
+        {
+            name = "Room_" + System.DateTime.Now.ToString("MMdd_HHmm");
+        }
+
+        // 🔴 ถ้าซ้ำ → แจ้งเตือน + หยุด
+        if (RoomExists(name))
+        {
+            Debug.LogWarning("ชื่อห้องซ้ำ: " + name);
+
+            if (warningText != null)
+            {
+                warningText.text = "ชื่อห้องนี้มีอยู่แล้ว!";
+                warningText.gameObject.SetActive(true);
+            }
+
+            return;
+        }
+
+        AddRoomName(name);
 
         PlayerPrefs.SetString("NewRoomName", name);
+
         CreateRoom(pendingWidth, pendingLength, pendingHeight);
     }
 
@@ -224,21 +271,23 @@ public class RoomCreatorManager : MonoBehaviour
 
     private void CreateRoom(float w, float l, float h)
     {
-        // Clear any pending load request so SaveManager doesn't try to load an old file
         PlayerPrefs.DeleteKey("PendingLoadSave");
 
-        // Store parameters to PlayerPrefs to be read by the builder scene
         PlayerPrefs.SetFloat("NewRoomWidth", w);
         PlayerPrefs.SetFloat("NewRoomLength", l);
         PlayerPrefs.SetFloat("NewRoomHeight", h);
         PlayerPrefs.SetInt("IsNewCustomRoom", 1);
-        
-        // Generate a temporary name for the new room so ScreenshotTrigger works immediately
-        // The actual save name is generated in RoomGenerator.Start(), but let's pre-generate or handle it there.
-        // Actually, RoomGenerator generates "Room_MMdd_HHmm". We can't know it here easily without logic duplicaton.
-        // Best bet: RoomGenerator sets the Pref "LastLoadedSaveName" when it generates/saves.
-        
+
         string targetScene = string.IsNullOrEmpty(pendingSceneName) ? builderSceneName : pendingSceneName;
         SceneManager.LoadScene(targetScene);
+    }
+
+    [System.Serializable]
+    public class RoomSizePreset
+    {
+        public string presetName;
+        public float width;
+        public float length;
+        public float height;
     }
 }

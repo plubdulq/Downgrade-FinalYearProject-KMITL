@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using Chomm.CableSystem;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using Chomm.CableSystem;
+
 namespace BNG {
     public class SnapZone : MonoBehaviour {
-
+        public PlugType plugType;
         [Header("Starting / Held Item")]
         [Tooltip("The currently held item. Set this in the editor to equip on Start().")]
         public Grabbable HeldItem;        
@@ -19,6 +20,12 @@ namespace BNG {
         /// If true, Item will automatically snap into the snapzone OnTriggerEnter
         /// </summary>
         [Tooltip("If true, Item will automatically snap into the snapzone OnTriggerEnter")]
+        public bool isOuterPort = false;
+
+        [Tooltip("If isOuterPort is true, these points define the path the cable takes when snapped here.")]
+        public List<Transform> CustomCableAnchors;
+        
+        public bool isAnchor = false;
         public bool AutoSnapItem = false;
 
         /// <summary>
@@ -47,7 +54,10 @@ namespace BNG {
         private float _scaleTo;
 
         public bool DisableColliders = true;
+        [Tooltip("If true, colliders will be set to IsTrigger = true instead of being disabled.")]
+        public bool TriggerColliders = false;
         List<Collider> disabledColliders = new List<Collider>();
+        List<Collider> triggeredColliders = new List<Collider>();
 
         /// <summary>
         /// If true the Grabbable object will be parented to this transform. Leave false to move object in Update
@@ -89,13 +99,7 @@ namespace BNG {
         public AudioClip SoundOnSnap;
         public AudioClip SoundOnUnsnap;
 
-        // ===== Cable System Extension =====
-        [Header("Cable System")]
-        public bool isOuterPort = false;
-        public bool isAnchor = false;
-        public PlugType plugType = PlugType.None;
-        public List<Transform> CustomCableAnchors;
-        // ===================================
+
         [Header("Events")]
         /// <summary>
         /// Optional Unity Event  to be called when something is snapped to this SnapZone. Passes in the Grabbable that was attached.
@@ -121,10 +125,13 @@ namespace BNG {
         SnapZoneOffset offset;
 
         float UpdateCheckFrequency = 0.1f;
-     
+
         void Start() {
             gZone = GetComponent<GrabbablesInTrigger>();
-            
+            if (TriggerColliders)
+            {
+                DisableColliders = false;
+            }
             // Don't need to check remote grabbables here
             gZone.CheckRemoteGrabbables = false;
             gZone.RaycastRemoteGrabbables = false;
@@ -132,7 +139,7 @@ namespace BNG {
             gZone.UpdateGrabbableFrequency = UpdateCheckFrequency;
 
             _scaleTo = ScaleItem;
-
+            CustomCableAnchors.Clear();
             // Auto Equip item by moving it into place and grabbing it
             if (StartingItem != null) {
                 StartingItem.transform.position = transform.position;
@@ -150,7 +157,8 @@ namespace BNG {
             ClosestGrabbable = getClosestGrabbable();
 
             // Can we grab something
-            if (HeldItem == null && ClosestGrabbable != null) {
+            // ADDED: !isAnchor check to prevent auto-snapping if this is an anchor
+            if (HeldItem == null && ClosestGrabbable != null && !isAnchor) {
                 float secondsSinceDrop = Time.time - ClosestGrabbable.LastDropTime;
 
                 // Check auto snap if we didn't just grab this
@@ -166,6 +174,7 @@ namespace BNG {
 
             // Keep snapped to us or drop
             if (HeldItem != null) {
+
 
                 // Something picked this up or changed transform parent
                 if (HeldItem.BeingHeld || (HeldItem.transform.parent != transform && ParentObjectToSnapZone)) {
@@ -256,7 +265,18 @@ namespace BNG {
                     if (g.Value.CanBeSnappedToSnapZone == false) {
                         continue;
                     }
+                    var plug = g.Value.GetComponent<CablePlug>();
+                    if (plug != null && plug.plugType != this.plugType && this.plugType != PlugType.None)
+                    {
+                        bool isBothFiber = (plug.plugType == PlugType.FiberLCSinglemode || plug.plugType == PlugType.FiberLCMultimode) &&
+                                           (this.plugType == PlugType.FiberLCSinglemode || this.plugType == PlugType.FiberLCMultimode);
 
+                        if (!isBothFiber)
+                        {
+                            Debug.Log($"Plug: {plug.plugType} and Plug: {this.plugType}");
+                            continue; // ถ้าประเภทไม่ตรงกัน ให้ข้ามไป (ไม่ดูด)
+                        }
+                    }
                     // Must contain transform name
                     if (OnlyAllowNames != null && OnlyAllowNames.Count > 0) {
                         string transformName = g.Value.transform.name;
@@ -400,6 +420,14 @@ namespace BNG {
                     disabledColliders[x].enabled = false;
                 }
             }
+            else if (TriggerColliders)
+            {
+                triggeredColliders = grab.GetComponentsInChildren<Collider>(false).ToList();
+                for (int x = 0; x < triggeredColliders.Count; x++)
+                {
+                    triggeredColliders[x].isTrigger = true;
+                }
+            }
 
             // Disable the grabbable. This is picked up through a Grab Action
             grab.enabled = false;
@@ -493,6 +521,18 @@ namespace BNG {
                 }
             }
             disabledColliders = null;
+
+            if (TriggerColliders && triggeredColliders != null)
+            {
+                foreach (var c in triggeredColliders)
+                {
+                    if (c)
+                    {
+                        c.isTrigger = false;
+                    }
+                }
+            }
+            triggeredColliders = null;
 
             // Reset Kinematic status
             if (heldItemRigid) {
