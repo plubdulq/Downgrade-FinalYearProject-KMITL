@@ -116,10 +116,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 179531265300754217}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &1188728372699121794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,8 +193,9 @@ GameObject:
   - component: {fileID: 4323305680690814698}
   - component: {fileID: 4801032314257463335}
   - component: {fileID: 3350416318734580872}
+  - component: {fileID: 2375724704495795557}
   m_Layer: 0
-  m_Name: Port Rj45 (15)
+  m_Name: Port Rj45 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,9 +242,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -337,6 +339,22 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!114 &2375724704495795557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202169254312622699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: 7
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &213042632996612532
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +436,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -430,7 +448,19 @@ MonoBehaviour:
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11762245418514963}
+        m_TargetAssemblyTypeName: NetworkPort, Assembly-CSharp
+        m_MethodName: Connect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDetachEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -492,7 +522,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -669,7 +698,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -681,7 +710,19 @@ MonoBehaviour:
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5806511441673725463}
+        m_TargetAssemblyTypeName: NetworkPort, Assembly-CSharp
+        m_MethodName: Connect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDetachEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -743,7 +784,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -851,8 +891,9 @@ GameObject:
   - component: {fileID: 6587140230182383754}
   - component: {fileID: 8954415187962347029}
   - component: {fileID: 5472476269944175928}
+  - component: {fileID: 6162420060125434223}
   m_Layer: 0
-  m_Name: Port Rj45 (13)
+  m_Name: Port Rj45 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -899,9 +940,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -999,6 +1037,22 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!114 &6162420060125434223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503277369618048754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: 3
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &553081024158867856
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,9 +1206,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1430,10 +1481,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 8506376707892671450}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &8242387626178218882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1727,7 +1782,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -1739,7 +1794,19 @@ MonoBehaviour:
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6162420060125434223}
+        m_TargetAssemblyTypeName: NetworkPort, Assembly-CSharp
+        m_MethodName: Connect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDetachEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1801,7 +1868,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -2003,7 +2069,7 @@ GameObject:
   - component: {fileID: 909159564167043118}
   - component: {fileID: 7027933179018660577}
   m_Layer: 0
-  m_Name: Port Rj45 (4)
+  m_Name: Console Port
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2050,9 +2116,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2235,10 +2298,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 2358028991938416306}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &1906420766108883106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2381,10 +2448,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 1866178496372714576}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &5662902285983322155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2589,10 +2660,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6905151820634581891}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &7143561898074227125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2886,7 +2961,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -2898,7 +2973,19 @@ MonoBehaviour:
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8207456469483201366}
+        m_TargetAssemblyTypeName: NetworkPort, Assembly-CSharp
+        m_MethodName: Connect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDetachEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2960,7 +3047,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -3199,7 +3285,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -3211,7 +3297,19 @@ MonoBehaviour:
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9016287420454720075}
+        m_TargetAssemblyTypeName: NetworkPort, Assembly-CSharp
+        m_MethodName: Connect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDetachEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3273,7 +3371,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -3536,8 +3633,9 @@ GameObject:
   - component: {fileID: 8484600280380831529}
   - component: {fileID: 5672680750449702314}
   - component: {fileID: 5847926493530872090}
+  - component: {fileID: 11762245418514963}
   m_Layer: 0
-  m_Name: Port Rj45 (14)
+  m_Name: Port Rj45 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3584,9 +3682,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3684,6 +3779,22 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!114 &11762245418514963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2329262355796599388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: 5
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &2332586361889347600
 GameObject:
   m_ObjectHideFlags: 0
@@ -3769,10 +3880,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 5164707719745387884}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &8898916746498122640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3904,8 +4019,9 @@ GameObject:
   - component: {fileID: 601847710327947076}
   - component: {fileID: 6824595307625820804}
   - component: {fileID: 9213308528726359914}
+  - component: {fileID: 9016287420454720075}
   m_Layer: 0
-  m_Name: Port Rj45 (10)
+  m_Name: Port Rj45 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3952,9 +4068,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4052,6 +4165,22 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!114 &9016287420454720075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2482947333237635555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: 8
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &2618526885680961302
 GameObject:
   m_ObjectHideFlags: 0
@@ -4219,8 +4348,9 @@ GameObject:
   - component: {fileID: 5595200417037062102}
   - component: {fileID: 5872902335938349552}
   - component: {fileID: 169285356941193600}
+  - component: {fileID: 1182731682640632035}
   m_Layer: 0
-  m_Name: Port Rj45 (12)
+  m_Name: Port Rj45 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4267,9 +4397,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4367,6 +4494,22 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!114 &1182731682640632035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2760787204546288764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: 1
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &2774057047919156010
 GameObject:
   m_ObjectHideFlags: 0
@@ -4483,10 +4626,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 735630530019991153}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &7614087803669871902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4784,10 +4931,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 3657933936086981118}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &1197983225689575876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4988,7 +5139,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -5000,7 +5151,19 @@ MonoBehaviour:
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2079881570311490769}
+        m_TargetAssemblyTypeName: NetworkPort, Assembly-CSharp
+        m_MethodName: Connect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDetachEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5062,7 +5225,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -5239,7 +5401,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 4
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -5313,7 +5475,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -5525,10 +5686,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 4198260361903249782}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &1593575979453975922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5946,7 +6111,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -5958,7 +6123,19 @@ MonoBehaviour:
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2375724704495795557}
+        m_TargetAssemblyTypeName: NetworkPort, Assembly-CSharp
+        m_MethodName: Connect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDetachEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -6020,7 +6197,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -6468,6 +6644,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3102191992432210188}
+  - component: {fileID: 8433854321316535399}
+  - component: {fileID: 4489627779700716169}
+  - component: {fileID: 4785426980443022976}
   m_Layer: 0
   m_Name: C8500-12X with port
   m_TagString: Untagged
@@ -6489,8 +6668,52 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1940122156953703250}
+  - {fileID: 1982953546280409500}
+  - {fileID: 3412320255571998719}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8433854321316535399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677551825529585952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be4ab790cc2060468c10617a261a4bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipmentDataName: C8500-12x
+  uniqueID: 
+  ports: []
+--- !u!114 &4489627779700716169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677551825529585952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a066e380d03c574287f538e5c0b2caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  device_type: router
+  device_id: device-001
+  guid: 
+--- !u!114 &4785426980443022976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677551825529585952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ccbc8ce26cf4fd45a386e9d285b91f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4723539286524632426
 GameObject:
   m_ObjectHideFlags: 0
@@ -6634,7 +6857,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -6646,7 +6869,19 @@ MonoBehaviour:
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2062370483166785236}
+        m_TargetAssemblyTypeName: NetworkPort, Assembly-CSharp
+        m_MethodName: Connect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDetachEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -6708,7 +6943,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -6885,7 +7119,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -6959,7 +7193,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -7129,8 +7362,9 @@ GameObject:
   - component: {fileID: 4624475818429753811}
   - component: {fileID: 9048131819680842702}
   - component: {fileID: 6627217175500627317}
+  - component: {fileID: 6342035631567066967}
   m_Layer: 0
-  m_Name: Port Rj45 (16)
+  m_Name: Port Rj45 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7177,9 +7411,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7277,6 +7508,22 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!114 &6342035631567066967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4961601421415004677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: 9
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &4973528669474156216
 GameObject:
   m_ObjectHideFlags: 0
@@ -7287,9 +7534,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1940122156953703250}
   - component: {fileID: 8886840821158025432}
-  - component: {fileID: 1123030431226315033}
+  - component: {fileID: 5590621865957339970}
+  - component: {fileID: 8851849006041896336}
+  - component: {fileID: 3946136508100775800}
   m_Layer: 0
-  m_Name: C8500-12X with 12x 1_10GE ports
+  m_Name: c8500-12x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7329,7 +7578,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &8886840821158025432
 Animator:
-  serializedVersion: 7
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7343,13 +7592,12 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1123030431226315033
+--- !u!114 &5590621865957339970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7358,27 +7606,67 @@ MonoBehaviour:
   m_GameObject: {fileID: 4973528669474156216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5be4ab790cc2060468c10617a261a4bc, type: 3}
+  m_Script: {fileID: 11500000, guid: cb0ac2b9fddc7c24d82fba39fa6b3e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipmentDataName: C8500
-  ports:
-  - {fileID: 179531265300754217}
-  - {fileID: 8506376707892671450}
-  - {fileID: 4092693890584795234}
-  - {fileID: 3657933936086981118}
-  - {fileID: 1333950343284411502}
-  - {fileID: 6905151820634581891}
-  - {fileID: 6535221816589010399}
-  - {fileID: 1866178496372714576}
-  - {fileID: 8785409186547180315}
-  - {fileID: 735630530019991153}
-  - {fileID: 4198260361903249782}
-  - {fileID: 2358028991938416306}
-  - {fileID: 5760016916471910770}
-  - {fileID: 5164707719745387884}
-  - {fileID: 3882429691389872556}
-  - {fileID: 6165485910998139356}
+  deviceNameText: {fileID: 3504198201406622797}
+  deviceConsumePowerText: {fileID: 3311490680238058705}
+--- !u!114 &8851849006041896336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4973528669474156216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44cccb4bf0173a4ca6fc693209891fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wattPerCelsius: 0.3
+  powerState: 0
+--- !u!23 &3946136508100775800
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4973528669474156216}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5038958567107248946
 GameObject:
   m_ObjectHideFlags: 0
@@ -7553,7 +7841,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -7565,7 +7853,19 @@ MonoBehaviour:
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 439317957086782374}
+        m_TargetAssemblyTypeName: NetworkPort, Assembly-CSharp
+        m_MethodName: Connect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDetachEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -7627,7 +7927,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -7704,8 +8003,9 @@ GameObject:
   - component: {fileID: 3919706103971446174}
   - component: {fileID: 8804075839205686461}
   - component: {fileID: 8193178927474003574}
+  - component: {fileID: 439317957086782374}
   m_Layer: 0
-  m_Name: Port Rj45 (7)
+  m_Name: Port Rj45 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7752,9 +8052,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7852,6 +8149,22 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!114 &439317957086782374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5301502580109919672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: 2
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &5329757450708664719
 GameObject:
   m_ObjectHideFlags: 0
@@ -7964,7 +8277,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -7976,7 +8289,19 @@ MonoBehaviour:
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1182731682640632035}
+        m_TargetAssemblyTypeName: NetworkPort, Assembly-CSharp
+        m_MethodName: Connect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDetachEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -8038,7 +8363,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -8219,10 +8543,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 4092693890584795234}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4094062905101882492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8428,10 +8756,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 1333950343284411502}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &5091185920391273381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8611,9 +8943,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9193,10 +9522,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 5760016916471910770}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &5384699338948141192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9514,8 +9847,9 @@ GameObject:
   - component: {fileID: 6761724462832450581}
   - component: {fileID: 8639956564409197164}
   - component: {fileID: 7356305751640625944}
+  - component: {fileID: 6871043901508577043}
   m_Layer: 0
-  m_Name: Port Rj45 (17)
+  m_Name: Port Rj45 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9562,9 +9896,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9662,6 +9993,22 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!114 &6871043901508577043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6339322424416942847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: 11
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &6379061042988392357
 GameObject:
   m_ObjectHideFlags: 0
@@ -9778,10 +10125,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6165485910998139356}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &2805534141464106287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10075,7 +10426,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -10087,7 +10438,19 @@ MonoBehaviour:
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6871043901508577043}
+        m_TargetAssemblyTypeName: NetworkPort, Assembly-CSharp
+        m_MethodName: Connect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDetachEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -10149,7 +10512,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -10295,7 +10657,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -10369,7 +10731,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -10736,10 +11097,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6535221816589010399}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &7943986026952084023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10950,9 +11315,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11062,8 +11424,9 @@ GameObject:
   - component: {fileID: 8056985346415660970}
   - component: {fileID: 6293125265722149254}
   - component: {fileID: 6346378915790997000}
+  - component: {fileID: 2079881570311490769}
   m_Layer: 0
-  m_Name: Port Rj45 (6)
+  m_Name: Port Rj45 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11110,9 +11473,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11210,6 +11570,22 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!114 &2079881570311490769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7060136930005488391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: 0
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &7089012604785067469
 GameObject:
   m_ObjectHideFlags: 0
@@ -11295,10 +11671,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 3882429691389872556}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4959527516109031282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11507,9 +11887,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11999,7 +12376,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 2.5
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -12011,7 +12388,19 @@ MonoBehaviour:
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6342035631567066967}
+        m_TargetAssemblyTypeName: NetworkPort, Assembly-CSharp
+        m_MethodName: Connect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDetachEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -12073,7 +12462,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -12250,7 +12638,7 @@ MonoBehaviour:
   CanRemoveItem: 1
   ScaleItem: 4
   DisableColliders: 1
-  TriggerColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -12324,7 +12712,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -12401,8 +12788,9 @@ GameObject:
   - component: {fileID: 3363680952650748168}
   - component: {fileID: 3323367129869019206}
   - component: {fileID: 3273116631670980616}
+  - component: {fileID: 2062370483166785236}
   m_Layer: 0
-  m_Name: Port Rj45 (8)
+  m_Name: Port Rj45 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12449,9 +12837,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12549,6 +12934,22 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!114 &2062370483166785236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8051380631524505732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: 4
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &8075913103765194302
 GameObject:
   m_ObjectHideFlags: 0
@@ -12778,8 +13179,9 @@ GameObject:
   - component: {fileID: 7895384458906385601}
   - component: {fileID: 1063760582285646629}
   - component: {fileID: 7822677734736733584}
+  - component: {fileID: 5806511441673725463}
   m_Layer: 0
-  m_Name: Port Rj45 (11)
+  m_Name: Port Rj45 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12826,9 +13228,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12926,6 +13325,22 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!114 &5806511441673725463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8546094121500166981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: 10
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &8641517253910774550
 GameObject:
   m_ObjectHideFlags: 0
@@ -13197,10 +13612,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 8785409186547180315}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &3554520017662822428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13301,8 +13720,9 @@ GameObject:
   - component: {fileID: 4975666018928164907}
   - component: {fileID: 9152364807383544934}
   - component: {fileID: 2570994975479594312}
+  - component: {fileID: 8207456469483201366}
   m_Layer: 0
-  m_Name: Port Rj45 (9)
+  m_Name: Port Rj45 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13349,9 +13769,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13449,6 +13866,22 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!114 &8207456469483201366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936840447244094559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: 6
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &8965108736375936989
 GameObject:
   m_ObjectHideFlags: 0
@@ -13543,3 +13976,687 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4019126174280222272}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &391152897808077625
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3102191992432210188}
+    m_Modifications:
+    - target: {fileID: 1625824889478032605, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_Name
+      value: Close Button Script
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225328251101969118, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_text
+      value: 10.0.2.0/24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1400
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.036
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.362
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472214075801817970, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582209393096421747, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_Name
+      value: Close Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598026177748540699, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_Name
+      value: InfoRouterUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598026177748540699, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648872371733075700, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648872371733075700, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648872371733075700, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5941099514599359448}
+    - target: {fileID: 4648872371733075700, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648872371733075700, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Refresh
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648872371733075700, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RoutingTableUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648872371733075700, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618874836899834953, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: container
+      value: 
+      objectReference: {fileID: 1033959969296214611}
+    - target: {fileID: 6037790588052654874, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 6248708416666980278}
+    - target: {fileID: 7150348995388712503, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_text
+      value: 10.0.2.3/24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421277798792521691, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_Spacing.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421277798792521691, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_CellSize.x
+      value: 391
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421277798792521691, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_CellSize.y
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421277798792521691, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_Constraint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421277798792521691, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_ConstraintCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125131118079892159, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408340343794210965, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -672
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408340343794210965, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 353
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 3851837692159835057, guid: 94fe933eecb0f5a458452357c8e09b93, type: 3}
+    - {fileID: 9177632397814679579, guid: 94fe933eecb0f5a458452357c8e09b93, type: 3}
+    - {fileID: 1863927837491422974, guid: 94fe933eecb0f5a458452357c8e09b93, type: 3}
+    - {fileID: 8938041705144739607, guid: 94fe933eecb0f5a458452357c8e09b93, type: 3}
+    - {fileID: 4872119005581413633, guid: 94fe933eecb0f5a458452357c8e09b93, type: 3}
+    - {fileID: 8125131118079892159, guid: 94fe933eecb0f5a458452357c8e09b93, type: 3}
+    - {fileID: 7537963305628037960, guid: 94fe933eecb0f5a458452357c8e09b93, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4598026177748540699, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7196289366744062709}
+    - targetCorrespondingSourceObject: {fileID: 1625824889478032605, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5285038187107233245}
+    - targetCorrespondingSourceObject: {fileID: 1625824889478032605, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3910855747366011501}
+    - targetCorrespondingSourceObject: {fileID: 8304534376894581393, guid: 94fe933eecb0f5a458452357c8e09b93,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8513225464258335150}
+  m_SourcePrefab: {fileID: 100100000, guid: 94fe933eecb0f5a458452357c8e09b93, type: 3}
+--- !u!114 &825730611545970633 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1015617658792051952, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd041e74f2605849acdcee4e18f70ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &986877657903887600 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 639440214537168841, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dbc0090eadc6914a82da72edcfdb719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &1033959969296214611 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 807545531473131882, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1440501397406924772 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1625824889478032605, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5285038187107233245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440501397406924772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6057320097217034830}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3910855747366011501}
+        m_TargetAssemblyTypeName: CloseInfoUIHandler, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3910855747366011501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440501397406924772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d90c59bfdf0fa489ecd69edb3b2ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deviceInfoPrefab: {fileID: 4225184653630311970}
+--- !u!224 &1982953546280409500 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2227446466275838629, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3311490680238058705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2925475288834654184, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3504198201406622797 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3876700764756811636, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &4225184653630311970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4598026177748540699, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7196289366744062709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4225184653630311970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b8e8eec99992844088c4bf0b2636af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5941099514599359448 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6277633030148837601, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84af95b3bbc68384f872af6737bdfb1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6057320097217034830 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5864333184652781943, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440501397406924772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6244009917920073763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6037790588052654874, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4225184653630311970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cc87c107d84274a862b090dfd256cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7491610275564578150 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7105040455754479199, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8525883060764629416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8304534376894581393, guid: 94fe933eecb0f5a458452357c8e09b93,
+    type: 3}
+  m_PrefabInstance: {fileID: 391152897808077625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8513225464258335150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525883060764629416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 7491610275564578150}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 986877657903887600}
+        m_TargetAssemblyTypeName: MyPortDetailUI, Assembly-CSharp
+        m_MethodName: OnClickEditIP
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1001 &1248843102474747879
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3102191992432210188}
+    m_Modifications:
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6244009917920073763}
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5590621865957339970}
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 825730611545970633}
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnEnable
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: GenerateCards
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RouterInfoSetValue, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0088
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.1888
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0237
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180009413877559377, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_Name
+      value: Inspect Icon
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5c8714abbcb9144c92ee7523a182656, type: 3}
+--- !u!224 &3412320255571998719 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
+    type: 3}
+  m_PrefabInstance: {fileID: 1248843102474747879}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6248708416666980278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5180009413877559377, guid: d5c8714abbcb9144c92ee7523a182656,
+    type: 3}
+  m_PrefabInstance: {fileID: 1248843102474747879}
+  m_PrefabAsset: {fileID: 0}

@@ -106,11 +106,16 @@ public class PlacementPreview : MonoBehaviour
     
     public async Task BeginPlacement(GameObject prefab)
     {
-        Vector3 fixedPos = new Vector3(-395.679f, 1f, 79f);
+        Vector3 fixedPos = new Vector3(0.5941535f, 1.332f, 0f);
         if (currentPreview != null) Destroy(currentPreview);
 
         selectedPrefab = prefab;
         currentPreview = Instantiate(selectedPrefab, fixedPos, Quaternion.identity);
+        // EquipmentData rootEq = currentPreview.GetComponent<EquipmentData>();
+        // if (rootEq != null)
+        // {
+        //     rootEq.deviceId = currentPreview.name; // 🔥 สำคัญ
+        // }
 
         //FIX INSPECT UI
         Canvas[] canvases = currentPreview.GetComponentsInChildren<Canvas>(true);

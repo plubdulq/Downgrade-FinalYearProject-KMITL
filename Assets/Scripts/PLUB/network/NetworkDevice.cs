@@ -3,29 +3,31 @@ using UnityEngine;
 
 public class NetworkDevice : MonoBehaviour
 {
-    public string deviceType;
+    public string device_type;
+    public string device_id;
     public string guid;
-    public string ip;
 
     private QueryPortSchema repository;
 
     void Start()
     {
         repository = new QueryPortSchema();
+        EquipmentData device = GetComponent<EquipmentData>();
+        guid = device.uniqueID;
         RegisterDevice();
     }
 
     async Task RegisterDevice()
     {
 
-        EquipmentData device = GetComponent<EquipmentData>();
-        guid = device.uniqueID;
+        // EquipmentData device = GetComponent<EquipmentData>();
+        // guid = device.uniqueID;
 
         // query DB
-        PortSchemaDB schema = await repository.GetPortSchema(deviceType);
+        PortSchemaDB schema = await repository.GetPortSchema(device_id);
         
         // create state
-        DeviceNetworkState state = new DeviceNetworkState(guid);
+        DeviceNetworkState state = new DeviceNetworkState(guid, device_type);
 
         int portIndex = 0;
         foreach (var portType in schema.ports_schema)
