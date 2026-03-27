@@ -12,9 +12,9 @@ public class VRHUDCountdown : MonoBehaviour
     public bool autoAssignOnAwake = true;
     public bool debugLogs = true;
 
-    private Coroutine countdownRoutine;
+    Coroutine countdownRoutine;
 
-    private void Awake()
+    void Awake()
     {
         if (autoAssignOnAwake)
             TryAutoAssignReferences();
@@ -69,8 +69,6 @@ public class VRHUDCountdown : MonoBehaviour
 
     public void StartCountdown(int seconds)
     {
-        Debug.Log("[VRHUDCountdown] StartCountdown called with: " + seconds);
-
         if (hudRoot == null || countdownText == null)
             TryAutoAssignReferences();
 
@@ -95,8 +93,6 @@ public class VRHUDCountdown : MonoBehaviour
 
     public void StopCountdown()
     {
-        Debug.Log("[VRHUDCountdown] StopCountdown called");
-
         if (countdownRoutine != null)
         {
             StopCoroutine(countdownRoutine);
@@ -112,8 +108,6 @@ public class VRHUDCountdown : MonoBehaviour
 
     public void StopCountdownKeepHudVisible()
     {
-        Debug.Log("[VRHUDCountdown] StopCountdownKeepHudVisible called");
-
         if (countdownRoutine != null)
         {
             StopCoroutine(countdownRoutine);
@@ -127,7 +121,7 @@ public class VRHUDCountdown : MonoBehaviour
             hudRoot.SetActive(true);
     }
 
-    private IEnumerator CountdownRoutine(int seconds)
+    IEnumerator CountdownRoutine(int seconds)
     {
         int remaining = seconds;
 

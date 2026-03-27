@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 
 public class VRHUDCountdownBinder : MonoBehaviour
 {
@@ -21,7 +20,6 @@ public class VRHUDCountdownBinder : MonoBehaviour
 
     [Header("Auto Bind")]
     public bool autoBindOnAwake = true;
-    public bool includeInactiveWhenSearching = true;
     public bool debugLogs = true;
 
     bool _eventsBound = false;
@@ -43,7 +41,6 @@ public class VRHUDCountdownBinder : MonoBehaviour
 
     void OnEnable()
     {
-        // กันกรณี object ถูก enable ใหม่ หรือ scene โหลดลำดับแปลก
         TryAutoBindAll();
         BindEventsIfPossible();
         HideOptionalUi();
@@ -54,9 +51,6 @@ public class VRHUDCountdownBinder : MonoBehaviour
         UnbindEvents();
     }
 
-    // --------------------------------------------------
-    // Auto Bind
-    // --------------------------------------------------
     public void TryAutoBindAll()
     {
         bool changed = false;
@@ -74,7 +68,7 @@ public class VRHUDCountdownBinder : MonoBehaviour
 
         if (vrHudCountdown == null)
         {
-            vrHudCountdown = FindHudCountdownInScene();
+            vrHudCountdown = FindFirstObjectByType<VRHUDCountdown>(FindObjectsInactive.Include);
 
             if (vrHudCountdown != null)
                 changed = true;
@@ -112,42 +106,6 @@ public class VRHUDCountdownBinder : MonoBehaviour
         }
     }
 
-    VRHUDCountdown FindHudCountdownInScene()
-    {
-        // 1) หาแบบตรง ๆ ก่อน
-        VRHUDCountdown found = FindFirstObjectByType<VRHUDCountdown>(FindObjectsInactive.Include);
-        if (found != null)
-            return found;
-
-        // 2) fallback: เผื่อชื่อ HUD ตรง แต่ component ยังหาไม่เจอจากลำดับแปลก
-        GameObject hudGo = FindGameObjectByName("HUD_CountdownCanvas");
-        if (hudGo != null)
-            return hudGo.GetComponent<VRHUDCountdown>();
-
-        return null;
-    }
-
-    GameObject FindGameObjectByName(string targetName)
-    {
-        Transform[] allTransforms = Resources.FindObjectsOfTypeAll<Transform>();
-
-        for (int i = 0; i < allTransforms.Length; i++)
-        {
-            Transform t = allTransforms[i];
-
-            if (t == null)
-                continue;
-
-            if (t.hideFlags != HideFlags.None)
-                continue;
-
-            if (t.name == targetName)
-                return t.gameObject;
-        }
-
-        return null;
-    }
-
     Transform FindChildRecursiveByName(Transform root, string targetName)
     {
         if (root == null)
@@ -171,42 +129,19 @@ public class VRHUDCountdownBinder : MonoBehaviour
         if (!debugLogs)
             return;
 
-        string fireAlarmName = fireAlarmSystem ? fireAlarmSystem.name : "NULL";
-        string hudName = vrHudCountdown ? vrHudCountdown.name : "NULL";
-        string dischargeName = dischargeActivatedUI ? dischargeActivatedUI.name : "NULL";
-        string waitingName = waitingForResetUI ? waitingForResetUI.name : "NULL";
-
         Debug.Log(
             "[VRHUDCountdownBinder] Auto-bind summary -> " +
-            $"FireAlarmSystem: {fireAlarmName}, " +
-            $"VRHUDCountdown: {hudName}, " +
-            $"DischargeUI: {dischargeName}, " +
-            $"WaitingUI: {waitingName}",
+            $"FireAlarmSystem: {(fireAlarmSystem ? fireAlarmSystem.name : "NULL")}, " +
+            $"VRHUDCountdown: {(vrHudCountdown ? vrHudCountdown.name : "NULL")}, " +
+            $"DischargeUI: {(dischargeActivatedUI ? dischargeActivatedUI.name : "NULL")}, " +
+            $"WaitingUI: {(waitingForResetUI ? waitingForResetUI.name : "NULL")}",
             this
         );
-
-        if (fireAlarmSystem == null)
-            Debug.LogWarning("[VRHUDCountdownBinder] FireAlarmSystem not found. Binder cannot subscribe to events.", this);
-
-        if (vrHudCountdown == null)
-            Debug.LogWarning("[VRHUDCountdownBinder] VRHUDCountdown not found in scene. HUD countdown will not display.", this);
-
-        if (dischargeActivatedUI == null)
-            Debug.LogWarning("[VRHUDCountdownBinder] HUD_DischargeActivatedText not found under VRHUDCountdown.", this);
-
-        if (waitingForResetUI == null)
-            Debug.LogWarning("[VRHUDCountdownBinder] HUD_WaitingForResetText not found under VRHUDCountdown.", this);
     }
 
-    // --------------------------------------------------
-    // Event Binding
-    // --------------------------------------------------
     void BindEventsIfPossible()
     {
-        if (_eventsBound)
-            return;
-
-        if (fireAlarmSystem == null)
+        if (_eventsBound || fireAlarmSystem == null)
             return;
 
         fireAlarmSystem.OnPreDischargeStart += HandlePreDischargeStart;
@@ -215,9 +150,6 @@ public class VRHUDCountdownBinder : MonoBehaviour
         fireAlarmSystem.OnReset += HandleReset;
 
         _eventsBound = true;
-
-        if (debugLogs)
-            Debug.Log("[VRHUDCountdownBinder] Event binding complete.", this);
     }
 
     void UnbindEvents()
@@ -236,15 +168,8 @@ public class VRHUDCountdownBinder : MonoBehaviour
         _eventsBound = false;
     }
 
-    // --------------------------------------------------
-    // Event Handlers
-    // --------------------------------------------------
     void HandlePreDischargeStart(int duration)
     {
-        if (debugLogs)
-            Debug.Log("[VRHUDCountdownBinder] OnPreDischargeStart received: " + duration, this);
-
-        // กันกรณี scene โหลด HUD ช้ากว่า prefab
         if (vrHudCountdown == null || dischargeActivatedUI == null || waitingForResetUI == null)
             TryAutoBindAll();
 
@@ -259,26 +184,17 @@ public class VRHUDCountdownBinder : MonoBehaviour
         int seconds;
 
         if (useDurationFromFireAlarm)
-        {
             seconds = duration;
-        }
         else if (useRoomSizeFallback)
-        {
             seconds = GetCountdownFromRoomSize(roomWidth, roomLength);
-        }
         else
-        {
             seconds = duration;
-        }
 
         vrHudCountdown.StartCountdown(seconds);
     }
 
     void HandleDischarge()
     {
-        if (debugLogs)
-            Debug.Log("[VRHUDCountdownBinder] OnDischarge received", this);
-
         if (vrHudCountdown == null || dischargeActivatedUI == null || waitingForResetUI == null)
             TryAutoBindAll();
 
@@ -291,9 +207,6 @@ public class VRHUDCountdownBinder : MonoBehaviour
 
     void HandleDischargeComplete()
     {
-        if (debugLogs)
-            Debug.Log("[VRHUDCountdownBinder] OnDischargeComplete received", this);
-
         if (vrHudCountdown == null || dischargeActivatedUI == null || waitingForResetUI == null)
             TryAutoBindAll();
 
@@ -303,9 +216,6 @@ public class VRHUDCountdownBinder : MonoBehaviour
 
     void HandleReset()
     {
-        if (debugLogs)
-            Debug.Log("[VRHUDCountdownBinder] OnReset received", this);
-
         if (vrHudCountdown == null || dischargeActivatedUI == null || waitingForResetUI == null)
             TryAutoBindAll();
 
@@ -315,9 +225,6 @@ public class VRHUDCountdownBinder : MonoBehaviour
         HideOptionalUi();
     }
 
-    // --------------------------------------------------
-    // Helpers
-    // --------------------------------------------------
     void HideOptionalUi()
     {
         SetActiveSafe(dischargeActivatedUI, false);
@@ -336,7 +243,6 @@ public class VRHUDCountdownBinder : MonoBehaviour
 
         if (area <= 36f)
             return 15;
-
         if (area <= 64f)
             return 20;
 

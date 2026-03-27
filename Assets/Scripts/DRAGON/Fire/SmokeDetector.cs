@@ -3,62 +3,147 @@ using UnityEngine;
 
 public class SmokeDetector : MonoBehaviour
 {
+    [Header("References")]
     public FireAlarmSystem fireAlarm;
     public string smokeTag = "Smoke";
 
     [Header("Beep Sound")]
     public AudioSource audioSource;
-    public AudioClip beepClip;          // ถ้ามีไฟล์เสียง drag มาใส่ได้เลย
-    public float beepInterval = 0.5f;   // ติ๊ดทุกกี่วินาที
-    public int beepCount = 5;           // ติ๊ดกี่ครั้ง
+    public AudioClip beepClip;
+    public float beepInterval = 0.5f;
+    public int beepCount = 5;
+
+    [Header("Auto Bind")]
+    public bool autoBindOnAwake = true;
+    public bool debugLogs = true;
 
     bool _triggered;
     Coroutine _beepRoutine;
+    bool _eventsBound;
+
+    void Awake()
+    {
+        if (autoBindOnAwake)
+            TryAutoBind();
+    }
 
     void OnEnable()
     {
-        if (fireAlarm) fireAlarm.OnReset += HandleReset;
+        TryAutoBind();
+        BindEventsIfPossible();
     }
 
     void OnDisable()
     {
-        if (fireAlarm) fireAlarm.OnReset -= HandleReset;
+        UnbindEvents();
+    }
+
+    public void TryAutoBind()
+    {
+        if (fireAlarm == null)
+        {
+            fireAlarm = GetComponentInParent<FireAlarmSystem>();
+
+            if (fireAlarm == null)
+                fireAlarm = FindFirstObjectByType<FireAlarmSystem>(FindObjectsInactive.Include);
+        }
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+            audioSource = GetComponentInChildren<AudioSource>(true);
+
+        if (debugLogs)
+        {
+            Debug.Log(
+                "[SmokeDetector] Auto-bind summary -> " +
+                $"FireAlarm: {(fireAlarm ? fireAlarm.name : "NULL")}, " +
+                $"AudioSource: {(audioSource ? audioSource.name : "NULL")}",
+                this
+            );
+        }
+    }
+
+    void BindEventsIfPossible()
+    {
+        if (_eventsBound || fireAlarm == null)
+            return;
+
+        fireAlarm.OnReset += HandleReset;
+        _eventsBound = true;
+    }
+
+    void UnbindEvents()
+    {
+        if (!_eventsBound)
+            return;
+
+        if (fireAlarm != null)
+            fireAlarm.OnReset -= HandleReset;
+
+        _eventsBound = false;
     }
 
     void HandleReset()
     {
         _triggered = false;
-        if (_beepRoutine != null) StopCoroutine(_beepRoutine);
+
+        if (_beepRoutine != null)
+            StopCoroutine(_beepRoutine);
+
         _beepRoutine = null;
-        Debug.Log("[SmokeDetector] Reset");
+
+        if (debugLogs)
+            Debug.Log("[SmokeDetector] Reset", this);
     }
 
     public void NotifyParticleEntered()
     {
-        if (_triggered) return;
-        if (!fireAlarm) return;
+        if (_triggered)
+            return;
+
+        if (fireAlarm == null)
+            TryAutoBind();
+
+        if (!fireAlarm)
+            return;
 
         Trigger();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (_triggered) return;
-        if (!other.CompareTag(smokeTag)) return;
-        if (!fireAlarm) return;
+        if (_triggered)
+            return;
 
-        Debug.Log($"[SmokeDetector] Collider entered — {other.name}");
+        if (!other.CompareTag(smokeTag))
+            return;
+
+        if (fireAlarm == null)
+            TryAutoBind();
+
+        if (!fireAlarm)
+            return;
+
+        if (debugLogs)
+            Debug.Log($"[SmokeDetector] Collider entered — {other.name}", this);
+
         Trigger();
     }
 
     void Trigger()
     {
         _triggered = true;
-        Debug.Log("[SmokeDetector] ✅ ALARM TRIGGERED by Smoke!");
+
+        if (debugLogs)
+            Debug.Log("[SmokeDetector] ALARM TRIGGERED by Smoke!", this);
+
         fireAlarm.TriggerAlarm(FireAlarmSystem.TriggerReason.Smoke);
 
-        // เริ่มเสียงติ๊ด
-        if (_beepRoutine != null) StopCoroutine(_beepRoutine);
+        if (_beepRoutine != null)
+            StopCoroutine(_beepRoutine);
+
         _beepRoutine = StartCoroutine(BeepRoutine());
     }
 
@@ -67,28 +152,31 @@ public class SmokeDetector : MonoBehaviour
         for (int i = 0; i < beepCount; i++)
         {
             PlayBeep();
-            Debug.Log($"[SmokeDetector] Beep {i + 1}/{beepCount}");
+
+            if (debugLogs)
+                Debug.Log($"[SmokeDetector] Beep {i + 1}/{beepCount}", this);
+
             yield return new WaitForSeconds(beepInterval);
         }
+
+        _beepRoutine = null;
     }
 
     void PlayBeep()
     {
-        if (!audioSource) return;
+        if (!audioSource)
+            return;
 
         if (beepClip)
         {
-            // มีไฟล์เสียง → เล่นปกติ
             audioSource.PlayOneShot(beepClip);
         }
         else
         {
-            // ไม่มีไฟล์ → generate เสียง beep เอง
             audioSource.PlayOneShot(GenerateBeep(0.05f, 880f));
         }
     }
 
-    // Generate เสียง beep แบบ procedural ไม่ต้องใช้ไฟล์เสียง
     AudioClip GenerateBeep(float duration, float frequency)
     {
         int sampleRate = 44100;
@@ -98,7 +186,6 @@ public class SmokeDetector : MonoBehaviour
         for (int i = 0; i < samples; i++)
         {
             float t = (float)i / sampleRate;
-            // Sine wave + envelope fade out เพื่อกันกึกตอนหยุด
             float envelope = 1f - (t / duration);
             data[i] = Mathf.Sin(2f * Mathf.PI * frequency * t) * envelope * 0.5f;
         }

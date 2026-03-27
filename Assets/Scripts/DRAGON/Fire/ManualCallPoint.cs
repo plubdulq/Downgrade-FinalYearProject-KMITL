@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ManualCallPoint : MonoBehaviour
 {
+    [Header("References")]
     public FireAlarmSystem fireAlarm;
 
     [Header("Mode")]
@@ -10,47 +11,101 @@ public class ManualCallPoint : MonoBehaviour
     [Header("Options")]
     public bool oneShot = true;
 
+    [Header("Auto Bind")]
+    public bool autoBindOnAwake = true;
+
     [Header("Debug")]
     public bool debugLogs = true;
 
-    private bool _used;
+    bool _used;
+    bool _eventsBound;
 
-    private void Reset()
+    void Reset()
     {
         var col = GetComponent<Collider>();
         if (col) col.isTrigger = true;
     }
 
-    private void OnEnable()
+    void Awake()
     {
-        if (fireAlarm) fireAlarm.OnReset += HandleReset;
+        if (autoBindOnAwake)
+            TryAutoBind();
     }
 
-    private void OnDisable()
+    void OnEnable()
     {
-        if (fireAlarm) fireAlarm.OnReset -= HandleReset;
+        TryAutoBind();
+        BindEventsIfPossible();
     }
 
-    private void HandleReset()
+    void OnDisable()
+    {
+        UnbindEvents();
+    }
+
+    public void TryAutoBind()
+    {
+        if (fireAlarm == null)
+        {
+            fireAlarm = GetComponentInParent<FireAlarmSystem>();
+
+            if (fireAlarm == null)
+                fireAlarm = FindFirstObjectByType<FireAlarmSystem>(FindObjectsInactive.Include);
+        }
+
+        if (debugLogs)
+        {
+            Debug.Log(
+                "[ManualCallPoint] Auto-bind summary -> " +
+                $"FireAlarm: {(fireAlarm ? fireAlarm.name : "NULL")}",
+                this
+            );
+        }
+    }
+
+    void BindEventsIfPossible()
+    {
+        if (_eventsBound || fireAlarm == null)
+            return;
+
+        fireAlarm.OnReset += HandleReset;
+        _eventsBound = true;
+    }
+
+    void UnbindEvents()
+    {
+        if (!_eventsBound)
+            return;
+
+        if (fireAlarm != null)
+            fireAlarm.OnReset -= HandleReset;
+
+        _eventsBound = false;
+    }
+
+    void HandleReset()
     {
         _used = false;
 
         if (debugLogs)
-            Debug.Log("[MCP] Reset received from FireAlarmSystem. MCP ready again.");
+            Debug.Log("[MCP] Reset received from FireAlarmSystem. MCP ready again.", this);
     }
 
     public void PressAlarmButton()
     {
+        if (fireAlarm == null)
+            TryAutoBind();
+
         if (!fireAlarm)
         {
-            Debug.LogWarning("[MCP] FireAlarmSystem is not assigned.");
+            Debug.LogWarning("[MCP] FireAlarmSystem is not assigned.", this);
             return;
         }
 
         if (oneShot && _used)
         {
             if (debugLogs)
-                Debug.Log("[MCP] Alarm button pressed, but MCP is already used.");
+                Debug.Log("[MCP] Alarm button pressed, but MCP is already used.", this);
             return;
         }
 
@@ -58,25 +113,26 @@ public class ManualCallPoint : MonoBehaviour
         fireAlarm.TriggerAlarm(FireAlarmSystem.TriggerReason.ManualCallPoint);
 
         if (debugLogs)
-            Debug.Log("[MCP] Alarm button pressed.");
+            Debug.Log("[MCP] Alarm button pressed.", this);
     }
 
-    // เก็บ method นี้ไว้กัน script อื่น reference อยู่
-    // แต่ตาม flow ใหม่ MCP จะไม่ทำ Reset แล้ว
     public void PressResetButton()
     {
         if (debugLogs)
-            Debug.Log("[MCP] PressResetButton() called, but MCP reset is disabled in the new flow.");
+            Debug.Log("[MCP] PressResetButton() called, but MCP reset is disabled in the new flow.", this);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (usePhysicalButtonsOnly)
             return;
 
+        if (fireAlarm == null)
+            TryAutoBind();
+
         if (!fireAlarm)
         {
-            Debug.LogWarning("[MCP] FireAlarmSystem is not assigned.");
+            Debug.LogWarning("[MCP] FireAlarmSystem is not assigned.", this);
             return;
         }
 
@@ -87,6 +143,6 @@ public class ManualCallPoint : MonoBehaviour
         fireAlarm.TriggerAlarm(FireAlarmSystem.TriggerReason.ManualCallPoint);
 
         if (debugLogs)
-            Debug.Log("[MCP] Triggered by collider: " + other.name);
+            Debug.Log("[MCP] Triggered by collider: " + other.name, this);
     }
 }

@@ -10,25 +10,57 @@ public class FireResetButtonTrigger : MonoBehaviour
     public string requiredTag = "";
     public float pressCooldown = 0.5f;
 
+    [Header("Auto Bind")]
+    public bool autoBindOnAwake = true;
+
     [Header("Debug")]
     public bool debugLogs = true;
 
-    private float lastPressTime = -999f;
+    float lastPressTime = -999f;
 
-    private void Reset()
+    void Reset()
     {
         Collider col = GetComponent<Collider>();
         if (col != null)
             col.isTrigger = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    void Awake()
+    {
+        if (autoBindOnAwake)
+            TryAutoBind();
+    }
+
+    public void TryAutoBind()
+    {
+        if (fireAlarm == null)
+        {
+            fireAlarm = GetComponentInParent<FireAlarmSystem>();
+
+            if (fireAlarm == null)
+                fireAlarm = FindFirstObjectByType<FireAlarmSystem>(FindObjectsInactive.Include);
+        }
+
+        if (debugLogs)
+        {
+            Debug.Log(
+                "[FireResetButtonTrigger] Auto-bind summary -> " +
+                $"FireAlarm: {(fireAlarm ? fireAlarm.name : "NULL")}",
+                this
+            );
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
     {
         if (Time.time - lastPressTime < pressCooldown)
             return;
 
         if (!string.IsNullOrEmpty(requiredTag) && !other.CompareTag(requiredTag))
             return;
+
+        if (fireAlarm == null)
+            TryAutoBind();
 
         if (fireAlarm == null)
         {

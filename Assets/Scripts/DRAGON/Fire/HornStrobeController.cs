@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class HornStrobeController : MonoBehaviour
 {
+    [Header("References")]
     public FireAlarmSystem fireAlarm;
 
     [Header("Audio")]
@@ -23,12 +24,32 @@ public class HornStrobeController : MonoBehaviour
     [Tooltip("หน่วง siren + strobe กี่วิ เพื่อให้ beep ดังก่อน")]
     public float sirenDelay = 3f;
 
+    [Header("Auto Bind")]
+    public bool autoBindOnAwake = true;
+    public bool debugLogs = true;
+
     Coroutine _blink;
     Coroutine _delayed;
+    bool _eventsBound;
+
+    void Reset()
+    {
+        if (siren == null)
+            siren = GetComponent<AudioSource>();
+
+        if (strobeLight == null)
+            strobeLight = GetComponentInChildren<Light>(true);
+
+        if (fireAlarm == null)
+            fireAlarm = GetComponentInParent<FireAlarmSystem>();
+    }
 
     void Awake()
     {
-        if (siren)
+        if (autoBindOnAwake)
+            TryAutoBind();
+
+        if (siren != null)
         {
             siren.playOnAwake = false;
             siren.loop = loop;
@@ -36,30 +57,80 @@ public class HornStrobeController : MonoBehaviour
             siren.minDistance = minDistance;
             siren.maxDistance = maxDistance;
 
-            if (sirenClip)
+            if (sirenClip != null)
                 siren.clip = sirenClip;
 
             siren.Stop();
         }
 
-        if (strobeLight)
+        if (strobeLight != null)
             strobeLight.enabled = false;
     }
 
     void OnEnable()
     {
-        if (!fireAlarm) return;
-
-        fireAlarm.OnAlarm += HandleAlarm;
-        fireAlarm.OnReset += HandleReset;
+        TryAutoBind();
+        BindEventsIfPossible();
     }
 
     void OnDisable()
     {
-        if (!fireAlarm) return;
+        UnbindEvents();
+    }
 
-        fireAlarm.OnAlarm -= HandleAlarm;
-        fireAlarm.OnReset -= HandleReset;
+    public void TryAutoBind()
+    {
+        if (fireAlarm == null)
+        {
+            fireAlarm = GetComponentInParent<FireAlarmSystem>();
+
+            if (fireAlarm == null)
+                fireAlarm = FindFirstObjectByType<FireAlarmSystem>(FindObjectsInactive.Include);
+        }
+
+        if (siren == null)
+            siren = GetComponent<AudioSource>();
+
+        if (siren == null)
+            siren = GetComponentInChildren<AudioSource>(true);
+
+        if (strobeLight == null)
+            strobeLight = GetComponentInChildren<Light>(true);
+
+        if (debugLogs)
+        {
+            Debug.Log(
+                "[HornStrobeController] Auto-bind summary -> " +
+                $"FireAlarm: {(fireAlarm ? fireAlarm.name : "NULL")}, " +
+                $"Siren: {(siren ? siren.name : "NULL")}, " +
+                $"Strobe: {(strobeLight ? strobeLight.name : "NULL")}",
+                this
+            );
+        }
+    }
+
+    void BindEventsIfPossible()
+    {
+        if (_eventsBound || fireAlarm == null)
+            return;
+
+        fireAlarm.OnAlarm += HandleAlarm;
+        fireAlarm.OnReset += HandleReset;
+        _eventsBound = true;
+    }
+
+    void UnbindEvents()
+    {
+        if (!_eventsBound)
+            return;
+
+        if (fireAlarm != null)
+        {
+            fireAlarm.OnAlarm -= HandleAlarm;
+            fireAlarm.OnReset -= HandleReset;
+        }
+
+        _eventsBound = false;
     }
 
     void HandleAlarm()
@@ -81,10 +152,10 @@ public class HornStrobeController : MonoBehaviour
         if (_blink != null)
             StopCoroutine(_blink);
 
-        if (strobeLight)
+        if (strobeLight != null)
             _blink = StartCoroutine(Blink());
 
-        if (siren && !siren.isPlaying)
+        if (siren != null && !siren.isPlaying)
             siren.Play();
     }
 
@@ -107,10 +178,10 @@ public class HornStrobeController : MonoBehaviour
             _blink = null;
         }
 
-        if (siren)
+        if (siren != null)
             siren.Stop();
 
-        if (strobeLight)
+        if (strobeLight != null)
             strobeLight.enabled = false;
     }
 
@@ -118,7 +189,7 @@ public class HornStrobeController : MonoBehaviour
     {
         while (true)
         {
-            if (strobeLight)
+            if (strobeLight != null)
                 strobeLight.enabled = !strobeLight.enabled;
 
             yield return new WaitForSeconds(blinkInterval);
