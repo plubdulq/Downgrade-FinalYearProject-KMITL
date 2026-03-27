@@ -30,7 +30,12 @@ public class NetworkManager : MonoBehaviour
     public void RegisterConnection(string guid, string portName, string cableGuid) //portName คือ portNumber ที่เป็น string เพราะ test อยู่ จึงใช้ portName เป็น portNumber
     {
         Debug.Log("Registering connection");
-        DeviceNetworkState device = devices[guid];
+        //DeviceNetworkState device = devices[guid];
+        if (!devices.TryGetValue(guid, out var device))
+        {
+            Debug.LogError($"Device with GUID {guid} not found");
+            return;
+        }
 
         foreach (var port in device.ports)
         {

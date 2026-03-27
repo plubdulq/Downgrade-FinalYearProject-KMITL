@@ -14,7 +14,7 @@ public class DeviceHeat : MonoBehaviour
     public float wattPerCelsius = 0.3f; // watt per degree Celsius, ปรับค่าตามความเหมาะสม
     private float deviceTemperature;
 
-    private int powerState = 0; // 0 = off, 1 = on
+    public int powerState = 0; // 0 = off, 1 = on
 
     async void LoadDeviceData()
     {
@@ -88,7 +88,7 @@ public class DeviceHeat : MonoBehaviour
         //return (myData.basePower + ((myData.maxPower - myData.basePower) * myData.userLoadRatio)) * myData.placementFactor * Time.deltaTime;
         float power = (myData.HeatCalculation.MinPower + ((myData.HeatCalculation.MaxPower - myData.HeatCalculation.MinPower) * myData.UserLoadRatio)) * myData.PlacementFactor;
         Debug.Log($"Calculating Power of {this.gameObject.name} : {power} Watt with {myData.UserLoadRatio * 100}% load ratio");
-        return power * powerState;;
+        return power * powerState;
     }
 
     private void Start()
@@ -130,6 +130,8 @@ public class DeviceHeat : MonoBehaviour
     {
         if (myData == null) return;
         myData.UserLoadRatio = ratio;
+
+
     }
 
 
