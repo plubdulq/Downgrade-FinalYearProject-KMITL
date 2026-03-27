@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6397140147374341973}
   - component: {fileID: 2298487544021510793}
   - component: {fileID: 1666004954771372066}
-  - component: {fileID: 2164418975486732918}
   - component: {fileID: 3109868473961626019}
   - component: {fileID: 6604781553937349663}
   - component: {fileID: 6558316667511602277}
+  - component: {fileID: 6767781672355218127}
   m_Layer: 0
   m_Name: Frame-LabelPort
   m_TagString: Untagged
@@ -79,24 +79,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2164418975486732918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5371808654381481432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfd041e74f2605849acdcee4e18f70ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  labelCardPrefab: {fileID: 2679910148654939516, guid: af8d11a6a4397a346bf15d7aaf2b1102,
-    type: 3}
-  container: {fileID: 0}
-  device:
-    guid: 
-    ports: []
 --- !u!114 &3109868473961626019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +143,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6767781672355218127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5371808654381481432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd041e74f2605849acdcee4e18f70ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  labelCardPrefab: {fileID: 2679910148654939516, guid: af8d11a6a4397a346bf15d7aaf2b1102,
+    type: 3}
+  container: {fileID: 6397140147374341973}
+  device:
+    guid: 
+    device_type: 
+    ports: []
