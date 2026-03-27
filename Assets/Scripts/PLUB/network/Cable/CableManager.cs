@@ -65,4 +65,75 @@ public class CableManager : MonoBehaviour
 
         return null;
     }
+
+    // public List<string> GetConnectedCablesGuid(string deviceGuid)
+    // {
+    //     List<string> result = new List<string>();
+
+    //     var device = NetworkManager.Instance.GetDeviceByGuid(deviceGuid);
+    //     if (device == null)
+    //         return result;
+
+    //     foreach (var port in device.ports)
+    //     {
+    //         Debug.Log($"Checking port {port.portNumber} on device {deviceGuid} with cable {port.cable_guid}");
+    //         if (!string.IsNullOrEmpty(port.cable_guid))
+    //         {
+    //             Debug.Log($"Device {deviceGuid} has cable {port.cable_guid} on port {port.portNumber}");
+    //             var otherDeviceGuid = GetOtherDeviceGuid(port.cable_guid, deviceGuid);
+    //             if (!string.IsNullOrEmpty(otherDeviceGuid))
+    //             {
+    //                 result.Add(otherDeviceGuid);
+    //             }
+    //         }
+    //     }
+    //     // foreach (var cable in cableDict.Values)
+    //     // {
+    //     //     if (cable.connectedDeviceGuid1 == deviceGuid)
+    //     //     {
+    //     //         result.Add(cable.connectedDeviceGuid2);
+    //     //     }
+    //     //     else if (cable.connectedDeviceGuid2 == deviceGuid)
+    //     //     {
+    //     //         result.Add(cable.connectedDeviceGuid1);
+    //     //     }
+    //     // }
+
+    //     return result;
+    // }
+
+    public List<string> GetConnectedCablesGuid(string deviceGuid)
+    {
+        List<string> result = new List<string>();
+
+        var device = NetworkManager.Instance.GetDeviceByGuid(deviceGuid);
+        if (device == null)
+            return result;
+
+        foreach (var port in device.ports)
+        {
+            if (!string.IsNullOrEmpty(port.cable_guid))
+            {
+                result.Add(port.cable_guid); // ✅ เอา cableGuid จริง
+            }
+        }
+
+        return result;
+    }
+
+    public List<string> GetConnectedDevicesGuid(string deviceGuid)
+    {
+        var cableGuids = GetConnectedCablesGuid(deviceGuid);
+        List<string> result = new List<string>();
+        foreach (var cableGuid in cableGuids)
+        {
+            var otherDeviceGuid = GetOtherDeviceGuid(cableGuid, deviceGuid);
+            if (!string.IsNullOrEmpty(otherDeviceGuid))
+            {
+                result.Add(otherDeviceGuid);
+            }
+        }
+        return result;
+    }
+
 }

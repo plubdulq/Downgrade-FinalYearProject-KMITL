@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3746282590178646891}
   - component: {fileID: 5601723444398113285}
   - component: {fileID: 6264398741157929146}
+  - component: {fileID: 8690213487741044514}
   m_Layer: 0
   m_Name: LB-with Rj45 ports
   m_TagString: Untagged
@@ -237,6 +238,19 @@ MonoBehaviour:
   device_type: lb
   device_id: device-001
   guid: 
+--- !u!114 &8690213487741044514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7385045387261227112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ab4fb0c450cc1469842b788ce0fb87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deviceGuid: 
 --- !u!1001 &360417364908731629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -245,6 +259,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3564821523371831376}
     m_Modifications:
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -262,6 +286,16 @@ PrefabInstance:
       objectReference: {fileID: 583422847181880119}
     - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6371849827575717847}
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ToggleUI
       objectReference: {fileID: 0}
@@ -277,8 +311,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: OpenUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: LBInfoSetValue, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: LBPoolUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4471572082719262744, guid: d5c8714abbcb9144c92ee7523a182656,
         type: 3}
@@ -528,12 +577,32 @@ PrefabInstance:
     - target: {fileID: 621251047769939728, guid: de3a022e17f803c439394cfeea14f497,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1073221644170936610, guid: de3a022e17f803c439394cfeea14f497,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871183086202412747, guid: de3a022e17f803c439394cfeea14f497,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871183086202412747, guid: de3a022e17f803c439394cfeea14f497,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871183086202412747, guid: de3a022e17f803c439394cfeea14f497,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 258
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871183086202412747, guid: de3a022e17f803c439394cfeea14f497,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 117
       objectReference: {fileID: 0}
     - target: {fileID: 3992245109548244708, guid: de3a022e17f803c439394cfeea14f497,
         type: 3}
@@ -549,6 +618,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414554626755715495, guid: de3a022e17f803c439394cfeea14f497,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414554626755715495, guid: de3a022e17f803c439394cfeea14f497,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CreateNewPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539124606186157270, guid: de3a022e17f803c439394cfeea14f497,
+        type: 3}
+      propertyPath: m_Name
+      value: button
       objectReference: {fileID: 0}
     - target: {fileID: 7084021001220131377, guid: de3a022e17f803c439394cfeea14f497,
         type: 3}
@@ -578,7 +662,12 @@ PrefabInstance:
     - target: {fileID: 7744163688321371077, guid: de3a022e17f803c439394cfeea14f497,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811164263796870866, guid: de3a022e17f803c439394cfeea14f497,
+        type: 3}
+      propertyPath: m_Name
+      value: Apply Create Pool
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -593,7 +682,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5680729595783687700}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8811164263796870866, guid: de3a022e17f803c439394cfeea14f497,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6181269242445427612}
   m_SourcePrefab: {fileID: 100100000, guid: de3a022e17f803c439394cfeea14f497, type: 3}
 --- !u!224 &773974148244234756 stripped
 RectTransform:
@@ -619,6 +712,30 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 612297826557925087}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4889395584032802710 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5450990256488255817, guid: de3a022e17f803c439394cfeea14f497,
+    type: 3}
+  m_PrefabInstance: {fileID: 612297826557925087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8230568665146202125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6371849827575717847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5769685108775864584, guid: de3a022e17f803c439394cfeea14f497,
+    type: 3}
+  m_PrefabInstance: {fileID: 612297826557925087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23745fbafd9de1c43afe36eee45af6a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7266264639505271718 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7829970373747350905, guid: de3a022e17f803c439394cfeea14f497,
@@ -649,6 +766,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6cc87c107d84274a862b090dfd256cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8230568665146202125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8811164263796870866, guid: de3a022e17f803c439394cfeea14f497,
+    type: 3}
+  m_PrefabInstance: {fileID: 612297826557925087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6181269242445427612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8230568665146202125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 4889395584032802710}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6371849827575717847}
+        m_TargetAssemblyTypeName: LBPoolUI, Assembly-CSharp
+        m_MethodName: OnClickApply
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8408496741418663581 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8993594573912762434, guid: de3a022e17f803c439394cfeea14f497,
@@ -694,7 +873,7 @@ PrefabInstance:
     - target: {fileID: 1629683324985331839, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
       propertyPath: m_Name
-      value: Port Rj45 (6)
+      value: Port Rj45 0
       objectReference: {fileID: 0}
     - target: {fileID: 3642230963012470912, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
@@ -1483,7 +1662,7 @@ PrefabInstance:
     - target: {fileID: 1629683324985331839, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
       propertyPath: m_Name
-      value: Port Rj45 (7)
+      value: Port Rj45 2
       objectReference: {fileID: 0}
     - target: {fileID: 3642230963012470912, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
@@ -1645,7 +1824,7 @@ PrefabInstance:
     - target: {fileID: 1629683324985331839, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
       propertyPath: m_Name
-      value: Port Rj45 (13)
+      value: Port Rj45 7
       objectReference: {fileID: 0}
     - target: {fileID: 3642230963012470912, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
@@ -1807,7 +1986,7 @@ PrefabInstance:
     - target: {fileID: 1629683324985331839, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
       propertyPath: m_Name
-      value: Port Rj45 (12)
+      value: Port Rj45 5
       objectReference: {fileID: 0}
     - target: {fileID: 3642230963012470912, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
@@ -1969,7 +2148,7 @@ PrefabInstance:
     - target: {fileID: 1629683324985331839, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
       propertyPath: m_Name
-      value: Port Rj45 (8)
+      value: Port Rj45 4
       objectReference: {fileID: 0}
     - target: {fileID: 3642230963012470912, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
@@ -2288,7 +2467,7 @@ PrefabInstance:
     - target: {fileID: 1629683324985331839, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
       propertyPath: m_Name
-      value: Port Rj45 (9)
+      value: Port Rj45 6
       objectReference: {fileID: 0}
     - target: {fileID: 3642230963012470912, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
@@ -2450,7 +2629,7 @@ PrefabInstance:
     - target: {fileID: 1629683324985331839, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
       propertyPath: m_Name
-      value: Port Rj45 (11)
+      value: Port Rj45 3
       objectReference: {fileID: 0}
     - target: {fileID: 3642230963012470912, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
@@ -3155,7 +3334,7 @@ PrefabInstance:
     - target: {fileID: 1629683324985331839, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
       propertyPath: m_Name
-      value: Port Rj45 (10)
+      value: Port Rj45 1
       objectReference: {fileID: 0}
     - target: {fileID: 3642230963012470912, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}

@@ -12,14 +12,16 @@ public class NetworkDevice : MonoBehaviour
     void Start()
     {
         repository = new QueryPortSchema();
+        EquipmentData device = GetComponent<EquipmentData>();
+        guid = device.uniqueID;
         RegisterDevice();
     }
 
     async Task RegisterDevice()
     {
 
-        EquipmentData device = GetComponent<EquipmentData>();
-        guid = device.uniqueID;
+        // EquipmentData device = GetComponent<EquipmentData>();
+        // guid = device.uniqueID;
 
         // query DB
         PortSchemaDB schema = await repository.GetPortSchema(device_id);

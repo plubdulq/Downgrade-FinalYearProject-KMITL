@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using UnityEngine;
+using System.Collections.Generic;
 
 public static class NetworkUtils
 {
@@ -76,5 +77,65 @@ public static class NetworkUtils
             Array.Reverse(bytes);
 
         return BitConverter.ToUInt32(bytes, 0);
+    }
+
+    public static List<string> FindReachableServers(string startDeviceGuid)
+    {
+        HashSet<string> resultSet = new HashSet<string>(); // 🔥 กัน duplicate
+        List<string> result = new List<string>();
+
+        Queue<string> queue = new Queue<string>();
+        HashSet<string> visited = new HashSet<string>();
+
+        queue.Enqueue(startDeviceGuid);
+        visited.Add(startDeviceGuid);
+
+        while (queue.Count > 0)
+        {
+            string current = queue.Dequeue();
+
+            var neighbors = CableManager.Instance.GetConnectedDevicesGuid(current);
+
+            foreach (var next in neighbors)
+            {
+                Debug.Log($"From {current} → {next}");
+                if (visited.Contains(next))
+                    continue;
+
+                var device = NetworkManager.Instance.GetDeviceByGuid(next);
+                if (device == null)
+                    continue;
+
+                // 🔥 CASE 1: Server → add + mark visited + STOP
+                if (device.device_type == DeviceType.Server)
+                {
+                    if (resultSet.Add(next)) // ✅ add เฉพาะถ้ายังไม่มี
+                    {
+                        Debug.Log($"Found reachable server: {next}");
+                        result.Add(next);
+                    }
+
+                    visited.Add(next); // 🔥 mark visited ด้วย
+                    continue;
+                }
+
+                // ❌ กัน LB chain
+                if (device.device_type == DeviceType.LoadBalancer)
+                {
+                    visited.Add(next);
+                    continue;
+                }
+
+                // ✅ network device → traverse ต่อ
+                if (device.device_type == DeviceType.Switch ||
+                    device.device_type == DeviceType.Firewall ||
+                    device.device_type == DeviceType.Router)
+                {
+                    queue.Enqueue(next);
+                    visited.Add(next);
+                }
+            }
+        }
+        return result;
     }
 }
