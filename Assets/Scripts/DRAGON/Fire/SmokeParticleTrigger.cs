@@ -6,54 +6,84 @@ public class SmokeParticleTrigger : MonoBehaviour
 {
     [Header("References")]
     public SmokeDetector smokeDetector;
+    public ParticleSystem smokeParticles;
 
     [Header("Auto Bind")]
     public bool autoBindOnAwake = true;
     public bool debugLogs = true;
 
-    ParticleSystem _ps;
-    readonly List<ParticleSystem.Particle> _enter = new List<ParticleSystem.Particle>();
-
     void Awake()
     {
-        _ps = GetComponent<ParticleSystem>();
-
         if (autoBindOnAwake)
-            TryAutoBind();
+            AutoBind();
     }
 
-    public void TryAutoBind()
+    [ContextMenu("Auto Bind Now")]
+    public void AutoBind()
     {
-        if (smokeDetector == null)
+        if (!smokeParticles)
+            smokeParticles = GetComponent<ParticleSystem>();
+
+        if (!smokeDetector)
+        {
             smokeDetector = GetComponentInParent<SmokeDetector>();
 
-        if (smokeDetector == null)
-            smokeDetector = FindFirstObjectByType<SmokeDetector>(FindObjectsInactive.Include);
+            if (!smokeDetector)
+                smokeDetector = FindFirstObjectByType<SmokeDetector>(FindObjectsInactive.Include);
+        }
+
+        if (!smokeParticles || !smokeDetector)
+        {
+            if (debugLogs)
+                Debug.LogWarning("[SmokeParticleTrigger] AutoBind failed. Missing ParticleSystem or SmokeDetector.", this);
+            return;
+        }
+
+        Collider detectorCol = smokeDetector.GetComponent<Collider>();
+
+        if (!detectorCol)
+        {
+            if (debugLogs)
+                Debug.LogWarning("[SmokeParticleTrigger] SmokeDetector found, but no Collider on detector.", this);
+            return;
+        }
+
+        var trigger = smokeParticles.trigger;
+        trigger.enabled = true;
+        trigger.SetCollider(0, detectorCol);
+
+        trigger.inside = ParticleSystemOverlapAction.Ignore;
+        trigger.outside = ParticleSystemOverlapAction.Ignore;
+        trigger.enter = ParticleSystemOverlapAction.Callback;
+        trigger.exit = ParticleSystemOverlapAction.Ignore;
 
         if (debugLogs)
-        {
-            Debug.Log(
-                "[SmokeParticleTrigger] Auto-bind summary -> " +
-                $"SmokeDetector: {(smokeDetector ? smokeDetector.name : "NULL")}",
-                this
-            );
-        }
+            Debug.Log($"[SmokeParticleTrigger] Bound Trigger collider to: {detectorCol.name}", this);
+    }
+
+    void OnEnable()
+    {
+        if (!smokeParticles)
+            smokeParticles = GetComponent<ParticleSystem>();
+
+        if (autoBindOnAwake)
+            AutoBind();
     }
 
     void OnParticleTrigger()
     {
-        if (smokeDetector == null)
-            TryAutoBind();
-
-        if (!smokeDetector || _ps == null)
+        if (!smokeDetector || !smokeParticles)
             return;
 
-        int count = _ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, _enter);
+        List<ParticleSystem.Particle> entered = new List<ParticleSystem.Particle>();
+        int count = smokeParticles.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, entered);
 
-        if (debugLogs && count > 0)
-            Debug.Log($"[SmokeParticleTrigger] OnParticleTrigger fired — {count} particles entered", this);
+        if (count <= 0)
+            return;
 
-        if (count > 0)
-            smokeDetector.NotifyParticleEntered();
+        smokeDetector.NotifyParticleEntered();
+
+        if (debugLogs)
+            Debug.Log($"[SmokeParticleTrigger] Trigger ENTER detected: {count} particles", this);
     }
 }

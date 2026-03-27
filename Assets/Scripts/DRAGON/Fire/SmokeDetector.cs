@@ -7,6 +7,11 @@ public class SmokeDetector : MonoBehaviour
     public FireAlarmSystem fireAlarm;
     public string smokeTag = "Smoke";
 
+    [Header("Detection")]
+    public bool useParticleTrigger = true;
+    public bool useColliderTrigger = true;
+    public float alarmConfirmDelay = 3f;
+
     [Header("Beep Sound")]
     public AudioSource audioSource;
     public AudioClip beepClip;
@@ -18,7 +23,9 @@ public class SmokeDetector : MonoBehaviour
     public bool debugLogs = true;
 
     bool _triggered;
+    bool _pendingTrigger;
     Coroutine _beepRoutine;
+    Coroutine _confirmRoutine;
     bool _eventsBound;
 
     void Awake()
@@ -88,11 +95,16 @@ public class SmokeDetector : MonoBehaviour
     void HandleReset()
     {
         _triggered = false;
+        _pendingTrigger = false;
 
         if (_beepRoutine != null)
             StopCoroutine(_beepRoutine);
 
+        if (_confirmRoutine != null)
+            StopCoroutine(_confirmRoutine);
+
         _beepRoutine = null;
+        _confirmRoutine = null;
 
         if (debugLogs)
             Debug.Log("[SmokeDetector] Reset", this);
@@ -100,21 +112,34 @@ public class SmokeDetector : MonoBehaviour
 
     public void NotifyParticleEntered()
     {
-        if (_triggered)
+        if (!useParticleTrigger)
+            return;
+
+        if (_triggered || _pendingTrigger)
             return;
 
         if (fireAlarm == null)
             TryAutoBind();
 
         if (!fireAlarm)
+        {
+            if (debugLogs)
+                Debug.LogWarning("[SmokeDetector] Particle entered, but FireAlarmSystem is missing.", this);
             return;
+        }
 
-        Trigger();
+        if (debugLogs)
+            Debug.Log("[SmokeDetector] Particle trigger ENTER detected. Starting confirm delay...", this);
+
+        BeginConfirmDelay();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (_triggered)
+        if (!useColliderTrigger)
+            return;
+
+        if (_triggered || _pendingTrigger)
             return;
 
         if (!other.CompareTag(smokeTag))
@@ -124,20 +149,57 @@ public class SmokeDetector : MonoBehaviour
             TryAutoBind();
 
         if (!fireAlarm)
+        {
+            if (debugLogs)
+                Debug.LogWarning("[SmokeDetector] Smoke collider entered, but FireAlarmSystem is missing.", this);
             return;
+        }
 
         if (debugLogs)
-            Debug.Log($"[SmokeDetector] Collider entered — {other.name}", this);
+            Debug.Log($"[SmokeDetector] Collider entered by {other.name}. Starting confirm delay...", this);
+
+        BeginConfirmDelay();
+    }
+
+    void BeginConfirmDelay()
+    {
+        if (_pendingTrigger || _triggered)
+            return;
+
+        _pendingTrigger = true;
+
+        if (_confirmRoutine != null)
+            StopCoroutine(_confirmRoutine);
+
+        _confirmRoutine = StartCoroutine(ConfirmTriggerRoutine());
+    }
+
+    IEnumerator ConfirmTriggerRoutine()
+    {
+        if (alarmConfirmDelay > 0f)
+            yield return new WaitForSeconds(alarmConfirmDelay);
+
+        _confirmRoutine = null;
+
+        if (_triggered)
+        {
+            _pendingTrigger = false;
+            yield break;
+        }
 
         Trigger();
     }
 
     void Trigger()
     {
+        if (_triggered)
+            return;
+
+        _pendingTrigger = false;
         _triggered = true;
 
         if (debugLogs)
-            Debug.Log("[SmokeDetector] ALARM TRIGGERED by Smoke!", this);
+            Debug.Log("[SmokeDetector] ALARM TRIGGERED by Smoke after confirm delay.", this);
 
         fireAlarm.TriggerAlarm(FireAlarmSystem.TriggerReason.Smoke);
 
