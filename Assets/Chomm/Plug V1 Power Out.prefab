@@ -121,9 +121,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -164,6 +161,7 @@ GameObject:
   - component: {fileID: 8098165206939139487}
   - component: {fileID: 5169208067176791376}
   - component: {fileID: 1519012093158452811}
+  - component: {fileID: 3289864828983097476}
   m_Layer: 10
   m_Name: Plug V1 Power Out
   m_TagString: Untagged
@@ -220,10 +218,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3821568423245721946}
-  serializedVersion: 5
+  serializedVersion: 4
   m_Mass: 2.5
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -274,7 +272,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 0
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 4
@@ -365,6 +362,21 @@ MonoBehaviour:
   PlugModel: {fileID: 1656207414465698762}
   canvas: {fileID: 0}
   autoAnchorDistance: 0.2
+--- !u!114 &3289864828983097476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3821568423245721946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23aa9a2ce27542a45b90c086df990a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueID: 
+  connectedDeviceGuid: 
+  headNumber: 2
 --- !u!1 &7424916585518787700
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,9 +524,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -650,7 +659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: e0ec5813793bbbf46ae4b3972d040117,
         type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a09d64ce6e381514583b28d583bc0d60, type: 2}
     - target: {fileID: 919132149155446097, guid: e0ec5813793bbbf46ae4b3972d040117,

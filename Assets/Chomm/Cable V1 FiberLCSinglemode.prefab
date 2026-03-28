@@ -76,7 +76,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 0
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 4
@@ -231,9 +230,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -380,9 +376,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -459,9 +452,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -575,9 +565,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -821,9 +808,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -973,9 +957,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1052,9 +1033,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1218,7 +1196,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 0
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 4
@@ -1373,9 +1350,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1570,9 +1544,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1999,18 +1970,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 679604118447935050, guid: f202e89943a5b0e4187c9340c027f5f6,
         type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 847fa495bd5c648458b574aec0141471, type: 2}
     - target: {fileID: 1045975112429599324, guid: f202e89943a5b0e4187c9340c027f5f6,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.003
-      objectReference: {fileID: 0}
-    - target: {fileID: 3396758432399445989, guid: f202e89943a5b0e4187c9340c027f5f6,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4283024942811199203, guid: f202e89943a5b0e4187c9340c027f5f6,
         type: 3}
@@ -2087,6 +2053,11 @@ PrefabInstance:
       propertyPath: PlugModel
       value: 
       objectReference: {fileID: 1293638016440677958}
+    - target: {fileID: 5829513903462837145, guid: f202e89943a5b0e4187c9340c027f5f6,
+        type: 3}
+      propertyPath: headNumber
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5900251203000644043, guid: f202e89943a5b0e4187c9340c027f5f6,
         type: 3}
       propertyPath: m_IsActive
@@ -2191,6 +2162,10 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4223284062359099636}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8694304688862410794, guid: f202e89943a5b0e4187c9340c027f5f6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8498466909800799664}
     - targetCorrespondingSourceObject: {fileID: 7779872137180117095, guid: f202e89943a5b0e4187c9340c027f5f6,
         type: 3}
       insertIndex: -1
@@ -2270,10 +2245,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6324860609908377301}
-  serializedVersion: 5
+  serializedVersion: 4
   m_Mass: 2.5
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2358,10 +2333,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7234469829952497706}
-  serializedVersion: 5
+  serializedVersion: 4
   m_Mass: 2.5
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2418,6 +2393,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1122055491246952525}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8591240308944349287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8694304688862410794, guid: f202e89943a5b0e4187c9340c027f5f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1122055491246952525}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8498466909800799664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591240308944349287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a0325bffdab9341a6539c1ed2056eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueID: 
 --- !u!1001 &2103890476765416215
 PrefabInstance:
   m_ObjectHideFlags: 0

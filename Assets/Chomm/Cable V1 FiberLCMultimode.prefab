@@ -76,7 +76,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 0
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 4
@@ -231,9 +230,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -437,9 +433,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -618,9 +611,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -813,9 +803,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -966,9 +953,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1047,9 +1031,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1181,7 +1162,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 0
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 4
@@ -1336,9 +1316,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1489,9 +1466,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1606,9 +1580,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1999,18 +1970,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 679604118447935050, guid: f202e89943a5b0e4187c9340c027f5f6,
         type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6911e2c1aa483314ab52c8915dbd48cc, type: 2}
     - target: {fileID: 1045975112429599324, guid: f202e89943a5b0e4187c9340c027f5f6,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.003
-      objectReference: {fileID: 0}
-    - target: {fileID: 3396758432399445989, guid: f202e89943a5b0e4187c9340c027f5f6,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4283024942811199203, guid: f202e89943a5b0e4187c9340c027f5f6,
         type: 3}
@@ -2087,6 +2053,11 @@ PrefabInstance:
       propertyPath: PlugModel
       value: 
       objectReference: {fileID: 2007617085949384816}
+    - target: {fileID: 5829513903462837145, guid: f202e89943a5b0e4187c9340c027f5f6,
+        type: 3}
+      propertyPath: headNumber
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5900251203000644043, guid: f202e89943a5b0e4187c9340c027f5f6,
         type: 3}
       propertyPath: m_IsActive
@@ -2182,7 +2153,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5858028370776496399}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8694304688862410794, guid: f202e89943a5b0e4187c9340c027f5f6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 437864240482600140}
   m_SourcePrefab: {fileID: 100100000, guid: f202e89943a5b0e4187c9340c027f5f6, type: 3}
 --- !u!4 &3810621394596341422 stripped
 Transform:
@@ -2202,6 +2177,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1122055491246952525}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8591240308944349287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8694304688862410794, guid: f202e89943a5b0e4187c9340c027f5f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1122055491246952525}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &437864240482600140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591240308944349287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a0325bffdab9341a6539c1ed2056eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueID: 
 --- !u!1001 &1665510302278067489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2282,7 +2276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6824063405422939658, guid: 745e0432da1b3a449bb673c91f9520d9,
         type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: eb51de6f0f60cb94995a02aff8bbaeb4, type: 2}
     m_RemovedComponents: []
@@ -2382,7 +2376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6824063405422939658, guid: 745e0432da1b3a449bb673c91f9520d9,
         type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: eb51de6f0f60cb94995a02aff8bbaeb4, type: 2}
     m_RemovedComponents: []
