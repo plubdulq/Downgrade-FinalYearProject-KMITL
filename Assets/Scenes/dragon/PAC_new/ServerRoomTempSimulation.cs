@@ -10,20 +10,18 @@ namespace BNG
         RackDeviceLayer,
         PanelBlock
     }
+
     public class ServerRoomTempSimulation : MonoBehaviour
     {
         public static ServerRoomTempSimulation Instance;
-
-        void Awake()
-        {
-            Instance = this;
-        }
 
         [Header("UI")]
         public TMP_Text roomText;
         public TMP_Text frontText;
         public TMP_Text rearText;
         public TMP_Text statusText;
+        public TMP_Text TempToUpdate;
+        public TMP_Text FanToUpdate;
 
         [Header("Control")]
         [Range(0, 100)] public int setTempPercent = 50;
@@ -32,19 +30,79 @@ namespace BNG
         public bool powerOn = false;
         public GameObject waypointGroup;
 
-        // 🔥 Server Data
+        [Header("Auto Bind")]
+        public bool autoBindUI = true;
+        public bool autoBindWaypointGroup = true;
+        public bool debugLogs = true;
+
         private List<ServerState> servers = new List<ServerState>();
         private int totalDevices = 0;
         private int closedPanels = 0;
 
-        // Temp
-        // Temp
         float frontTemp = 24f;
         float rearTemp = 32f;
         float roomTemp = 28f;
         float ambientTemp = 32f;
 
-        public float RoomTemp => roomTemp;
+        void Awake()
+        {
+            Instance = this;
+            AutoBind();
+        }
+
+        void Start()
+        {
+            UpdateControlDisplay();
+            UpdateDisplay();
+
+            if (waypointGroup != null)
+                waypointGroup.SetActive(powerOn);
+        }
+
+        void OnValidate()
+        {
+            if (!Application.isPlaying)
+                AutoBind();
+        }
+
+        void AutoBind()
+        {
+            if (autoBindUI)
+            {
+                if (roomText == null) roomText = FindTMPByName("room");
+                if (frontText == null) frontText = FindTMPByName("front");
+                if (rearText == null) rearText = FindTMPByName("rear");
+                if (statusText == null) statusText = FindTMPByName("status");
+                if (TempToUpdate == null) TempToUpdate = FindTMPByName("temp");
+                if (FanToUpdate == null) FanToUpdate = FindTMPByName("fan");
+            }
+
+            if (autoBindWaypointGroup && waypointGroup == null)
+            {
+                waypointGroup = FindChildGameObjectContains(transform, "waypoint");
+            }
+        }
+
+        TMP_Text FindTMPByName(string key)
+        {
+            TMP_Text[] texts = GetComponentsInChildren<TMP_Text>(true);
+            foreach (var t in texts)
+            {
+                if (t != null && t.name.ToLower().Contains(key.ToLower()))
+                    return t;
+            }
+            return null;
+        }
+
+        GameObject FindChildGameObjectContains(Transform root, string key)
+        {
+            foreach (Transform child in root.GetComponentsInChildren<Transform>(true))
+            {
+                if (child.name.ToLower().Contains(key.ToLower()))
+                    return child.gameObject;
+            }
+            return null;
+        }
 
         void Update()
         {
@@ -52,18 +110,12 @@ namespace BNG
             UpdateDisplay();
         }
 
-        // =========================
-        // 🔥 รับ Server จาก Detector
-        // =========================
         public void SetServers(List<ServerState> list)
         {
-            servers = list;
+            servers = list ?? new List<ServerState>();
             RecalculateFromServers();
         }
 
-        // =========================
-        // 🔥 คำนวณจำนวน Device / Panel
-        // =========================
         public void RecalculateFromServers()
         {
             int deviceCount = 0;
@@ -80,12 +132,10 @@ namespace BNG
             totalDevices = deviceCount;
             closedPanels = panelCount;
 
-            Debug.Log($"Devices: {totalDevices} | Panels Closed: {closedPanels}");
+            if (debugLogs)
+                Debug.Log($"Devices: {totalDevices} | Panels Closed: {closedPanels}");
         }
 
-        // =========================
-        // 🔥 Simulation
-        // =========================
         void Simulate()
         {
             float dt = Time.deltaTime;
@@ -95,7 +145,6 @@ namespace BNG
 
             float heat = totalDevices * 0.5f;
 
-            // 🔥 ปิดฝา → เย็นขึ้น
             float panelFactor = 1f - (closedPanels * 0.02f);
             panelFactor = Mathf.Clamp(panelFactor, 0.5f, 1f);
 
@@ -122,9 +171,6 @@ namespace BNG
             roomTemp = Mathf.Clamp(roomTemp, 15f, 60f);
         }
 
-        // =========================
-        // 📊 UI
-        // =========================
         void UpdateDisplay()
         {
             if (frontText) frontText.text = $"Front : {frontTemp:F1} °C";
@@ -135,29 +181,42 @@ namespace BNG
                 statusText.text = powerOn ? "PAC ON" : "PAC OFF";
         }
 
-        // =========================
-        // 🎛 UI Events
-        // =========================
+        void UpdateControlDisplay()
+        {
+            if (FanToUpdate)
+                FanToUpdate.text = "Fan : " + fanSpeedPercent + " %";
+
+            if (TempToUpdate)
+                TempToUpdate.text = "Set Temp : " +
+                    Mathf.Lerp(18f, 30f, setTempPercent / 100f).ToString("F0") + " °C";
+        }
+
         public void OnTempSlider(float v)
         {
             setTempPercent = Mathf.RoundToInt(v);
+            UpdateControlDisplay();
 
             float target = Mathf.Lerp(18f, 30f, setTempPercent / 100f);
-            frontTemp = Mathf.Lerp(frontTemp, target, 0.5f); // 🔥 เห็นผลทันที
+            frontTemp = Mathf.Lerp(frontTemp, target, 0.5f);
         }
 
         public void OnFanSlider(float v)
         {
             fanSpeedPercent = Mathf.RoundToInt(v);
+            UpdateControlDisplay();
 
-            rearTemp -= fanSpeedPercent * 0.1f; // 🔥 ลดร้อนทันที
+            rearTemp -= fanSpeedPercent * 0.1f;
         }
 
         public void TogglePower()
         {
             powerOn = !powerOn;
 
-            waypointGroup.SetActive(true);
+            if (statusText)
+                statusText.text = powerOn ? "PAC ON" : "PAC OFF";
+
+            if (waypointGroup != null)
+                waypointGroup.SetActive(powerOn);
         }
     }
 }

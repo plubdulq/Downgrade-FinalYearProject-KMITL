@@ -7,7 +7,10 @@ public class PacServerDetector : MonoBehaviour
 {
     [Header("Detection Settings")]
     public float rayDistance = 10f;
-    public LayerMask serverLayer;
+    public LayerMask serverLayer = 0;
+
+    [Header("Auto Bind")]
+    public bool autoDetectAllLayersIfMaskEmpty = true;
 
     [Header("Debug")]
     public bool showDebug = true;
@@ -16,7 +19,29 @@ public class PacServerDetector : MonoBehaviour
 
     void Start()
     {
+        AutoBind();
         Invoke(nameof(CheckServers), 0.2f);
+    }
+
+    void OnValidate()
+    {
+        AutoBindEditorSafe();
+    }
+
+    void AutoBind()
+    {
+        if (serverLayer.value == 0 && autoDetectAllLayersIfMaskEmpty)
+        {
+            serverLayer = ~0;
+        }
+    }
+
+    void AutoBindEditorSafe()
+    {
+        if (!Application.isPlaying && serverLayer.value == 0 && autoDetectAllLayersIfMaskEmpty)
+        {
+            serverLayer = ~0;
+        }
     }
 
     public void CheckServers()
@@ -26,10 +51,13 @@ public class PacServerDetector : MonoBehaviour
         DetectSide(-transform.right, ServerSide.Left);
         DetectSide(transform.right, ServerSide.Right);
 
-        // 🔥 ส่งเข้า Temp Simulation
         if (ServerRoomTempSimulation.Instance != null)
         {
             ServerRoomTempSimulation.Instance.SetServers(detectedServers);
+        }
+        else if (showDebug)
+        {
+            Debug.LogWarning("[PacServerDetector] ServerRoomTempSimulation.Instance not found.");
         }
     }
 
@@ -37,10 +65,7 @@ public class PacServerDetector : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, dir);
 
-        // 🔥 ยิงทะลุทั้งหมด
         RaycastHit[] hits = Physics.RaycastAll(ray, rayDistance, serverLayer);
-
-        // 🔥 เรียงจากใกล้ → ไกล
         System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
 
         foreach (var hit in hits)
@@ -48,7 +73,6 @@ public class PacServerDetector : MonoBehaviour
             if (showDebug)
                 Debug.Log($"Hit: {hit.collider.name} | Dist: {hit.distance}");
 
-            // 🔥 สำคัญมาก: เผื่อ collider อยู่ child
             ServerState server = hit.collider.GetComponentInParent<ServerState>();
 
             if (server != null)
@@ -67,11 +91,9 @@ public class PacServerDetector : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        // ซ้าย
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + (-transform.right * rayDistance));
 
-        // ขวา
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, transform.position + (transform.right * rayDistance));
     }

@@ -36,6 +36,10 @@ public class ParticleCollisionBounce : MonoBehaviour
     [Header("===== Layer =====")]
     public LayerMask meshLayer;
 
+    [Header("===== Auto Bind =====")]
+    public bool autoBindParticleSystem = true;
+    public bool debugLogs = false;
+
     Dictionary<uint, float> hitTimes = new Dictionary<uint, float>();
     List<ParticleCollisionEvent> collisionEvents;
 
@@ -47,7 +51,13 @@ public class ParticleCollisionBounce : MonoBehaviour
 
     void Start()
     {
-        ps = GetComponent<ParticleSystem>();
+        AutoBind();
+
+        if (ps == null)
+        {
+            Debug.LogWarning("[ParticleCollisionBounce] ParticleSystem not found.");
+            return;
+        }
 
         collisionEvents = new List<ParticleCollisionEvent>();
 
@@ -58,10 +68,17 @@ public class ParticleCollisionBounce : MonoBehaviour
         ApplyMaxParticles();
     }
 
+    void AutoBind()
+    {
+        if (autoBindParticleSystem && ps == null)
+            ps = GetComponent<ParticleSystem>();
+    }
+
     void Update()
     {
-        int particleCount = ps.particleCount;
+        if (ps == null) return;
 
+        int particleCount = ps.particleCount;
         if (particleCount == 0) return;
 
         if (particles == null || particles.Length < particleCount)
@@ -78,9 +95,7 @@ public class ParticleCollisionBounce : MonoBehaviour
                 float t = Time.time - hitTimes[id];
 
                 if (t > secondColorDelay)
-                {
                     particles[i].startColor = secondColor;
-                }
             }
         }
 
@@ -89,11 +104,12 @@ public class ParticleCollisionBounce : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
+        if (ps == null) return;
+
         if (((1 << other.layer) & meshLayer) == 0)
             return;
 
         int eventCount = ps.GetCollisionEvents(other, collisionEvents);
-
         int particleCount = ps.particleCount;
 
         if (particles == null || particles.Length < particleCount)
@@ -113,13 +129,8 @@ public class ParticleCollisionBounce : MonoBehaviour
                 if (dist < hitDistance)
                 {
                     particles[j].startColor = firstColor;
-
-                    // lifetime เฉพาะตอนชน
                     particles[j].remainingLifetime = newLifetime;
-
-                    // bounce
-                    particles[j].velocity =
-                        Vector3.Reflect(particles[j].velocity, normal) * bouncePower;
+                    particles[j].velocity = Vector3.Reflect(particles[j].velocity, normal) * bouncePower;
 
                     uint id = particles[j].randomSeed;
 
@@ -133,10 +144,6 @@ public class ParticleCollisionBounce : MonoBehaviour
 
         ps.SetParticles(particles, particleCount);
     }
-
-    // ===============================
-    // START LIFETIME CONTROL
-    // ===============================
 
     public void SetStartLifetime(float value)
     {
@@ -158,12 +165,9 @@ public class ParticleCollisionBounce : MonoBehaviour
 
     void ApplyStartLifetime()
     {
+        if (ps == null) return;
         main.startLifetime = startLifetimeValue;
     }
-
-    // ===============================
-    // HIT LIFETIME CONTROL
-    // ===============================
 
     public void SetHitLifetime(float value)
     {
@@ -180,34 +184,27 @@ public class ParticleCollisionBounce : MonoBehaviour
         newLifetime = Mathf.Clamp(newLifetime - value, minNewLifetime, maxNewLifetime);
     }
 
-    // ===============================
-    // EMISSION CONTROL
-    // ===============================
-
     public void SetParticleRate(float amount)
     {
+        if (ps == null) return;
         emission.rateOverTime = Mathf.Clamp(amount, minRate, maxRate);
     }
 
     public void IncreaseParticleRate(float value)
     {
-        emission.rateOverTime =
-            Mathf.Clamp(emission.rateOverTime.constant + value, minRate, maxRate);
+        if (ps == null) return;
+        emission.rateOverTime = Mathf.Clamp(emission.rateOverTime.constant + value, minRate, maxRate);
     }
 
     public void DecreaseParticleRate(float value)
     {
-        emission.rateOverTime =
-            Mathf.Clamp(emission.rateOverTime.constant - value, minRate, maxRate);
+        if (ps == null) return;
+        emission.rateOverTime = Mathf.Clamp(emission.rateOverTime.constant - value, minRate, maxRate);
     }
-
-    // ===============================
-    // CUSTOM MAX PARTICLES CONTROL
-    // ===============================
 
     public void SetMaxParticles(int value)
     {
-        int newMax =  Mathf.RoundToInt(value);
+        int newMax = Mathf.RoundToInt(value);
         customMaxParticles = Mathf.Clamp(newMax, minParticles, maxParticles);
         ApplyMaxParticles();
     }
@@ -226,6 +223,7 @@ public class ParticleCollisionBounce : MonoBehaviour
 
     void ApplyMaxParticles()
     {
+        if (ps == null) return;
         main.maxParticles = customMaxParticles;
     }
 }
