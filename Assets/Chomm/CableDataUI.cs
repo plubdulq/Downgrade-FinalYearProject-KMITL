@@ -12,7 +12,7 @@ public class CableDataUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI cableTypeText;
     [SerializeField] TextMeshProUGUI device1Text;
     [SerializeField] TextMeshProUGUI device2Text;
-    [SerializeField] TextMeshProUGUI caleTypeText;
+    [SerializeField] TextMeshProUGUI cableUseTypeText;
     public Cable holdingCable;
     public CablePlug holdingPlug;
     private Dictionary<(string, string), string> cableMap;
@@ -21,36 +21,37 @@ public class CableDataUI : MonoBehaviour
         Instance = this;
         cableMap = new Dictionary<(string, string), string>()
         {
+            /*
             // ===== Juniper SRX340 =====
-            { ("Juniper SRX340", "FortiWAN 3000B"), "RJ45 Straight" },
-            { ("Juniper SRX340", "Cisco 2911"), "RJ45 Straight" },
-            { ("Juniper SRX340", "Cisco Catalyst 8500-12X"), "Fiber LC-LC" },
-            { ("Juniper SRX340", "Cisco Catalyst 2960"), "RJ45 Straight" },
-            { ("Juniper SRX340", "Cisco Catalyst 3560"), "RJ45 Straight" },
-            { ("Juniper SRX340", "Cisco SG300"), "RJ45 Straight" },
-            { ("Juniper SRX340", "Dell PowerEdge R260"), "RJ45 Straight" },
-            { ("Juniper SRX340", "Dell PowerEdge R540"), "RJ45 Straight" },
-            { ("Juniper SRX340", "Sky 6420 GPU Server"), "RJ45 Straight" },
-            { ("Juniper SRX340", "APC Smart-UPS SRT2200"), "Power C13" },
-            { ("Juniper SRX340", "Tripp Lite 12-Outlet PDU"), "Power C13" },
-
+            { ("SRX340", "FortiWAN 3000B"), "RJ45 Straight" },
+            { ("SRX340", "Cisco 2911"), "RJ45 Straight" },
+            { ("SRX340", "Cisco Catalyst 8500-12X"), "Fiber LC-LC" },
+            { ("SRX340", "Cisco Catalyst 2960"), "RJ45 Straight" },
+            { ("SRX340", "Cisco Catalyst 3560"), "RJ45 Straight" },
+            { ("SRX340", "Cisco SG300"), "RJ45 Straight" },
+            { ("SRX340", "Dell PowerEdge R260"), "RJ45 Straight" },
+            { ("SRX340", "Dell PowerEdge R540"), "RJ45 Straight" },
+            { ("SRX340", "Sky 6420 GPU Server"), "RJ45 Straight" },
+            { ("SRX340", "APC Smart-UPS SRT2200"), "Power C13" },
+            { ("SRX340", "Tripp Lite 12-Outlet PDU"), "Power C13" },
+            */
             // ===== FortiWAN 3000B =====
-            { ("FortiWAN 3000B", "Juniper SRX340"), "RJ45 Straight" },
-            { ("FortiWAN 3000B", "Cisco 2911"), "RJ45 Straight" },
-            { ("FortiWAN 3000B", "Cisco Catalyst 8500-12X"), "RJ45 Straight" },
-            { ("FortiWAN 3000B", "Cisco Catalyst 2960"), "RJ45 Straight" },
-            { ("FortiWAN 3000B", "Cisco Catalyst 3560"), "RJ45 Straight" },
-            { ("FortiWAN 3000B", "Cisco SG300"), "RJ45 Straight" },
-            { ("FortiWAN 3000B", "Dell PowerEdge R260"), "RJ45 Straight" },
-            { ("FortiWAN 3000B", "Dell PowerEdge R540"), "RJ45 Straight" },
-            { ("FortiWAN 3000B", "Sky 6420 GPU Server"), "RJ45 Straight" },
-            { ("FortiWAN 3000B", "APC Smart-UPS SRT2200"), "Power C13" },
-            { ("FortiWAN 3000B", "Tripp Lite 12-Outlet PDU"), "Power C13" },
+            { ("SRX340", "LB-3000B"), "RJ45 Straight" },
+            { ("SRX340", "Cisco 2911"), "RJ45 Straight" },
+            { ("SRX340", "C8500"), "Fiber LC-LC" },
+            { ("SRX340", "C2960"), "RJ45 Straight" },
+            { ("SRX340", "c3560"), "RJ45 Straight" },
+            { ("SRX340", "sg300"), "RJ45 Straight" },
+            { ("SRX340", "Dell R260"), "RJ45 Straight" },
+            { ("SRX340", "Dell R540"), "RJ45 Straight" },
+            { ("SRX340", "Sky-6420"), "RJ45 Straight" },
+            { ("SRX340", "SRT2200"), "Power C13" },
+            { ("SRX340", "Tripp lite 12-Outlet PDU"), "Power C13" },
 
             // ===== Cisco 2911 =====
-            { ("Cisco 2911", "Juniper SRX340"), "RJ45 Straight" },
+            { ("Cisco 2911", "SRX340"), "RJ45 Straight" },
             { ("Cisco 2911", "FortiWAN 3000B"), "RJ45 Straight" },
-            { ("Cisco 2911", "Cisco Catalyst 8500-12X"), "RJ45 Crossover" },
+            { ("Cisco 2911", "C8500"), "RJ45 Crossover" },
             { ("Cisco 2911", "Cisco Catalyst 2960"), "RJ45 Straight" },
             { ("Cisco 2911", "Cisco Catalyst 3560"), "RJ45 Straight" },
             { ("Cisco 2911", "Cisco SG300"), "RJ45 Straight" },
@@ -73,12 +74,19 @@ public class CableDataUI : MonoBehaviour
     {
         //UpdateUI();
     }
- public string GetCable(string col1, string col2)
+    public string GetCable(string col1, string col2)
     {
-        if (cableMap.TryGetValue((col1, col2), out string result))
+        Debug.Log($"device_A{col1}");
+        Debug.Log($"device_B{col2}");
+        string device_A = col1.Trim();
+        string device_B = col2.Trim();
+
+        if (cableMap.TryGetValue((device_A, device_B), out string result))
         {
-            caleTypeText.text = result.ToString();
+             Debug.Log($"result{result}");
+             cableUseTypeText.text = result.ToString();
         }
+
 
         return "Unknown";
     }
@@ -95,11 +103,16 @@ public class CableDataUI : MonoBehaviour
         
         // 1. Get Cable Type
         string plugType = GetPlugTypeString(holdingPlug.plugType);
+
         cableTypeText.text = GetCableNameString(holdingCable);
+        
         // 2. Get Device Info for both ends
         string device1Info = GetDeviceInfo(holdingCable.PlugA, "Device 1");
         string device2Info = GetDeviceInfo(holdingCable.PlugB, "Device 2");
-
+        string deviceA = GetDeviceName(holdingCable.PlugA);
+        string deviceB = GetDeviceName(holdingCable.PlugB);
+        if(deviceA != "Unknown"||deviceA != "Unknown")
+        GetCable(deviceA, deviceB);
         // 3. Get Length
         float length = holdingCable.GetCableLength();
 
@@ -113,7 +126,25 @@ public class CableDataUI : MonoBehaviour
         // Device 2 Panel
         device2Text.text = device2Info;
     }
+    private string GetDeviceName(CablePlug plug)
+    {
+        if (plug == null) return "Unknown";
+         string deviceName = "name"; // Default placeholder
+        SnapZone zone = plug.GetComponentInParent<SnapZone>();
+        if (zone != null)
+        {
+            EquipmentData eqData = zone.GetComponent<EquipmentData>();
+            if(eqData ==  null) 
+            eqData = zone.GetComponentInParent<EquipmentData>();
+            if (eqData != null)
+            {
+                deviceName = eqData.equipmentDataName;
+                return eqData.equipmentDataName;
+            }
+        }
 
+        return "Unknown";
+    }
     private string GetDeviceInfo(CablePlug plug, string label)
     {
         if (plug == null) return $"{label}\nUnknown\nport : -/-";
@@ -135,7 +166,7 @@ public class CableDataUI : MonoBehaviour
             if (eqData != null)
             {
                 deviceName = eqData.equipmentDataName;
-                
+                 Debug.Log($"deviceName{deviceName}");
                 // Find Port Index
                 var ports = eqData.GetPorts();
                 if (ports != null)
@@ -182,7 +213,7 @@ public class CableDataUI : MonoBehaviour
 
         string nameA = GetPlugTypeString(a);
         string nameB = GetPlugTypeString(b);
-        GetCable(nameA, nameB);// Cable type
+        
 
         bool aIsIEC = a == PlugType.IECC13 || a == PlugType.IECC14 || a == PlugType.IECC19 || a == PlugType.IECC20;
         bool bIsIEC = b == PlugType.IECC13 || b == PlugType.IECC14 || b == PlugType.IECC19 || b == PlugType.IECC20;
