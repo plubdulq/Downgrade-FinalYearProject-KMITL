@@ -53,8 +53,7 @@ MonoBehaviour:
     prefab: {fileID: 6850614559164874785, guid: 63e745870d4fffe4086339496bdd3784,
       type: 3}
   - deviceId: supermicro 4029GP-TRT2
-    prefab: {fileID: 5413297236465798380, guid: 6ffa07f2c83beee40826455b599b3889,
-      type: 3}
+    prefab: {fileID: 0}
   - deviceId: Dell EMC PowerEdge R740xd
     prefab: {fileID: 0}
   - deviceId: Cisco UCS X9508 Chassis
@@ -105,13 +104,13 @@ MonoBehaviour:
   - deviceId: Stulz CRS361A
     prefab: {fileID: 919132149155446097, guid: e6457458fea39ed4883327c7d6fb37f7, type: 3}
   - deviceId: rack42U_nodoor
-    prefab: {fileID: 8972081346031370252, guid: 963b81e70bbd71e439f0f0ea970dd57b,
+    prefab: {fileID: 7121740278631373397, guid: ac39f559f870e3942ac74ba51d5f0044,
       type: 3}
   - deviceId: c8300
     prefab: {fileID: -6689036041284674117, guid: 25cbda9a808df044ea1050de63e2a741,
       type: 3}
   - deviceId: c2900
-    prefab: {fileID: 5336039491203625302, guid: ac09ace3e4d788e40953117243e970ac,
+    prefab: {fileID: 5617299249064602583, guid: 55cbf90e6072136428c75a58e14636ed,
       type: 3}
   - deviceId: c8500-12x
     prefab: {fileID: 4677551825529585952, guid: ff19623d5fa017443967ca58947a23a4,
@@ -119,7 +118,8 @@ MonoBehaviour:
   - deviceId: c2960
     prefab: {fileID: 0}
   - deviceId: c3560
-    prefab: {fileID: 0}
+    prefab: {fileID: 6974259375029496011, guid: b4f6594367d30254fa781b4c80a6b7f6,
+      type: 3}
   - deviceId: sg300
     prefab: {fileID: 0}
   - deviceId: rj45
@@ -130,4 +130,25 @@ MonoBehaviour:
       type: 3}
   - deviceId: power
     prefab: {fileID: 8591240308944349287, guid: 84d3e2e07335f9047bdd576c4bd300b6,
+      type: 3}
+  - deviceId: fiberLCMultimode
+    prefab: {fileID: 8591240308944349287, guid: acbc625c71c6ce84eaca49da281929f1,
+      type: 3}
+  - deviceId: fiberLCSinglemode
+    prefab: {fileID: 8591240308944349287, guid: 238dfa1b51aabed44805c37c8c96ab13,
+      type: 3}
+  - deviceId: IECC13ToC14
+    prefab: {fileID: 8591240308944349287, guid: 0484ff68f5986114a8d606d6bc991fd7,
+      type: 3}
+  - deviceId: IECC13ToC20
+    prefab: {fileID: 8591240308944349287, guid: 8a2d2b98e1e368e438d5928c406ecd27,
+      type: 3}
+  - deviceId: IECC13ToPlug
+    prefab: {fileID: 8591240308944349287, guid: b2c28bd81ed104441917c6f467c63911,
+      type: 3}
+  - deviceId: IECC14ToC19
+    prefab: {fileID: 8591240308944349287, guid: 8f5c21cacf34c9644957186048a94254,
+      type: 3}
+  - deviceId: IECC19ToC20
+    prefab: {fileID: 8591240308944349287, guid: 76f67df9bd3c0044cb79ebbc8a4ff25d,
       type: 3}
