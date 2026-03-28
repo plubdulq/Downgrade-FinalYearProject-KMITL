@@ -270,18 +270,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 58454136}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &71706450 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1399572253014954766, guid: 4ac7df741a9c0a2418ec19477729ee3d,
-    type: 3}
-  m_PrefabInstance: {fileID: 534394686}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80cc44762e470564c96324c89b7dfbec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &83963913 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6314434061517514511, guid: d5c52de434eaedc4b8d3227e5a68d9b2,
@@ -420,10 +408,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireAlarm: {fileID: 2014830122}
   smokeTag: Smoke
+  useParticleTrigger: 1
+  useColliderTrigger: 1
+  alarmConfirmDelay: 3
   audioSource: {fileID: 177586682}
   beepClip: {fileID: 0}
   beepInterval: 0.5
   beepCount: 5
+  autoBindOnAwake: 1
+  debugLogs: 1
 --- !u!135 &177586681
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1069,12 +1062,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7412429270800358574, guid: 2621157de687db14994bb07417caa3a0,
     type: 3}
   m_PrefabInstance: {fileID: 302735431}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &318114629 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6992073743256969457, guid: 4ac7df741a9c0a2418ec19477729ee3d,
-    type: 3}
-  m_PrefabInstance: {fileID: 534394686}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &331475923
 PrefabInstance:
@@ -3157,6 +3144,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmokeDetector
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 00ccffdbb7264004c9ec2904604928dc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3750,6 +3742,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9091690537388736610, guid: 3b6f2c7a84f103a44ac9331b107505ab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3789,6 +3786,8 @@ MonoBehaviour:
   dischargeParticles: {fileID: 2015773730}
   useDurationFromFireAlarm: 1
   dischargeDuration: 8
+  autoBindOnAwake: 1
+  debugLogs: 1
 --- !u!1001 &1028896925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4491,9 +4490,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2da85e3d517fe4ea59edb1fd4c4151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireAlarm: {fileID: 0}
   riseSpeed: 0.4
   maxHeight: 5
   smokeParticles: {fileID: 2141061413}
+  autoBindOnAwake: 1
+  autoResetOnAlarmReset: 1
+  debugLogs: 1
 --- !u!1001 &1255402644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7345,6 +7348,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DischargeNozzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4f62c1e7b7c167941b6b9db229916115,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12737,12 +12745,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2112163856 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4128631605939908419, guid: 4ac7df741a9c0a2418ec19477729ee3d,
-    type: 3}
-  m_PrefabInstance: {fileID: 534394686}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2131735377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17662,6 +17664,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smokeDetector: {fileID: 177586680}
+  smokeParticles: {fileID: 0}
+  autoBindOnAwake: 1
+  debugLogs: 1
 --- !u!1001 &2145482100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17749,21 +17754,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_FireSystem_Common
       objectReference: {fileID: 0}
-    - target: {fileID: 8788952606088449735, guid: 7be99e6ac5d5d344e8249373063ddaaf,
+    - target: {fileID: 2981285482495839465, guid: 7be99e6ac5d5d344e8249373063ddaaf,
         type: 3}
-      propertyPath: vrHudCountdown
-      value: 
-      objectReference: {fileID: 71706450}
-    - target: {fileID: 8788952606088449735, guid: 7be99e6ac5d5d344e8249373063ddaaf,
-        type: 3}
-      propertyPath: waitingForResetUI
-      value: 
-      objectReference: {fileID: 2112163856}
-    - target: {fileID: 8788952606088449735, guid: 7be99e6ac5d5d344e8249373063ddaaf,
-        type: 3}
-      propertyPath: dischargeActivatedUI
-      value: 
-      objectReference: {fileID: 318114629}
+      propertyPath: useColliderTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8882212295137477461, guid: 7be99e6ac5d5d344e8249373063ddaaf,
         type: 3}
       propertyPath: m_LocalPosition.x
