@@ -1,0 +1,27 @@
+{
+    "name": "ByteSize.XRKnobs.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:54cd380ac45c5a540a62f2988a913755",
+        "GUID:fe685ec1767f73d42b749ea8045bfe43"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "XR_INTERACTION_TOOLKIT"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.xr.interaction.toolkit",
+            "expression": "2.0.0",
+            "define": "XR_INTERACTION_TOOLKIT"
+        }
+    ],
+    "noEngineReferences": false
+}
