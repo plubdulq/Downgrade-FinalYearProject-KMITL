@@ -8,12 +8,12 @@ public class RandomSpawner : MonoBehaviour
     public float minSpawnTime = 1f;   // เวลาสุ่มต่ำสุด
     public float maxSpawnTime = 3f;   // เวลาสุ่มสูงสุด
     public Transform SpawnPos;
-    void Start()
+
+    public void ReStart()
     {
 
             StartCoroutine(SpawnLoop());
     }
-
     IEnumerator SpawnLoop()
     {
         while (true)

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TriggerAir : MonoBehaviour
@@ -9,52 +10,22 @@ public class TriggerAir : MonoBehaviour
     public Renderer rend;
     public Material originalMaterial;
 
-    [Header("Auto Bind")]
-    public bool autoBindRenderer = true;
-    public bool autoUseDeviceLayerIfEmpty = false;
-    public bool debugLogs = true;
-
     void Start()
     {
-        AutoBind();
-
+       
+        rend = GetComponentInChildren<Renderer>();
         if (rend != null)
             originalMaterial = rend.material;
     }
 
-    void OnValidate()
-    {
-        if (!Application.isPlaying)
-            AutoBind();
-    }
-
-    void AutoBind()
-    {
-        if (autoBindRenderer && rend == null)
-        {
-            rend = GetComponentInChildren<Renderer>(true);
-        }
-
-        if (targetLayer.value == 0 && autoUseDeviceLayerIfEmpty)
-        {
-            int deviceLayer = LayerMask.NameToLayer("Device");
-            if (deviceLayer >= 0)
-                targetLayer = 1 << deviceLayer;
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (debugLogs)
-            Debug.Log("Trigger Hit: " + other.name);
+        Debug.Log("Trigger Hit: " + other.name);
 
         if (((1 << other.gameObject.layer) & targetLayer) != 0)
         {
-            if (debugLogs)
-                Debug.Log("Layer Matched!");
-
-            if (rend != null && newMaterial != null)
-                rend.material = newMaterial;
+            Debug.Log("Layer Matched!");
+            rend.GetComponentInChildren<Renderer>().material = newMaterial;
         }
     }
 
@@ -65,14 +36,12 @@ public class TriggerAir : MonoBehaviour
             StartCoroutine(delayChang());
         }
     }
-
     IEnumerator delayChang()
     {
         yield return new WaitForSeconds(DelayChange);
-
-        if (rend != null && originalMaterial != null)
-        {
-            rend.material = originalMaterial;
-        }
+         if (rend != null && originalMaterial != null)
+            {
+                rend.GetComponentInChildren<Renderer>().material = originalMaterial;
+            }
     }
 }

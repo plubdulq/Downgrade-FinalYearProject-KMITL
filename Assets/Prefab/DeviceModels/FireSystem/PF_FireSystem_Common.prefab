@@ -54,7 +54,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1064947029702621587
 Transform:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1051653727828351639
 Transform:
   m_ObjectHideFlags: 0
@@ -335,7 +335,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &161446048296493047
 Transform:
   m_ObjectHideFlags: 0
@@ -500,19 +500,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCenter: {fileID: 1044364968215788620}
-  floorsRoot: {fileID: 0}
   smokeDetectorsRoot: {fileID: 4585531461110417039}
   dischargeNozzlesRoot: {fileID: 4469062610675846853}
-  roomWidth: 5
-  roomLength: 5
-  ceilingY: 2.8
-  detectorOffsetFromCeiling: 0.05
-  nozzleOffsetFromCeiling: 0.05
-  minWallClearance: 0.8
-  smokeDetectorLocalEuler: {x: 0, y: 0, z: 0}
+  floorsTransform: {fileID: 0}
+  ceilingsTransform: {fileID: 0}
+  smokeDetectorPrefab: {fileID: 9064921247974310835, guid: e8ac99d866a6c4e4b9b894e7ae6a0c2e,
+    type: 3}
+  dischargeNozzlePrefab: {fileID: 803670120043853679, guid: b44235a850f20204d8b554afc8f7cbe6,
+    type: 3}
+  fallbackRoomWidth: 5
+  fallbackRoomLength: 5
+  fallbackCeilingBottomLoc: 2.75
+  smokeDetectorMountInset: 0.03
+  dischargeNozzleMountInset: 0.02
+  minWallOffset: 0.8
+  minSmokeToNozzleDistance: 1
+  smokeDetectorLocalEuler: {x: -180, y: 0, z: 0}
   dischargeNozzleLocalEuler: {x: 90, y: 0, z: 0}
-  autoLayoutOnStart: 1
+  applyOnStart: 1
+  clearOldChildrenBeforeSpawn: 1
   debugLogs: 1
+  resolvedRoomWidth: 0
+  resolvedRoomLength: 0
+  resolvedRoomArea: 0
+  resolvedFloorCenterX: 0
+  resolvedFloorCenterZ: 0
+  resolvedUsableHalfX: 0
+  resolvedUsableHalfZ: 0
+  resolvedCeilingBottomY: 0
 --- !u!1 &1299732554855830893
 GameObject:
   m_ObjectHideFlags: 0
@@ -10543,7 +10558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5283230150557090431
 Transform:
   m_ObjectHideFlags: 0
@@ -16083,7 +16098,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5957973601351586771
 Transform:
   m_ObjectHideFlags: 0
@@ -31050,7 +31065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8682991310643268104
 Transform:
   m_ObjectHideFlags: 0

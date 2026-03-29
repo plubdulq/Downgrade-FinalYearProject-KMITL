@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WaypointSystem;
@@ -23,15 +24,20 @@ namespace WaypointSystem
         [Header("Detected Slots")]
         public List<WaypointSlot> detectedWayPoint = new List<WaypointSlot>();
 
-        [Header("Auto Bind")]
-        public bool autoBindCurrent = true;
-        public bool autoFindChildSlots = true;
-        public bool autoUseWaypointSlotLayerIfEmpty = true;
-
         void Awake()
         {
-            AutoBind();
-            ResetDetectedSlotsState();
+            // 🔥 reset slot
+            detectedWayPoint = new List<WaypointSlot>(GetComponentsInChildren<WaypointSlot>());
+
+            Debug.Log($"🔍 {name} detectedWayPoint = {detectedWayPoint.Count}");
+
+            foreach (var slot in detectedWayPoint)
+            {
+                if (slot == null) continue;
+
+                slot.hasDevice = false;
+                // slot.waypoint = null; // ถ้าต้อง reset ก็เปิดใช้
+            }
         }
 
         void Start()
@@ -39,79 +45,44 @@ namespace WaypointSystem
             Invoke(nameof(SetupAll), 0.2f);
         }
 
-        void OnValidate()
-        {
-            AutoBind();
-        }
-
-        void AutoBind()
-        {
-            if (autoBindCurrent && current == null)
-            {
-                current = GetComponent<Waypoint>();
-                if (current == null)
-                    current = GetComponentInChildren<Waypoint>(true);
-            }
-
-            if (autoFindChildSlots)
-            {
-                detectedWayPoint = new List<WaypointSlot>(GetComponentsInChildren<WaypointSlot>(true));
-            }
-
-            if (autoUseWaypointSlotLayerIfEmpty && WayPointLayer.value == 0)
-            {
-                int layer = LayerMask.NameToLayer("WayPointSlot");
-                if (layer >= 0)
-                    WayPointLayer = 1 << layer;
-            }
-        }
-
-        void ResetDetectedSlotsState()
-        {
-            if (detectedWayPoint == null)
-                detectedWayPoint = new List<WaypointSlot>();
-
-            if (showDebug)
-                Debug.Log($"🔍 {name} detectedWayPoint = {detectedWayPoint.Count}");
-
-            foreach (var slot in detectedWayPoint)
-            {
-                if (slot == null) continue;
-
-                slot.hasDevice = false;
-
-                if (slot.waypoint == null)
-                    slot.TryAutoBindWaypoint();
-            }
-        }
-
+        // 🔥 เรียกใหม่ได้
         public void Relink()
         {
             SetupAll();
         }
 
+        // 🔥 ตัวหลัก
         void SetupAll()
         {
-            CheckWayPoint();
-            SortSlotsByDistance();
-            LinkWaypointsChain();
+            CheckWayPoint();        // ยิงหา slot
+            SortSlotsByDistance();  // เรียงใกล้ → ไกล
+            LinkWaypointsChain();   // ลิ้ง next / previous
         }
 
+        // =====================================================
+        // 🔍 DETECT
+        // =====================================================
         public void CheckWayPoint()
         {
             detectedWayPoint.Clear();
 
             if (side == Side.Left)
+            {
                 DetectSide(-transform.right);
+            }
             else if (side == Side.Right)
+            {
                 DetectSide(transform.right);
+            }
         }
 
         void DetectSide(Vector3 dir)
         {
             Ray ray = new Ray(transform.position, dir);
+
             RaycastHit[] hits = Physics.RaycastAll(ray, rayDistance, WayPointLayer);
 
+            // 🔥 เรียงจากใกล้ → ไกล
             System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
 
             foreach (var hit in hits)
@@ -120,6 +91,7 @@ namespace WaypointSystem
 
                 if (slot != null)
                 {
+                    // 🔥 เช็คฝั่งจริงด้วย dot
                     Vector3 dirToHit = (hit.point - transform.position).normalized;
                     float dot = Vector3.Dot(transform.right, dirToHit);
 
@@ -128,9 +100,6 @@ namespace WaypointSystem
 
                     if (!detectedWayPoint.Contains(slot))
                     {
-                        if (slot.waypoint == null)
-                            slot.TryAutoBindWaypoint();
-
                         detectedWayPoint.Add(slot);
 
                         if (showDebug)
@@ -140,6 +109,9 @@ namespace WaypointSystem
             }
         }
 
+        // =====================================================
+        // 🔄 SORT
+        // =====================================================
         void SortSlotsByDistance()
         {
             detectedWayPoint.Sort((a, b) =>
@@ -153,90 +125,103 @@ namespace WaypointSystem
             {
                 Debug.Log("📊 Sorted Slots:");
                 foreach (var s in detectedWayPoint)
+                {
                     Debug.Log($" - {s.name}");
+                }
             }
         }
 
-        void LinkWaypointsChain()
+        // =====================================================
+        // 🔗 LINK
+        // =====================================================
+      void LinkWaypointsChain()
+{
+    Debug.Log("=== LINK START ===");
+
+    if (detectedWayPoint.Count == 0)
+    {
+        Debug.LogError("❌ detectedWayPoint EMPTY");
+        return;
+    }
+
+    if (current == null)
+    {
+        Debug.LogError("❌ current ROOT is NULL");
+        return;
+    }
+
+    // 🔥 RESET
+    current.next = null;
+
+    foreach (var slot in detectedWayPoint)
+    {
+        if (slot == null) continue;
+
+        if (slot.waypoint == null)
         {
-            Debug.Log("=== LINK START ===");
+            slot.waypoint = slot.GetComponent<Waypoint>();
 
-            if (detectedWayPoint.Count == 0)
+            if (slot.waypoint == null)
             {
-                Debug.LogError("❌ detectedWayPoint EMPTY");
-                return;
+                Debug.LogError($"❌ {slot.name} has NO Waypoint");
+                continue;
             }
-
-            if (current == null)
-            {
-                Debug.LogError("❌ current ROOT is NULL");
-                return;
-            }
-
-            current.next = null;
-
-            foreach (var slot in detectedWayPoint)
-            {
-                if (slot == null) continue;
-
-                if (slot.waypoint == null)
-                {
-                    slot.TryAutoBindWaypoint();
-
-                    if (slot.waypoint == null)
-                    {
-                        Debug.LogError($"❌ {slot.name} has NO Waypoint");
-                        continue;
-                    }
-                }
-
-                slot.waypoint.next = null;
-                slot.waypoint.previous = null;
-
-                var db = slot.waypoint.GetComponent<destroyBall>();
-                if (db != null)
-                    db.enabled = false;
-            }
-
-            Waypoint prev = current;
-            Waypoint last = null;
-
-            foreach (var slot in detectedWayPoint)
-            {
-                if (slot?.waypoint == null) continue;
-
-                Waypoint wp = slot.waypoint;
-
-                prev.next = wp;
-                wp.previous = prev;
-
-                Debug.Log($"🔗 LINK {prev.name} -> {wp.name}");
-
-                prev = wp;
-                last = wp;
-            }
-
-            if (last != null)
-            {
-                if (last.GetComponent<destroyBall>() == null)
-                {
-                    last.gameObject.AddComponent<destroyBall>();
-                    Debug.Log($"💥 ADD destroyBall on {last.name}");
-                }
-                else
-                {
-                    Debug.Log($"⚠️ destroyBall already exists on {last.name}");
-                }
-            }
-
-            Debug.Log("=== LINK END ===");
         }
 
+        slot.waypoint.next = null;
+        slot.waypoint.previous = null;
+
+        // 🔥 ปิด destroyBall ทุกตัวก่อน (กันซ้อน)
+        var db = slot.waypoint.GetComponent<destroyBall>();
+        if (db != null)
+            db.enabled = false;
+    }
+
+    // 🔥 LINK + หา last ใน loop เดียว
+    Waypoint prev = current;
+    Waypoint last = null;
+
+    foreach (var slot in detectedWayPoint)
+    {
+        if (slot?.waypoint == null) continue;
+
+        Waypoint wp = slot.waypoint;
+
+        prev.next = wp;
+        wp.previous = prev;
+
+        Debug.Log($"🔗 LINK {prev.name} -> {wp.name}");
+
+        prev = wp;
+        last = wp;
+    }
+
+    // 🔥 เปิด destroyBall ตัวสุดท้าย
+    if (last != null)
+    {
+        // 🔥 ถ้ายังไม่มี component ค่อยเพิ่ม
+        if (last.GetComponent<destroyBall>() == null)
+        {
+            last.gameObject.AddComponent<destroyBall>();
+            Debug.Log($"💥 ADD destroyBall on {last.name}");
+        }
+        else
+        {
+            Debug.Log($"⚠️ destroyBall already exists on {last.name}");
+        }
+    }
+
+    Debug.Log("=== LINK END ===");
+}
+
+        // =====================================================
+        // 🎯 SLOT MATCH
+        // =====================================================
         public WaypointSlot GetSlotByWaypoint(Waypoint wp)
         {
             foreach (var slot in detectedWayPoint)
             {
-                if (slot == null || wp == null) continue;
+                if (slot == null) continue;
 
                 float dist = Vector3.Distance(slot.transform.position, wp.transform.position);
 
@@ -247,34 +232,27 @@ namespace WaypointSystem
                 }
             }
 
-            Debug.LogError($"❌ SLOT NOT FOUND for {(wp != null ? wp.name : "NULL")}");
+            Debug.LogError($"❌ SLOT NOT FOUND for {wp.name}");
             return null;
         }
 
+        // =====================================================
+        // 🎯 ASSIGN
+        // =====================================================
         public void AssignToEmptySlot(Waypoint wp, FlowPointTrigger device)
         {
-            Debug.Log($"🎯 Assign {(wp != null ? wp.name : "NULL")} → Device {(device != null ? device.name : "NULL")}");
-
-            if (device == null)
-            {
-                Debug.LogWarning("[WaypointAttach] device is null.");
-                return;
-            }
+            Debug.Log($"🎯 Assign {wp.name} → Device {device.name}");
 
             foreach (var slot in detectedWayPoint)
             {
-                if (slot == null) continue;
-
                 if (!slot.hasDevice)
                 {
                     slot.hasDevice = true;
-
-                    if (wp != null)
-                        slot.waypoint = wp;
+                    slot.waypoint = wp;
 
                     device.transform.position = slot.transform.position;
 
-                    Debug.Log($"✅ ADD {(wp != null ? wp.name : "NULL")} -> {slot.name}");
+                    Debug.Log($"✅ ADD {wp.name} -> {slot.name}");
                     return;
                 }
             }
@@ -282,6 +260,9 @@ namespace WaypointSystem
             Debug.LogWarning("❌ No empty slot!");
         }
 
+        // =====================================================
+        // 🎨 DEBUG
+        // =====================================================
         void OnDrawGizmosSelected()
         {
             if (side == Side.Left)
