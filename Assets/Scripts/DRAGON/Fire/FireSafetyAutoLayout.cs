@@ -22,10 +22,14 @@ public class FireSafetyAutoLayout : MonoBehaviour
     [SerializeField] private float fallbackRoomWidth = 5f;
     [SerializeField] private float fallbackRoomLength = 5f;
 
-    [Header("Ceiling Mounting")]
+    [Header("Y Placement")]
     [SerializeField] private float fallbackCeilingBottomLoc = 2.75f;
-    [SerializeField] private float smokeDetectorMountInset = 0.03f;
-    [SerializeField] private float dischargeNozzleMountInset = 0.02f;
+
+    [Tooltip("ค่าชดเชย Y ของ Smoke Detector จากใต้เพดานโลกจริง (+ = สูงขึ้น, - = ต่ำลง)")]
+    [SerializeField] private float smokeDetectorYOffset = -0.12f;
+
+    [Tooltip("ค่าชดเชย Y ของ Discharge Nozzle จากใต้เพดานโลกจริง (+ = สูงขึ้น, - = ต่ำลง)")]
+    [SerializeField] private float dischargeNozzleYOffset = -0.08f;
 
     [Header("Placement Rules")]
     [SerializeField] private float minWallOffset = 0.8f;
@@ -195,7 +199,6 @@ public class FireSafetyAutoLayout : MonoBehaviour
         if (string.IsNullOrEmpty(digits))
             return false;
 
-        // 55, 89
         if (digits.Length == 2)
         {
             int a = digits[0] - '0';
@@ -209,7 +212,6 @@ public class FireSafetyAutoLayout : MonoBehaviour
             }
         }
 
-        // 510, 910
         if (digits.Length == 3)
         {
             if (int.TryParse(digits.Substring(0, 1), out int a) &&
@@ -231,7 +233,6 @@ public class FireSafetyAutoLayout : MonoBehaviour
             }
         }
 
-        // 1010
         if (digits.Length == 4)
         {
             if (int.TryParse(digits.Substring(0, 2), out int a) &&
@@ -413,7 +414,6 @@ public class FireSafetyAutoLayout : MonoBehaviour
             return refY;
 
         string[] keywords = { "celling", "ceiling", "ceil" };
-
         Transform[] all = FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
         foreach (string keyword in keywords)
@@ -501,16 +501,15 @@ public class FireSafetyAutoLayout : MonoBehaviour
             return offsets;
         }
 
-        // ถ้าห้องเท่ากัน ให้แยกตามแกน X
         if (usableHalfX >= usableHalfZ)
         {
-            float x = Mathf.Min(usableHalfX * 0.5f, usableHalfX);
+            float x = usableHalfX * 0.5f;
             offsets.Add(new Vector2(-x, 0f));
             offsets.Add(new Vector2(+x, 0f));
         }
         else
         {
-            float z = Mathf.Min(usableHalfZ * 0.5f, usableHalfZ);
+            float z = usableHalfZ * 0.5f;
             offsets.Add(new Vector2(0f, -z));
             offsets.Add(new Vector2(0f, +z));
         }
@@ -609,10 +608,9 @@ public class FireSafetyAutoLayout : MonoBehaviour
     {
         for (int i = 0; i < offsets.Count; i++)
         {
-            float y = ceilingBottomY - smokeDetectorMountInset;
             Vector3 worldPos = new Vector3(
                 floorCenter.x + offsets[i].x,
-                y,
+                ceilingBottomY + smokeDetectorYOffset,
                 floorCenter.z + offsets[i].y
             );
 
@@ -627,10 +625,9 @@ public class FireSafetyAutoLayout : MonoBehaviour
     {
         for (int i = 0; i < offsets.Count; i++)
         {
-            float y = ceilingBottomY - dischargeNozzleMountInset;
             Vector3 worldPos = new Vector3(
                 floorCenter.x + offsets[i].x,
-                y,
+                ceilingBottomY + dischargeNozzleYOffset,
                 floorCenter.z + offsets[i].y
             );
 
