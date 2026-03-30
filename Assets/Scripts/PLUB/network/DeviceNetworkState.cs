@@ -8,14 +8,14 @@ public class DeviceNetworkState
     public List<PortState> ports = new List<PortState>();
 
     // 🔥 เพิ่มตรงนี้
-    public HashSet<string> flowsPassed = new HashSet<string>();
+    //public HashSet<string> flowsPassed = new HashSet<string>();
+    public List<string> flowsPassed = new List<string>();
 
     public DeviceNetworkState(string id, string type)
     {
         guid = id;
         device_type = type;
     }
-
 
     public void RegisterFlow(string flowGuid)
     {

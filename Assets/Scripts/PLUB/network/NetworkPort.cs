@@ -53,6 +53,12 @@ public class NetworkPort : MonoBehaviour
 
     public void Connect()
     {
+        if (NetworkManager.Instance.isLoading)
+        {
+            Debug.Log("[Connect] Skipped (loading)");
+            return;
+        }
+        
         string my_guid = PortIdentify();
         TriggerRegisterCable();
         NetworkManager.Instance.RegisterConnection(
@@ -61,6 +67,7 @@ public class NetworkPort : MonoBehaviour
         GetCableGuid()
         );
         NetworkManager.Instance.DebugDevices();
+        PowerSystemManager.Instance.RecalculatePower();
     }
 
 }

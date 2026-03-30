@@ -15,6 +15,7 @@ public class GameSaveData
 
     public List<EquipmentSaveData> equipments = new List<EquipmentSaveData>();
     public List<CableSaveData> cables = new List<CableSaveData>();
+    public NetworkSaveData networkData;
 }
 
 [System.Serializable]
@@ -30,6 +31,9 @@ public class EquipmentSaveData
 [System.Serializable]
 public class CableSaveData
 {
+    //plub start
+    public string cableGuid;
+    //plub end
     public string cableType;
     public string startEquipmentID;
     public int startPortIndex;
@@ -47,3 +51,12 @@ public class CablePointSaveData
     public string parentName; // Name of parent GameObject (fallback)
     public bool isAnchorPoint;
 }
+
+//plub start
+[System.Serializable]
+public class NetworkSaveData
+{
+    public List<DeviceNetworkState> devices = new List<DeviceNetworkState>();
+    public List<CableDataModel> cables = new List<CableDataModel>();
+}
+//plub end
