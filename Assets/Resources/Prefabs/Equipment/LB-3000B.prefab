@@ -232,9 +232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a066e380d03c574287f538e5c0b2caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deviceType: device-008
+  device_type: load balancer
+  device_id: device-001
   guid: 
-  ip: 
 --- !u!1 &7385045387261227112
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +568,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107975959541857277, guid: 9a0bad9c6917f724eb9794849b4fe79d,
+        type: 3}
+      propertyPath: portName
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8714029264991757927, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
@@ -2729,6 +2734,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5107975959541857277, guid: 9a0bad9c6917f724eb9794849b4fe79d,
+        type: 3}
+      propertyPath: portName
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8714029264991757927, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -3250,6 +3260,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5107975959541857277, guid: 9a0bad9c6917f724eb9794849b4fe79d,
+        type: 3}
+      propertyPath: portName
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8714029264991757927, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -3406,6 +3421,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107975959541857277, guid: 9a0bad9c6917f724eb9794849b4fe79d,
+        type: 3}
+      propertyPath: portName
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8714029264991757927, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
@@ -6344,6 +6364,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5107975959541857277, guid: 9a0bad9c6917f724eb9794849b4fe79d,
+        type: 3}
+      propertyPath: portName
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8714029264991757927, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -6650,6 +6675,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107975959541857277, guid: 9a0bad9c6917f724eb9794849b4fe79d,
+        type: 3}
+      propertyPath: portName
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8714029264991757927, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
@@ -7102,6 +7132,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107975959541857277, guid: 9a0bad9c6917f724eb9794849b4fe79d,
+        type: 3}
+      propertyPath: portName
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8714029264991757927, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
@@ -8457,6 +8492,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5107975959541857277, guid: 9a0bad9c6917f724eb9794849b4fe79d,
+        type: 3}
+      propertyPath: portName
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8714029264991757927, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -8920,6 +8960,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107975959541857277, guid: 9a0bad9c6917f724eb9794849b4fe79d,
+        type: 3}
+      propertyPath: portName
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8714029264991757927, guid: 9a0bad9c6917f724eb9794849b4fe79d,
         type: 3}

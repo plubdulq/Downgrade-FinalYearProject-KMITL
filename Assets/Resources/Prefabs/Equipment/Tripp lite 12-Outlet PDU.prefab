@@ -2291,8 +2291,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: 
-  connectedPort: {fileID: 0}
+  portName: 7
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &3547112970207515231
 GameObject:
   m_ObjectHideFlags: 0
@@ -6103,8 +6105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: 
-  connectedPort: {fileID: 0}
+  portName: 10
+  ipInterface: 
+  labelState: 
+  cable_guid: 
 --- !u!1 &7490248550873550477
 GameObject:
   m_ObjectHideFlags: 0
@@ -7646,6 +7650,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 4df47c4e10e356744b3b9e3fbbf0ab54,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df47c4e10e356744b3b9e3fbbf0ab54,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4df47c4e10e356744b3b9e3fbbf0ab54,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4df47c4e10e356744b3b9e3fbbf0ab54,
         type: 3}
       propertyPath: m_LocalPosition.x

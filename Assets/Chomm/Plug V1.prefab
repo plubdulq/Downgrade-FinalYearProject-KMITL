@@ -89,9 +89,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -132,6 +129,7 @@ GameObject:
   - component: {fileID: 8098165206939139487}
   - component: {fileID: 5169208067176791376}
   - component: {fileID: 1519012093158452811}
+  - component: {fileID: 4447960531383176283}
   m_Layer: 10
   m_Name: Plug V1
   m_TagString: Untagged
@@ -188,10 +186,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3821568423245721946}
-  serializedVersion: 5
+  serializedVersion: 4
   m_Mass: 2.5
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -326,9 +324,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98a4ef157eb33749a2cdf18e6ba9b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plugType: 0
   Start1: {fileID: 5799321941189768033}
   Start2: {fileID: 2600216133551741076}
   PlugModel: {fileID: 4376702510023022089}
+  canvas: {fileID: 0}
+  autoAnchorDistance: 0.2
+--- !u!114 &4447960531383176283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3821568423245721946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23aa9a2ce27542a45b90c086df990a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueID: 
+  connectedDeviceGuid: 
+  headNumber: 1
 --- !u!1 &7424916585518787700
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,9 +492,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

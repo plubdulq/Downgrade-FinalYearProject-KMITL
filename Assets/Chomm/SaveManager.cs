@@ -105,12 +105,13 @@ public class SaveManager : MonoBehaviour
                     eqData.parentID = eq.transform.parent.name;
                 }
             }
-            
+            Debug.Log($"Saving Equipment: {eqData.prefabName}, ID: {eqData.uniqueID}, ParentID: {eqData.parentID}, Pos: {eqData.position}");
             data.equipments.Add(eqData);
         }
 
         // 2. Save Cables
         var allCables = FindObjectsOfType<Cable>();
+        Debug.Log($"Found {allCables.Length} cables to save.");
         foreach (var cable in allCables)
         {
             if (cable.PlugA != null && cable.PlugB != null)
@@ -118,6 +119,35 @@ public class SaveManager : MonoBehaviour
                 CableSaveData cData = new CableSaveData();
                 
                 // Save Cable Type
+                // plub start
+                var plugHeads = cable.GetComponentsInChildren<CablePlugHead>();
+                Debug.Log($"[SaveManager] Saving Cable: {cable.name}, PlugA: {cable.PlugA.plugType}, PlugB: {cable.PlugB.plugType}, Found PlugHeads: {plugHeads.Length}");
+                if (plugHeads.Length > 0)
+                {
+                    // ใช้ตัวแรกเป็น source of truth
+                    string guid = plugHeads[0].uniqueID;
+
+                    // ถ้ายังไม่มี → generate ใหม่
+                    if (string.IsNullOrEmpty(guid))
+                    {
+                        guid = System.Guid.NewGuid().ToString();
+                    }
+
+                    // 🔥 save
+                    cData.cableGuid = guid;
+                    Debug.Log($"[SaveManager] Assigned Cable GUID: {guid} to cable {cable.name}");
+
+                    // 🔥 sync ให้ทุกหัวเหมือนกัน
+                    foreach (var head in plugHeads)
+                    {
+                        head.uniqueID = guid;
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"Cable {cable.name} has no CablePlugHead!");
+                }
+                // plub end
                 if (cable.PlugA != null && cable.PlugB != null)
                 {
                     PlugType a = cable.PlugA.plugType;
@@ -220,10 +250,25 @@ public class SaveManager : MonoBehaviour
             }
         }
 
+        //3. Save Network Topology (plub start)
+        NetworkSaveData networkData = new NetworkSaveData();
+
+        // 🔥 save device dict
+        networkData.devices = new List<DeviceNetworkState>(
+            NetworkManager.Instance.devices.Values
+        );
+        
+        // 🔥 save cable dict
+        networkData.cables = new List<CableDataModel>(
+            CableManager.Instance.cableDict.Values
+        );
+        Debug.Log($"[SaveManager] Saving Network Data: {networkData.devices.Count} devices, {networkData.cables.Count} cables");
         string json = JsonUtility.ToJson(data, true);
         string path = Path.Combine(Application.persistentDataPath, saveName + ".json");
         File.WriteAllText(path, json);
         Debug.Log($"Game Saved to {path}");
+        
+        
     }
 
     private void GetConnectionInfo(CablePlug plug, out string eqID, out int portIndex)
@@ -269,6 +314,9 @@ public class SaveManager : MonoBehaviour
     System.Collections.IEnumerator LoadRoutine(GameSaveData data)
     {
         Debug.Log("Starting Load Routine...");
+        //plub start
+        NetworkManager.Instance.isLoading = true;
+        //plub end
 
         // 1. Clear Existing Scene
         var oldEquipments = FindObjectsOfType<EquipmentData>();
@@ -315,8 +363,17 @@ public class SaveManager : MonoBehaviour
                 continue;
             }
 
+            // plub start Load dict (source of truth) ก่อน instantiate
+            foreach (var device in data.networkData.devices)
+                NetworkManager.Instance.devices.Add(device.guid, device);
+
+            foreach (var cable in data.networkData.cables)
+                CableManager.Instance.cableDict.Add(cable.guid, cable);
+
+
             // Load from Resources
             GameObject prefab = Resources.Load<GameObject>(equipmentResourcePath + eqData.prefabName);
+
             if (prefab)
             {
                // Instantiate
@@ -486,6 +543,13 @@ public class SaveManager : MonoBehaviour
             if (newCable == null) continue;
 
             newCable.sag = cData.sag;
+            // plub start
+            var plugHeads = newCable.GetComponentsInChildren<CablePlugHead>();
+            foreach (var head in plugHeads)
+            {
+                head.uniqueID = cData.cableGuid;
+            }
+            // plub end
 
             // Reconnect A
             SnapZone startZone = null;
@@ -591,7 +655,7 @@ public class SaveManager : MonoBehaviour
             }
         }
         
-        
+        NetworkManager.Instance.isLoading = false;
         Debug.Log("Load Complete.");
         
         // Notify RoomGenerator of the current save name
