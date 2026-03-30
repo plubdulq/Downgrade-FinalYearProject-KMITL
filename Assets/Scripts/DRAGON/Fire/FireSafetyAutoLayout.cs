@@ -413,7 +413,7 @@ public class FireSafetyAutoLayout : MonoBehaviour
         if (TryGetBottomYFromTransform(ceilingsTransform, out float refY, "CeilingsTransform"))
             return refY;
 
-        string[] keywords = { "celling", "ceiling", "ceil" };
+        string[] keywords = { "celings" };
         Transform[] all = FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
         foreach (string keyword in keywords)
