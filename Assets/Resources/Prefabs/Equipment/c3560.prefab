@@ -60,9 +60,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -245,10 +242,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 5126514877055939801}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &9171485127686923100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,7 +462,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -681,7 +681,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -901,7 +900,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -1026,9 +1024,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1281,7 +1276,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -1431,10 +1425,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 8774116800223989747}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &3384065529992764003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1552,9 +1550,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1737,10 +1732,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 2747838266373867998}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &5208279575176201899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1953,7 +1952,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -2173,7 +2171,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -2393,7 +2390,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -2543,10 +2539,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 7192682238981679940}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &3539228031985891712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2689,10 +2689,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 226161372801871707}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &1293796054548364492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2810,9 +2814,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2970,9 +2971,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3225,7 +3223,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -3375,10 +3372,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 3734699792124148169}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4086510692148301019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3591,7 +3592,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -3811,7 +3811,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -4031,7 +4030,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -4251,7 +4249,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -4376,9 +4373,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4536,9 +4530,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4791,7 +4782,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -5011,7 +5001,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -5161,10 +5150,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6921961532565995920}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &3016745552742718776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5282,9 +5275,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5442,9 +5432,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5697,7 +5684,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -5847,10 +5833,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6026332536451614165}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &398789115123583459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6063,7 +6053,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -6188,9 +6177,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6373,10 +6359,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 3682653707588356323}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4092382415437746952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6589,7 +6579,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -6739,10 +6728,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 7665610071737702867}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &6624316324028015846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6860,9 +6853,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7020,9 +7010,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7180,9 +7167,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7435,7 +7419,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -7585,10 +7568,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 8832826520763795832}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &1939088016319283633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7646,6 +7633,225 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: O
+--- !u!1 &2318169019078719494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 461582106054510050}
+  - component: {fileID: 2596444591418945686}
+  - component: {fileID: 6209944036164720960}
+  - component: {fileID: 1813981608073595674}
+  - component: {fileID: 4999320859316853600}
+  - component: {fileID: 9001732715158690282}
+  m_Layer: 2
+  m_Name: HolsterRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &461582106054510050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318169019078719494}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 513254923921997602}
+  m_Father: {fileID: 34490820162760887}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2596444591418945686
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318169019078719494}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.01
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6209944036164720960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318169019078719494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plugType: 5
+  HeldItem: {fileID: 0}
+  StartingItem: {fileID: 0}
+  isOuterPort: 0
+  CustomCableAnchors: []
+  isAnchor: 0
+  AutoSnapItem: 0
+  CanDropItem: 1
+  CanRemoveItem: 1
+  ScaleItem: 4
+  DisableColliders: 1
+  TriggerColliders: 1
+  ParentObjectToSnapZone: 1
+  DuplicateItemOnGrab: 0
+  MaxDropTime: 0.1
+  LastSnapTime: 0
+  LastUnsnapTime: 0
+  OnlyAllowNames: []
+  ExcludeTransformNames: []
+  SoundOnSnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
+  SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
+  OnSnapEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDetachEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ClosestGrabbable: {fileID: 0}
+--- !u!114 &1813981608073595674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318169019078719494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4b3aeee51a5bd48bf569efd03b09ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClosestGrabbable: {fileID: 0}
+  UpdateGrabbableFrequency: 0
+  ClosestRemoteGrabbable: {fileID: 0}
+  FireGrabbableEvents: 0
+  CheckRemoteGrabbables: 0
+  RaycastRemoteGrabbables: 0
+  RaycastRemoteFrequency: 0
+  RemoteGrabbablesMustBeVisible: 0
+  RemoteCollisionLayers:
+    serializedVersion: 2
+    m_Bits: 1
+--- !u!114 &4999320859316853600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318169019078719494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdea428d48e2bb488d33d5f75c39bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BeingHeld: 0
+  GrabButton: 0
+  Grabtype: 0
+  GrabPhysics: 2
+  GrabMechanic: 1
+  GrabSpeed: 7.5
+  RemoteGrabbable: 0
+  RemoteGrabMechanic: 0
+  RemoteGrabDistance: 2
+  CanDropMidGrab: 0
+  ThrowForceMultiplier: 2
+  ThrowForceMultiplierAngular: 1.5
+  BreakDistance: 1
+  HideHandGraphics: 0
+  ParentToHands: 0
+  ParentHandModel: 0
+  SnapHandModel: 1
+  CanBeDropped: 1
+  CanBeSnappedToSnapZone: 1
+  ForceDisableKinematicOnDrop: 0
+  InstantMovement: 0
+  MakeChildCollidersGrabbable: 0
+  handPoseType: 1
+  SelectedHandPose: {fileID: 0}
+  CustomHandPose: 0
+  SecondaryGrabBehavior: 0
+  TwoHandedPosition: 0
+  TwoHandedPostionLerpAmount: 0.5
+  TwoHandedRotation: 1
+  TwoHandedRotationLerpAmount: 0.5
+  TwoHandedDropBehavior: 0
+  TwoHandedLookVector: 0
+  SecondHandLookSpeed: 40
+  SecondaryGrabbable: {fileID: 0}
+  OtherGrabbableMustBeGrabbed: {fileID: 0}
+  CollisionSpring: 3000
+  CollisionSlerp: 500
+  CollisionLinearMotionX: 2
+  CollisionLinearMotionY: 2
+  CollisionLinearMotionZ: 2
+  CollisionAngularMotionX: 2
+  CollisionAngularMotionY: 2
+  CollisionAngularMotionZ: 2
+  ApplyCorrectiveForce: 1
+  MoveVelocityForce: 3000
+  MoveAngularVelocityForce: 90
+  LastGrabTime: 0
+  LastRemoteGrabTime: 0
+  LastDropTime: 0
+  AddControllerVelocityOnDrop: 1
+  collisions: []
+  ActiveGrabPoint: {fileID: 0}
+  SecondaryLookOffset: {x: 0, y: 0, z: 0}
+  SecondaryLookAtTransform: {fileID: 0}
+  LocalOffsetTransform: {fileID: 0}
+  GrabPoints: []
+  UseCustomInspector: 1
+  lastFlickTime: 0
+  FlickForce: 1
+--- !u!114 &9001732715158690282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318169019078719494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5be54ff720e43488e1738e2db6b6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnGrabEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6209944036164720960}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: GrabEquipped
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2345689216824667596
 GameObject:
   m_ObjectHideFlags: 0
@@ -7706,9 +7912,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7866,9 +8069,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8026,9 +8226,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8186,9 +8383,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8346,9 +8540,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8506,9 +8697,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8691,10 +8879,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6117003524828550402}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &1838081809707227371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8812,9 +9004,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9067,7 +9256,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -9192,9 +9380,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9352,9 +9537,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9537,10 +9719,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 8804210609688788938}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &3199881417213137094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9753,7 +9939,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -9878,9 +10063,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10038,9 +10220,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10223,10 +10402,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 1036547825231059230}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &6691545414322560672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10369,10 +10552,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 5605984593136956319}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4049037573664446533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10490,9 +10677,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10745,7 +10929,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -10965,7 +11148,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -11090,9 +11272,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11275,10 +11454,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 132565024229032721}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &7844575949385336781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11491,7 +11674,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -11711,7 +11893,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -11836,9 +12017,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11996,9 +12174,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12156,9 +12331,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12341,10 +12513,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 5343905852824096095}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &5718438341110485281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12557,7 +12733,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -12777,7 +12952,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -12902,9 +13076,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13157,7 +13328,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -13377,7 +13547,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -13597,7 +13766,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -13817,7 +13985,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -13967,10 +14134,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 439387644280337376}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &5802766175715730651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14183,7 +14354,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -14333,10 +14503,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6265296626473552718}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &1403243730175956735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14479,10 +14653,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 5346560110310952603}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &2617441257041158666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14625,10 +14803,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 5026073109325049632}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4490978595437154595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14771,10 +14953,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 1957967777385913910}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &2014607684499549485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14987,7 +15173,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -15207,7 +15392,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -15332,9 +15516,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15492,9 +15673,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15747,7 +15925,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -15897,10 +16074,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 3428893020430985927}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &3656144767641742541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16113,7 +16294,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -16263,10 +16443,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 5423618600455291740}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &2938592721552757872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16409,10 +16593,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 1242789953340607421}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &2328412299627962620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16625,7 +16813,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -16775,10 +16962,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 7771895045061036698}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &3768179361205196639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16991,7 +17182,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -17141,10 +17331,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 8375290721051184163}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &6563349244498853657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17287,10 +17481,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 8651305100907654991}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &754625827361218441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17408,9 +17606,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17593,10 +17788,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 5577605629237149295}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &853546443152821526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17714,9 +17913,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17874,9 +18070,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18129,7 +18322,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -18279,10 +18471,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 7042899821199283831}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &1063662398909654561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18425,10 +18621,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6979284965460495544}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4852523319707863912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18546,9 +18746,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18731,10 +18928,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6958247901586625207}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4118996021712454046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18877,10 +19078,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6590992016347660087}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &8753875420710896700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19023,10 +19228,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 1506243763530266523}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4745089434805340211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19144,9 +19353,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19329,10 +19535,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 4160500942701326990}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4353027929667005834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19390,6 +19600,313 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: O
+--- !u!1 &6780182371402123337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 513254923921997602}
+  - component: {fileID: 6147116769686921346}
+  - component: {fileID: 7385845128006702785}
+  - component: {fileID: 3935769619997950716}
+  - component: {fileID: 9079092561810996852}
+  - component: {fileID: 3905521498672435268}
+  m_Layer: 2
+  m_Name: Ring
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &513254923921997602
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780182371402123337}
+  m_LocalRotation: {x: 0.999998, y: -0.00082798593, z: -0.0008519431, w: 0.001625061}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.19, y: 0.19, z: 0.19}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 461582106054510050}
+  m_LocalEulerAnglesHint: {x: 179.814, y: 0.0980072, z: 0.09500122}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &6147116769686921346
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780182371402123337}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!222 &7385845128006702785
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780182371402123337}
+  m_CullTransparentMesh: 0
+--- !u!114 &3935769619997950716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780182371402123337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85dfa35857b0b06448633d97d10d1f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Snap: {fileID: 6209944036164720960}
+  RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
+  RestingScale: 1400
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
+--- !u!114 &9079092561810996852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780182371402123337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1400
+  m_PresetInfoIsWorld: 1
+--- !u!114 &3905521498672435268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780182371402123337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 0ebbcec4dd8e2f040b163f10df7e8382, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.16862746}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 0ebbcec4dd8e2f040b163f10df7e8382, type: 3}
+    m_FontSize: 22
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: O
+--- !u!1 &6807076553682421344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 34490820162760887}
+  - component: {fileID: 4108826724014161892}
+  - component: {fileID: 331551054268611137}
+  - component: {fileID: 5539631904451919482}
+  m_Layer: 0
+  m_Name: Port Power In (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &34490820162760887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807076553682421344}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0.00000017912404, w: 0.00000017912406}
+  m_LocalPosition: {x: 0.413, y: 0.0236, z: -0.5188}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.39999998}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 461582106054510050}
+  m_Father: {fileID: 7746854776211665521}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!33 &4108826724014161892
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807076553682421344}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &331551054268611137
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807076553682421344}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5539631904451919482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807076553682421344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
 --- !u!1 &6834178762311655073
 GameObject:
   m_ObjectHideFlags: 0
@@ -19545,7 +20062,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -19670,9 +20186,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19855,10 +20368,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6157740588417530119}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &980078459531093178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19976,9 +20493,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20231,7 +20745,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -20381,10 +20894,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 2175421242657463137}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &2917469069258522211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20597,7 +21114,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -20722,9 +21238,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20882,9 +21395,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21137,7 +21647,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -21357,7 +21866,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -21577,7 +22085,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -21797,7 +22304,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -21947,10 +22453,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 8044947051532825668}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &3229993944564710381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22093,10 +22603,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 7444208493699687569}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &7867056786659531028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22214,9 +22728,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22374,9 +22885,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22559,10 +23067,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 629131300376708841}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &7658235830479672670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22705,10 +23217,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 4980020919223735815}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4500898225232232594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22826,9 +23342,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23011,10 +23524,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6023064680518298129}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &3043172262495700057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23132,9 +23649,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23317,10 +23831,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6631728377590031468}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &7690208721599156078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23438,9 +23956,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23693,7 +24208,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -23843,10 +24357,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6142914018953225951}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &8664229602678142518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23964,9 +24482,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24124,9 +24639,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24284,9 +24796,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24539,7 +25048,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -24759,7 +25267,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -24909,10 +25416,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 4179047816732223790}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &3769230828892360992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25055,10 +25566,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 2694558815291257089}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &3406828005202806545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25201,10 +25716,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 5709857991554293013}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &8410791333463361441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25347,10 +25866,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 2150140484860353169}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4325042660572395681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25563,7 +26086,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -25688,9 +26210,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25943,7 +26462,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -26163,7 +26681,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -26313,10 +26830,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 5635834849398119284}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &8745696420552131116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26434,9 +26955,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -26619,10 +27137,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 5399276738822773308}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &2305642380938186160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26765,10 +27287,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 6889713248862084342}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &2678601668579362769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26911,10 +27437,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 8579858998361512111}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &1987863569312376032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27127,7 +27657,6 @@ MonoBehaviour:
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
-  DisablePhysicsOnDrop: 0
   handPoseType: 1
   SelectedHandPose: {fileID: 0}
   CustomHandPose: 0
@@ -27252,9 +27781,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27631,6 +28157,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6480728960736750777}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1eb662d1e19dc0d44b6b6bf4c83da1a9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 34490820162760887}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1eb662d1e19dc0d44b6b6bf4c83da1a9,
         type: 3}
