@@ -143,24 +143,24 @@ public class FlowManager : MonoBehaviour
 
                     var nextDevice = NetworkManager.Instance.devices[nextGuid];
                     // ✅ 🔥 FIREWALL CHECK ตรงนี้
-                    if (currentDevice.device_type == "firewall")
-                    {
-                        bool allowed = IsPacketAllowedByFirewall(
-                            currentDevice.guid,
-                            port.my_ip,   // source
-                            destIP        // destination
-                        );
+                    // if (currentDevice.device_type == "firewall")
+                    // {
+                    //     bool allowed = IsPacketAllowedByFirewall(
+                    //         currentDevice.guid,
+                    //         port.my_ip,   // source
+                    //         destIP        // destination
+                    //     );
 
-                        if (!allowed)
-                        {
-                            Debug.Log($"[Firewall] BLOCKED from {port.my_ip} to {destIP}");
-                            continue; // ❌ ห้ามไปต่อ
-                        }
-                        else
-                        {
-                            Debug.Log($"[Firewall] ALLOWED from {port.my_ip} to {destIP}");
-                        }
-                    }
+                    //     if (!allowed)
+                    //     {
+                    //         Debug.Log($"[Firewall] BLOCKED from {port.my_ip} to {destIP}");
+                    //         continue; // ❌ ห้ามไปต่อ
+                    //     }
+                    //     else
+                    //     {
+                    //         Debug.Log($"[Firewall] ALLOWED from {port.my_ip} to {destIP}");
+                    //     }
+                    // }
 
                     var newPath = new List<string>(current.path);
                     newPath.Add(port.cable_guid);
@@ -230,28 +230,28 @@ public class FlowManager : MonoBehaviour
         return false;
     }
 
-    bool IsPacketAllowedByFirewall(string firewallGuid, string srcIP, string destIP)
-    {
-        var firewall = FirewallManager.Instance.firewallDevices[firewallGuid];
+    // bool IsPacketAllowedByFirewall(string firewallGuid, string srcIP, string destIP)
+    // {
+    //     var firewall = FirewallManager.Instance.firewallDevices[firewallGuid];
 
-        if (firewall == null || firewall.policy == null)
-            return true; // ไม่มี policy = allow default
+    //     if (firewall == null || firewall.policies == null)
+    //         return true; // ไม่มี policy = allow default
 
-        foreach (var rule in firewall.policy.rules)
-        {
-            bool matchSrc = string.IsNullOrEmpty(rule.sourceIP) || rule.sourceIP == srcIP;
-            bool matchDst = string.IsNullOrEmpty(rule.destinationIP) || rule.destinationIP == destIP;
+    //     foreach (var rule in firewall.policies.rule)
+    //     {
+    //         bool matchSrc = string.IsNullOrEmpty(rule.sourceIP) || rule.sourceIP == srcIP;
+    //         bool matchDst = string.IsNullOrEmpty(rule.destinationIP) || rule.destinationIP == destIP;
 
-            // (optional) คุณสามารถเพิ่ม port / protocol ได้ตรงนี้
-            if (matchSrc && matchDst)
-            {
-                return rule.action.ToLower() == "allow";
-            }
-        }
+    //         // (optional) คุณสามารถเพิ่ม port / protocol ได้ตรงนี้
+    //         if (matchSrc && matchDst)
+    //         {
+    //             return rule.action.ToLower() == "allow";
+    //         }
+    //     }
 
-        // default policy (แนะนำให้ explicit)
-        return true;
-    }
+    //     // default policy (แนะนำให้ explicit)
+    //     return true;
+    // }
 
     // 🔥 Core routing แบบ subnet
     private bool BuildPathSubnet(NetworkFlow flow, DeviceNetworkState startDevice, string destIP)
