@@ -178,14 +178,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443431478533427105}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: 0, w: 0}
   m_LocalPosition: {x: -0.38137817, y: -0.067600004, z: 0.7303009}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3855637340586947221}
   m_Father: {fileID: 3504066002692178743}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 90}
 --- !u!33 &2864772959273942922
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: 
+  portName: 6
   ipInterface: 
   labelState: 
   cable_guid: 
@@ -352,13 +352,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 575530537685791026}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.0874874, y: 0.0874874, z: 0.0874874}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3855637340586947221}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1106,7 +1106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: 
+  portName: 1
   ipInterface: 
   labelState: 
   cable_guid: 
@@ -1584,14 +1584,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4618339929256476482}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: 0, w: 0}
   m_LocalPosition: {x: -0.31069946, y: -0.067600004, z: 0.7303009}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6710716696905904283}
   m_Father: {fileID: 3504066002692178743}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 90}
 --- !u!33 &1627506096182858260
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1726,7 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: 
+  portName: 2
   ipInterface: 
   labelState: 
   cable_guid: 
@@ -1900,7 +1900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: 
+  portName: 3
   ipInterface: 
   labelState: 
   cable_guid: 
@@ -2832,7 +2832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: 
+  portName: 5
   ipInterface: 
   labelState: 
   cable_guid: 
@@ -3156,7 +3156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9c656ba4599fb4cb011dfda650e0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: 
+  portName: 4
   ipInterface: 
   labelState: 
   cable_guid: 
@@ -3338,13 +3338,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9221449647588103891}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.0874874, y: 0.0874874, z: 0.0874874}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6710716696905904283}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4163,7 +4163,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipmentDataName: sky-6420
   uniqueID: 
-  ports: []
+  ports:
+  - {fileID: 5896046745200202430}
+  - {fileID: 462638553529083950}
+  - {fileID: 9164560808704699436}
+  - {fileID: 6784197136721610860}
+  - {fileID: 1603632265068693078}
+  - {fileID: 371895509682936020}
 --- !u!4 &3504066002692178743 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3910990755373119420, guid: 55396ebfc8eaaa7489ad263e7e3ad8b6,
