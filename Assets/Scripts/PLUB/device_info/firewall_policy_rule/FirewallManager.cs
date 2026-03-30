@@ -5,7 +5,7 @@ public class FirewallManager : MonoBehaviour
 {
     public static FirewallManager Instance;
 
-    private Dictionary<string, FirewallDeviceData> firewallDevices
+    public Dictionary<string, FirewallDeviceData> firewallDevices
         = new Dictionary<string, FirewallDeviceData>();
 
     private FirewallDeviceData currentDevice;

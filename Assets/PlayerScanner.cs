@@ -16,6 +16,12 @@ public class PlayerScanner : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    bool IsFiber(PlugType t)
+    {
+        return t == PlugType.FiberLCSinglemode ||
+            t == PlugType.FiberLCMultimode;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         ServerPlugScanner server = other.GetComponent<ServerPlugScanner>();
@@ -32,7 +38,9 @@ public class PlayerScanner : MonoBehaviour
 
                 foreach (var port in server.allPorts)
                 {
-                    bool canPlug = port.plugType == plug.plugType;
+                    bool canPlug =
+                        port.plugType == plug.plugType ||
+                        (IsFiber(port.plugType) && IsFiber(plug.plugType));
 
                     HighlightPort(port, canPlug);
                 }
@@ -51,7 +59,9 @@ private void OnTriggerStay(Collider other)
         {
             foreach (var port in server.allPorts)
             {
-                bool canPlug = port.plugType == plug.plugType;
+                bool canPlug =
+                    port.plugType == plug.plugType ||
+                    (IsFiber(port.plugType) && IsFiber(plug.plugType));
 
                 HighlightPort(port, canPlug);
             }

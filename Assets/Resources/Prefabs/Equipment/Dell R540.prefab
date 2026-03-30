@@ -2501,6 +2501,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8322894064778632968}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 688dbd42b4c98484985c82cbce2b3033,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7678037535706281693}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 688dbd42b4c98484985c82cbce2b3033,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4333091133790838616}
   m_SourcePrefab: {fileID: 100100000, guid: 688dbd42b4c98484985c82cbce2b3033, type: 3}
 --- !u!1 &6083352095512475728 stripped
 GameObject:
@@ -2661,6 +2669,40 @@ MonoBehaviour:
   VibrateFrequency: 0.3
   VibrateAmplitude: 0.1
   VibrateDuration: 0.1
+--- !u!114 &7678037535706281693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6083352095512475728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be4ab790cc2060468c10617a261a4bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipmentDataName: Dell R540
+  uniqueID: 
+  ports:
+  - {fileID: 5059949082161917942}
+  - {fileID: 3276405226553637629}
+  - {fileID: 712210514028038506}
+  - {fileID: 2103434159779317798}
+--- !u!114 &4333091133790838616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6083352095512475728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a066e380d03c574287f538e5c0b2caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  device_type: 
+  device_id: 
+  guid: 
 --- !u!4 &6856652175718114026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 688dbd42b4c98484985c82cbce2b3033,
