@@ -14,6 +14,7 @@ public class NetworkDevice : MonoBehaviour
         repository = new QueryPortSchema();
         EquipmentData device = GetComponent<EquipmentData>();
         guid = device.uniqueID;
+        DeviceMapManager.Instance.Register(guid, this.gameObject);
         RegisterDevice();
     }
 

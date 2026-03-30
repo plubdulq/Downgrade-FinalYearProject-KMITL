@@ -8,6 +8,7 @@ public class NetworkManager : MonoBehaviour
     public static NetworkManager Instance;
 
     public Dictionary<string, DeviceNetworkState> devices = new Dictionary<string, DeviceNetworkState>();
+    public bool isLoading = false;
 
     //public List<CableConnectionData> connections = new List<CableConnectionData>();
     

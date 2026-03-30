@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plugType: 1
+  plugType: 10
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
   isOuterPort: 0
@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plugType: 1
+  plugType: 10
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
   isOuterPort: 0
@@ -1771,7 +1771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plugType: 1
+  plugType: 10
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
   isOuterPort: 0
@@ -2950,7 +2950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plugType: 1
+  plugType: 10
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
   isOuterPort: 0
@@ -3274,7 +3274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plugType: 1
+  plugType: 10
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
   isOuterPort: 0
@@ -5128,7 +5128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plugType: 1
+  plugType: 10
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
   isOuterPort: 0
@@ -6100,7 +6100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plugType: 1
+  plugType: 10
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
   isOuterPort: 0
@@ -6846,7 +6846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plugType: 1
+  plugType: 10
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
   isOuterPort: 0
@@ -7624,6 +7624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wattPerCelsius: 0.3
+  onPlug: 0
   powerState: 0
 --- !u!23 &3946136508100775800
 MeshRenderer:
@@ -7830,7 +7831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plugType: 1
+  plugType: 10
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
   isOuterPort: 0
@@ -8266,7 +8267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plugType: 1
+  plugType: 10
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
   isOuterPort: 0
@@ -10415,7 +10416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plugType: 1
+  plugType: 10
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
   isOuterPort: 0
@@ -12365,7 +12366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plugType: 1
+  plugType: 10
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
   isOuterPort: 0
@@ -14112,7 +14113,7 @@ PrefabInstance:
     - target: {fileID: 4598026177748540699, guid: 94fe933eecb0f5a458452357c8e09b93,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4648872371733075700, guid: 94fe933eecb0f5a458452357c8e09b93,
         type: 3}

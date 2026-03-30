@@ -35,6 +35,7 @@ public class SpawnPrefab : MonoBehaviour
         {
             if (deviceId == "rack42U_nodoor" || deviceId == "supermicro 4029GP-TRT2")
             {
+                Debug.Log(deviceId);
                 PlacementPreview.Instance.GhostObject(prefab);
                 return;
             }

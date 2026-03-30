@@ -7,11 +7,18 @@ public class CablePlugHead : MonoBehaviour
     [SerializeField] private string connectedDeviceGuid;
     [SerializeField] private string headNumber;
 
-    void Start()
+    public void Start()
     {
-        // หา guid จาก parent cable
         CableInfo device = GetComponentInParent<CableInfo>();
-        uniqueID = device.uniqueID;
+        if (device != null)
+        {
+            // หา guid จาก parent cable
+            if (string.IsNullOrEmpty(uniqueID) && !NetworkManager.Instance.isLoading)
+            {
+                uniqueID = device.uniqueID;
+                return;
+            }
+        }
     }
 
     public void GetDeviceGuid()

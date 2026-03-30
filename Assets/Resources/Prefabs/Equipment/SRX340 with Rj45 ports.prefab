@@ -609,7 +609,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 52430926553337664}
+      objectReference: {fileID: 4852689774686070777}
     - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1289,18 +1289,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 462799550000726367}
   m_SourcePrefab: {fileID: 100100000, guid: 17790093c0769a1459e76e31151896c5, type: 3}
---- !u!114 &52430926553337664 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1607872255971237111, guid: 17790093c0769a1459e76e31151896c5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1651144214146962359}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfd041e74f2605849acdcee4e18f70ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1142850965164386062 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1816694543806772409, guid: 17790093c0769a1459e76e31151896c5,
@@ -1412,6 +1400,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1651144214146962359}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4852689774686070777 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6175065425311609934, guid: 17790093c0769a1459e76e31151896c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1651144214146962359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd041e74f2605849acdcee4e18f70ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5076963207316740707 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5809350815021550036, guid: 17790093c0769a1459e76e31151896c5,
@@ -2843,6 +2843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wattPerCelsius: 0.3
+  onPlug: 0
   powerState: 0
 --- !u!54 &2275136770958213876
 Rigidbody:
