@@ -10,7 +10,9 @@ namespace WaypointSystem
     {
         [Header("Detection Settings")]
         public float rayDistance = 10f;
+        public float detectRadius = 0.25f;
         public LayerMask WayPointLayer;
+        [Header("Detection Settings")]
 
         [Header("Root Waypoint (จุดเริ่มต้น)")]
         public Waypoint current;
@@ -80,19 +82,20 @@ namespace WaypointSystem
         {
             Ray ray = new Ray(transform.position, dir);
 
-            RaycastHit[] hits = Physics.RaycastAll(ray, rayDistance, WayPointLayer);
+            // ใช้ SphereCast แทน ray เส้นเดียว
+            RaycastHit[] hits = Physics.SphereCastAll(ray, detectRadius, rayDistance, WayPointLayer);
 
-            // 🔥 เรียงจากใกล้ → ไกล
             System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
 
             foreach (var hit in hits)
             {
                 WaypointSlot slot = hit.collider.GetComponent<WaypointSlot>();
+                if (slot == null)
+                    slot = hit.collider.GetComponentInParent<WaypointSlot>();
 
                 if (slot != null)
                 {
-                    // 🔥 เช็คฝั่งจริงด้วย dot
-                    Vector3 dirToHit = (hit.point - transform.position).normalized;
+                    Vector3 dirToHit = (slot.transform.position - transform.position).normalized;
                     float dot = Vector3.Dot(transform.right, dirToHit);
 
                     if (side == Side.Left && dot > 0) continue;
@@ -107,8 +110,12 @@ namespace WaypointSystem
                     }
                 }
             }
-        }
 
+            if (showDebug)
+            {
+                Debug.Log($"🔍 DetectSide result = {detectedWayPoint.Count}");
+            }
+        }
         // =====================================================
         // 🔄 SORT
         // =====================================================
@@ -134,85 +141,85 @@ namespace WaypointSystem
         // =====================================================
         // 🔗 LINK
         // =====================================================
-      void LinkWaypointsChain()
-{
-    Debug.Log("=== LINK START ===");
-
-    if (detectedWayPoint.Count == 0)
-    {
-        Debug.LogError("❌ detectedWayPoint EMPTY");
-        return;
-    }
-
-    if (current == null)
-    {
-        Debug.LogError("❌ current ROOT is NULL");
-        return;
-    }
-
-    // 🔥 RESET
-    current.next = null;
-
-    foreach (var slot in detectedWayPoint)
-    {
-        if (slot == null) continue;
-
-        if (slot.waypoint == null)
+        void LinkWaypointsChain()
         {
-            slot.waypoint = slot.GetComponent<Waypoint>();
+            Debug.Log("=== LINK START ===");
 
-            if (slot.waypoint == null)
+            if (detectedWayPoint.Count == 0)
             {
-                Debug.LogError($"❌ {slot.name} has NO Waypoint");
-                continue;
+                Debug.LogError("❌ detectedWayPoint EMPTY");
+                return;
             }
+
+            if (current == null)
+            {
+                Debug.LogError("❌ current ROOT is NULL");
+                return;
+            }
+
+            // 🔥 RESET
+            current.next = null;
+
+            foreach (var slot in detectedWayPoint)
+            {
+                if (slot == null) continue;
+
+                if (slot.waypoint == null)
+                {
+                    slot.waypoint = slot.GetComponent<Waypoint>();
+
+                    if (slot.waypoint == null)
+                    {
+                        Debug.LogError($"❌ {slot.name} has NO Waypoint");
+                        continue;
+                    }
+                }
+
+                slot.waypoint.next = null;
+                slot.waypoint.previous = null;
+
+                // 🔥 ปิด destroyBall ทุกตัวก่อน (กันซ้อน)
+                var db = slot.waypoint.GetComponent<destroyBall>();
+                if (db != null)
+                    db.enabled = false;
+            }
+
+            // 🔥 LINK + หา last ใน loop เดียว
+            Waypoint prev = current;
+            Waypoint last = null;
+
+            foreach (var slot in detectedWayPoint)
+            {
+                if (slot?.waypoint == null) continue;
+
+                Waypoint wp = slot.waypoint;
+
+                prev.next = wp;
+                wp.previous = prev;
+
+                Debug.Log($"🔗 LINK {prev.name} -> {wp.name}");
+
+                prev = wp;
+                last = wp;
+            }
+
+            // 🔥 เปิด destroyBall ตัวสุดท้าย
+            if (last != null)
+            {
+                // 🔥 ถ้ายังไม่มี component ค่อยเพิ่ม
+                if (last.GetComponent<destroyBall>() == null)
+                {
+                    last.gameObject.AddComponent<destroyBall>();
+                    Debug.Log($"💥 ADD destroyBall on {last.name}");
+                }
+                else
+                {
+                    Debug.Log($"⚠️ destroyBall already exists on {last.name}");
+                }
+            }
+
+            Debug.Log("=== LINK END ===");
         }
-
-        slot.waypoint.next = null;
-        slot.waypoint.previous = null;
-
-        // 🔥 ปิด destroyBall ทุกตัวก่อน (กันซ้อน)
-        var db = slot.waypoint.GetComponent<destroyBall>();
-        if (db != null)
-            db.enabled = false;
-    }
-
-    // 🔥 LINK + หา last ใน loop เดียว
-    Waypoint prev = current;
-    Waypoint last = null;
-
-    foreach (var slot in detectedWayPoint)
-    {
-        if (slot?.waypoint == null) continue;
-
-        Waypoint wp = slot.waypoint;
-
-        prev.next = wp;
-        wp.previous = prev;
-
-        Debug.Log($"🔗 LINK {prev.name} -> {wp.name}");
-
-        prev = wp;
-        last = wp;
-    }
-
-    // 🔥 เปิด destroyBall ตัวสุดท้าย
-    if (last != null)
-    {
-        // 🔥 ถ้ายังไม่มี component ค่อยเพิ่ม
-        if (last.GetComponent<destroyBall>() == null)
-        {
-            last.gameObject.AddComponent<destroyBall>();
-            Debug.Log($"💥 ADD destroyBall on {last.name}");
-        }
-        else
-        {
-            Debug.Log($"⚠️ destroyBall already exists on {last.name}");
-        }
-    }
-
-    Debug.Log("=== LINK END ===");
-}
 
         // =====================================================
         // 🎯 SLOT MATCH
@@ -265,16 +272,23 @@ namespace WaypointSystem
         // =====================================================
         void OnDrawGizmosSelected()
         {
+            Vector3 dir = Vector3.zero;
+
             if (side == Side.Left)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawLine(transform.position, transform.position + (-transform.right * rayDistance));
-            }
+                dir = -transform.right;
             else if (side == Side.Right)
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawLine(transform.position, transform.position + (transform.right * rayDistance));
-            }
+                dir = transform.right;
+            else
+                return;
+
+            Gizmos.color = side == Side.Left ? Color.red : Color.green;
+
+            Vector3 start = transform.position;
+            Vector3 end = transform.position + (dir * rayDistance);
+
+            Gizmos.DrawLine(start, end);
+            Gizmos.DrawWireSphere(start, detectRadius);
+            Gizmos.DrawWireSphere(end, detectRadius);
         }
     }
 }
