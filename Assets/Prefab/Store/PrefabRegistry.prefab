@@ -50,12 +50,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - deviceId: sky-6420
-    prefab: {fileID: 6850614559164874785, guid: 63e745870d4fffe4086339496bdd3784,
+    prefab: {fileID: 45179299234597684, guid: 5fd15e98bf56d504e8215fcc2cff0c71, type: 3}
+  - deviceId: Dell R260
+    prefab: {fileID: 8036225055148019205, guid: 6bbf41b1827cbfb4f8993e406ffd917a,
       type: 3}
-  - deviceId: supermicro 4029GP-TRT2
-    prefab: {fileID: 0}
-  - deviceId: Dell EMC PowerEdge R740xd
-    prefab: {fileID: 0}
+  - deviceId: Dell R540
+    prefab: {fileID: 6083352095512475728, guid: 51d3e677efa1fff42b0c063c859081df,
+      type: 3}
   - deviceId: Cisco UCS X9508 Chassis
     prefab: {fileID: 0}
   - deviceId: FortiGate 90G
@@ -63,10 +64,9 @@ MonoBehaviour:
   - deviceId: Cisco Meraki MX250
     prefab: {fileID: 0}
   - deviceId: Juniper SRX340
-    prefab: {fileID: 9214095382882202823, guid: cd0d3604c2cf0cc4fa1eec90db173d8f,
-      type: 3}
+    prefab: {fileID: 678136714045749358, guid: bcf3454f2f37f1348b4a084fd84bb0df, type: 3}
   - deviceId: FortiWAN-3000B
-    prefab: {fileID: 7385045387261227112, guid: 1f36ea6c437f4324cba601bb28fe1cb5,
+    prefab: {fileID: 3739637730315964274, guid: 096d268a76f03214f8a72273e89c46fa,
       type: 3}
   - deviceId: APC SRT2200RMXLI-NC
     prefab: {fileID: 9077722892809516047, guid: 4032245f7c7510347844cc76dad22e90,
@@ -74,7 +74,7 @@ MonoBehaviour:
   - deviceId: Openetic Basic PDU
     prefab: {fileID: 0}
   - deviceId: Tripp lite 12-Outlet PDU
-    prefab: {fileID: 9032207974336521515, guid: 6823e12cdd00581499c123724d1d8614,
+    prefab: {fileID: 5665976912724402318, guid: 2fcf21993e8fa9b4580338b73096c2c1,
       type: 3}
   - deviceId: GE Digital Match 1500
     prefab: {fileID: 0}
@@ -116,25 +116,26 @@ MonoBehaviour:
     prefab: {fileID: 4677551825529585952, guid: ff19623d5fa017443967ca58947a23a4,
       type: 3}
   - deviceId: c2960
-    prefab: {fileID: 0}
+    prefab: {fileID: 8279005390028392182, guid: cae0cc754df91e14fa79ea7973f45219,
+      type: 3}
   - deviceId: c3560
     prefab: {fileID: 6974259375029496011, guid: b4f6594367d30254fa781b4c80a6b7f6,
       type: 3}
   - deviceId: sg300
-    prefab: {fileID: 0}
-  - deviceId: rj45
+    prefab: {fileID: 949157216798656581, guid: 847b1d9398f4c9e4c8aa6123bed761e0, type: 3}
+  - deviceId: Rj45
     prefab: {fileID: 2755825165400437626, guid: 9dcbef0af9060de43b1eebbb630ca463,
       type: 3}
-  - deviceId: dsl
+  - deviceId: DslToDsl
     prefab: {fileID: 8591240308944349287, guid: c64705df11ac5594f910fd2613de55d4,
       type: 3}
   - deviceId: power
     prefab: {fileID: 8591240308944349287, guid: 84d3e2e07335f9047bdd576c4bd300b6,
       type: 3}
-  - deviceId: fiberLCMultimode
+  - deviceId: FiberLCMultimode
     prefab: {fileID: 8591240308944349287, guid: acbc625c71c6ce84eaca49da281929f1,
       type: 3}
-  - deviceId: fiberLCSinglemode
+  - deviceId: FiberLCSinglemode
     prefab: {fileID: 8591240308944349287, guid: 238dfa1b51aabed44805c37c8c96ab13,
       type: 3}
   - deviceId: IECC13ToC14
