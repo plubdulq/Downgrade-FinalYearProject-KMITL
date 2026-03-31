@@ -250,7 +250,7 @@ public class RoomCreatorManager : MonoBehaviour
 
             if (warningText != null)
             {
-                warningText.text = "ชื่อห้องนี้มีอยู่แล้ว!";
+                warningText.text = "This room already has a name!";
                 warningText.gameObject.SetActive(true);
             }
 
