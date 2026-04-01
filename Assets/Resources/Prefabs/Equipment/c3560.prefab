@@ -28009,7 +28009,7 @@ PrefabInstance:
     - target: {fileID: 4213795611944346746, guid: 9e3b0bca4dce07c4cac56011bea1487d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0224
+      value: 0.0184
       objectReference: {fileID: 0}
     - target: {fileID: 4213795611944346746, guid: 9e3b0bca4dce07c4cac56011bea1487d,
         type: 3}
@@ -28364,6 +28364,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1249372929928121207}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1eb662d1e19dc0d44b6b6bf4c83da1a9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3857163244396588970}
   m_SourcePrefab: {fileID: 100100000, guid: 1eb662d1e19dc0d44b6b6bf4c83da1a9, type: 3}
 --- !u!1 &6974259375029496011 stripped
 GameObject:
@@ -28539,6 +28543,21 @@ MonoBehaviour:
   VibrateFrequency: 0.3
   VibrateAmplitude: 0.1
   VibrateDuration: 0.1
+--- !u!114 &3857163244396588970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6974259375029496011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44cccb4bf0173a4ca6fc693209891fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wattPerCelsius: 0.3
+  onPlug: 0
+  powerState: 0
 --- !u!4 &7746854776211665521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1eb662d1e19dc0d44b6b6bf4c83da1a9,

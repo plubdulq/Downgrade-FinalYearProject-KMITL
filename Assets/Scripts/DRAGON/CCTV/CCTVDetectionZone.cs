@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [RequireComponent(typeof(BoxCollider))]
 public class CCTVDetectionZone : MonoBehaviour
@@ -193,8 +196,13 @@ public class CCTVDetectionZone : MonoBehaviour
             return;
 
         Color targetColor = isPlayerInside ? detectedColor : normalColor;
+        #if UNITY_EDITOR
+            bool isPrefab = PrefabUtility.IsPartOfPrefabAsset(zoneRenderer.gameObject);
+        #else
+            bool isPrefab = false;
+        #endif
 
-        if (Application.isPlaying)
+        if (Application.isPlaying && !isPrefab)
         {
             if (zoneRenderer.material != null)
                 zoneRenderer.material.color = targetColor;

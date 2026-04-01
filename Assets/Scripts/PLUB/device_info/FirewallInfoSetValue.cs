@@ -23,8 +23,7 @@ public class FirewallInfoSetValue : MonoBehaviour
     public void OnEnable()
     {
         SetStaticInfo();
-        TempUpdate();
-
+        //TempUpdate();
     }
 
     public void OnDisable()

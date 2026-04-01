@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "VRIF Default Input Actions",
     "maps": [
         {
@@ -620,6 +621,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "OpenStore",
+                    "type": "Button",
+                    "id": "3dac7574-d3d1-4631-aefc-ddcace0e5baf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -864,6 +874,17 @@
                     "action": "Turn",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "79363906-7255-4075-a437-39a38fbd5b78",
+                    "path": "<XRController>{RightHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenStore",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

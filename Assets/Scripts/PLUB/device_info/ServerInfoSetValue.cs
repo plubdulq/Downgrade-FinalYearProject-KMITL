@@ -16,6 +16,10 @@ public class ServerInfoSetValue : MonoBehaviour
     private void Awake()
     {
         deviceHeat = GetComponentInParent<DeviceHeat>();
+        if(deviceHeat == null)
+        {
+            deviceHeat = GetComponent<DeviceHeat>();
+        }
     }
 
     private void SetStaticInfo()
