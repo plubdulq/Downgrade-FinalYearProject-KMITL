@@ -13,8 +13,13 @@ public class NetworkDevice : MonoBehaviour
     {
         repository = new QueryPortSchema();
         EquipmentData device = GetComponent<EquipmentData>();
+        Debug.Log("DDDDDDdddddddddd");
+        if (device == null)
+        {
+            Debug.Log($"testttttttttttt");
+        }
         guid = device.uniqueID;
-        DeviceMapManager.Instance.Register(guid, this.gameObject);
+        //DeviceMapManager.Instance.Register(guid, this.gameObject);
         RegisterDevice();
     }
 

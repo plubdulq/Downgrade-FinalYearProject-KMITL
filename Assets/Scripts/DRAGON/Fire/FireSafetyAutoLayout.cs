@@ -1,111 +1,183 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class FireSafetyAutoLayout : MonoBehaviour
 {
+    [Header("Anchors")]
+    [SerializeField] private Transform roomCenter;
+    [SerializeField] private Transform smokeDetectorsRoot;
+    [SerializeField] private Transform dischargeNozzlesRoot;
+
+    [Header("Optional Geometry Roots")]
+    [SerializeField] private Transform floorsTransform;
+    [SerializeField] private Transform ceilingsTransform;
+
     [Header("Prefabs")]
-    public GameObject smokeDetectorPrefab;
-    public GameObject dischargeNozzlePrefab;
+    [SerializeField] private GameObject smokeDetectorPrefab;
+    [SerializeField] private GameObject dischargeNozzlePrefab;
 
-    [Header("Spawn Parent")]
-    [Tooltip("Parent สำหรับ object ที่ script spawn ขึ้นมา")]
-    public Transform spawnedRoot;
+    [Header("Room Size Fallback (meters)")]
+    [SerializeField] private float fallbackRoomWidth = 5f;
+    [SerializeField] private float fallbackRoomLength = 5f;
 
-    [Header("Room Layout")]
-    [Tooltip("Offset จากตำแหน่ง object นี้ ไปยัง 'กลางห้อง' ถ้า object นี้ไม่ได้อยู่กลางห้องจริง")]
-    public Vector3 layoutCenterOffset = Vector3.zero;
+    [Header("Y Placement")]
+    [SerializeField] private float fallbackCeilingBottomLoc = 2.75f;
 
-    [Tooltip("ความสูงเพดานที่ต้องการใช้ spawn อุปกรณ์")]
-    public float ceilingY = 2.8f;
+    [Tooltip("ค่าชดเชย Y ของ Smoke Detector จากใต้เพดานโลกจริง (+ = สูงขึ้น, - = ต่ำลง)")]
+    [SerializeField] private float smokeDetectorYOffset = -0.12f;
 
-    [Tooltip("ระยะเผื่อจากผนัง ไม่ให้วางชิดขอบเกินไป")]
-    public float edgePadding = 0.8f;
+    [Tooltip("ค่าชดเชย Y ของ Discharge Nozzle จากใต้เพดานโลกจริง (+ = สูงขึ้น, - = ต่ำลง)")]
+    [SerializeField] private float dischargeNozzleYOffset = -0.08f;
 
-    [Tooltip("ระยะขั้นต่ำระหว่าง nozzle กับ smoke detector")]
-    public float minimumSmokeNozzleSeparation = 1.0f;
+    [Header("Placement Rules")]
+    [SerializeField] private float minWallOffset = 0.8f;
+    [SerializeField] private float minSmokeToNozzleDistance = 1f;
 
-    [Header("Rotation")]
-    public Vector3 smokeRotationEuler = Vector3.zero;
-    public Vector3 nozzleRotationEuler = Vector3.zero;
+    [Header("Device Rotation")]
+    [SerializeField] private Vector3 smokeDetectorLocalEuler = new Vector3(-90f, 0f, 0f);
+    [SerializeField] private Vector3 dischargeNozzleLocalEuler = new Vector3(90f, 0f, 0f);
 
-    [Header("Behaviour")]
-    [Tooltip("ถ้า true จะลบของเก่าที่เคย spawn โดย script นี้ก่อนสร้างใหม่")]
-    public bool clearOldSpawnedObjects = true;
+    [Header("Runtime")]
+    [SerializeField] private bool applyOnStart = true;
+    [SerializeField] private bool clearOldChildrenBeforeSpawn = true;
+    [SerializeField] private bool debugLogs = true;
 
-    [Tooltip("ถ้า true จะ auto spawn ตอน Start")]
-    public bool autoSpawnOnStart = true;
+    [Header("Runtime Debug (Read Only)")]
+    [SerializeField] private float resolvedRoomWidth;
+    [SerializeField] private float resolvedRoomLength;
+    [SerializeField] private float resolvedRoomArea;
+    [SerializeField] private float resolvedFloorCenterX;
+    [SerializeField] private float resolvedFloorCenterZ;
+    [SerializeField] private float resolvedUsableHalfX;
+    [SerializeField] private float resolvedUsableHalfZ;
+    [SerializeField] private float resolvedCeilingBottomY;
 
-    [Tooltip("เปิด debug log")]
-    public bool debugLogs = true;
+    private const float SmokeCoverageSqm = 64f;
+    private const float NozzleCoverageSqm = 30f;
 
-    private const string SpawnedTagName = "FireSafetyAutoSpawned";
+    private struct FloorFrame
+    {
+        public Vector3 center;
+        public float usableHalfX;
+        public float usableHalfZ;
+    }
 
     private void Start()
     {
-        if (autoSpawnOnStart)
-        {
-            GenerateLayout();
-        }
+        if (applyOnStart)
+            RebuildLayout();
     }
 
-    [ContextMenu("Generate Layout Now")]
-    public void GenerateLayout()
+    [ContextMenu("Rebuild Layout")]
+    public void RebuildLayout()
     {
-        if (!ValidateSetup())
+        if (!ValidateRequiredRefs())
             return;
 
-        if (!TryParseRoomSizeFromSceneName(SceneManager.GetActiveScene().name, out int width, out int length))
+        if (clearOldChildrenBeforeSpawn)
         {
-            Debug.LogError($"[FireSafetyAutoLayout] Scene name '{SceneManager.GetActiveScene().name}' parse ไม่ได้. " +
-                           $"รองรับชื่อแบบ 55, 56, 88, 910, 1010");
-            return;
+            ClearChildren(smokeDetectorsRoot);
+            ClearChildren(dischargeNozzlesRoot);
         }
 
-        int area = width * length;
-        int smokeCount = GetSmokeCount(area);
-        int nozzleCount = GetNozzleCount(area);
+        Vector2 roomSize = ResolveRoomSizeFromSceneNameOrFallback();
+        float roomWidth = roomSize.x;
+        float roomLength = roomSize.y;
+        float roomArea = roomWidth * roomLength;
 
-        if (debugLogs)
-        {
-            Debug.Log($"[FireSafetyAutoLayout] Scene={SceneManager.GetActiveScene().name}, Room={width}x{length}, Area={area} sqm, Smoke={smokeCount}, Nozzle={nozzleCount}");
-        }
+        resolvedRoomWidth = roomWidth;
+        resolvedRoomLength = roomLength;
+        resolvedRoomArea = roomArea;
 
-        if (clearOldSpawnedObjects)
-        {
-            ClearSpawnedObjects();
-        }
+        int smokeCount = CalculateSmokeDetectorCount(roomArea);
+        int nozzleCount = CalculateDischargeNozzleCount(roomArea);
 
-        Vector3 roomCenter = transform.position + layoutCenterOffset;
+        FloorFrame frame = ResolveFloorFrame(roomWidth, roomLength);
+        float ceilingBottomY = ResolveCeilingBottomY();
 
-        List<Vector3> smokePositions = CalculateSmokePositions(width, length, smokeCount, roomCenter);
-        List<Vector3> nozzlePositions = CalculateNozzlePositions(width, length, nozzleCount, roomCenter, smokePositions);
+        resolvedFloorCenterX = frame.center.x;
+        resolvedFloorCenterZ = frame.center.z;
+        resolvedUsableHalfX = frame.usableHalfX;
+        resolvedUsableHalfZ = frame.usableHalfZ;
+        resolvedCeilingBottomY = ceilingBottomY;
 
-        SpawnSmokeDetectors(smokePositions);
-        SpawnDischargeNozzles(nozzlePositions);
+        List<Vector2> smokeOffsets = BuildSmokeOffsets(frame.usableHalfX, frame.usableHalfZ, smokeCount);
+        List<Vector2> nozzleOffsets = BuildNozzleOffsets(frame.usableHalfX, frame.usableHalfZ, nozzleCount);
+
+        EnforceMinDistanceBetweenSmokeAndNozzle(
+            smokeOffsets,
+            nozzleOffsets,
+            frame.usableHalfX,
+            frame.usableHalfZ,
+            minSmokeToNozzleDistance
+        );
+
+        SpawnSmokeDetectors(smokeOffsets, frame.center, ceilingBottomY);
+        SpawnDischargeNozzles(nozzleOffsets, frame.center, ceilingBottomY);
+
+        Log(
+            $"RebuildLayout complete | Scene='{SceneManager.GetActiveScene().name}' | " +
+            $"Room={roomWidth:0.##} x {roomLength:0.##} m | Area={roomArea:0.##} sqm | " +
+            $"Smoke={smokeCount} | Nozzle={nozzleCount} | " +
+            $"FloorCenter=({frame.center.x:0.###}, {frame.center.z:0.###}) | " +
+            $"UsableHalf=({frame.usableHalfX:0.###}, {frame.usableHalfZ:0.###}) | " +
+            $"CeilingBottomY={ceilingBottomY:0.###}"
+        );
     }
 
-    private bool ValidateSetup()
+    private bool ValidateRequiredRefs()
     {
-        if (!smokeDetectorPrefab)
+        if (roomCenter == null)
         {
-            Debug.LogError("[FireSafetyAutoLayout] smokeDetectorPrefab ยังไม่ได้ assign");
+            LogWarning("RoomCenter is missing.");
             return false;
         }
 
-        if (!dischargeNozzlePrefab)
+        if (smokeDetectorsRoot == null)
         {
-            Debug.LogError("[FireSafetyAutoLayout] dischargeNozzlePrefab ยังไม่ได้ assign");
+            LogWarning("SmokeDetectorsRoot is missing.");
             return false;
         }
 
-        if (!spawnedRoot)
+        if (dischargeNozzlesRoot == null)
         {
-            Debug.LogWarning("[FireSafetyAutoLayout] spawnedRoot ยังไม่ได้ assign -> จะใช้ object นี้เป็น parent แทน");
-            spawnedRoot = transform;
+            LogWarning("DischargeNozzlesRoot is missing.");
+            return false;
+        }
+
+        if (smokeDetectorPrefab == null)
+        {
+            LogWarning("Smoke Detector Prefab is missing.");
+            return false;
+        }
+
+        if (dischargeNozzlePrefab == null)
+        {
+            LogWarning("Discharge Nozzle Prefab is missing.");
+            return false;
         }
 
         return true;
+    }
+
+    private Vector2 ResolveRoomSizeFromSceneNameOrFallback()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (TryParseRoomSizeFromSceneName(sceneName, out int parsedWidth, out int parsedLength))
+        {
+            Log($"Parsed room size from scene name '{sceneName}' => {parsedWidth} x {parsedLength} m");
+            return new Vector2(parsedWidth, parsedLength);
+        }
+
+        LogWarning(
+            $"Could not parse room size from scene name '{sceneName}'. " +
+            $"Using fallback size {fallbackRoomWidth} x {fallbackRoomLength} m"
+        );
+
+        return new Vector2(Mathf.Max(1f, fallbackRoomWidth), Mathf.Max(1f, fallbackRoomLength));
     }
 
     private bool TryParseRoomSizeFromSceneName(string sceneName, out int width, out int length)
@@ -116,340 +188,491 @@ public class FireSafetyAutoLayout : MonoBehaviour
         if (string.IsNullOrWhiteSpace(sceneName))
             return false;
 
-        // รองรับเฉพาะตัวเลขล้วน
+        StringBuilder digitsOnly = new StringBuilder();
         foreach (char c in sceneName)
         {
-            if (!char.IsDigit(c))
-                return false;
+            if (char.IsDigit(c))
+                digitsOnly.Append(c);
         }
 
-        // ห้องของคุณอยู่ในช่วง 5-10 เมตร
-        // ดังนั้นชื่อ scene ที่เป็นไปได้:
-        // 55   = 5,5
-        // 56   = 5,6
-        // 910  = 9,10
-        // 1010 = 10,10
+        string digits = digitsOnly.ToString();
+        if (string.IsNullOrEmpty(digits))
+            return false;
 
-        List<int> numbers = ExtractValidRoomParts(sceneName);
-
-        if (numbers.Count == 2)
+        if (digits.Length == 2)
         {
-            width = numbers[0];
-            length = numbers[1];
+            int a = digits[0] - '0';
+            int b = digits[1] - '0';
+
+            if (IsSupportedRoomDimension(a) && IsSupportedRoomDimension(b))
+            {
+                width = a;
+                length = b;
+                return true;
+            }
+        }
+
+        if (digits.Length == 3)
+        {
+            if (int.TryParse(digits.Substring(0, 1), out int a) &&
+                int.TryParse(digits.Substring(1, 2), out int b) &&
+                IsSupportedRoomDimension(a) && IsSupportedRoomDimension(b))
+            {
+                width = a;
+                length = b;
+                return true;
+            }
+
+            if (int.TryParse(digits.Substring(0, 2), out int c) &&
+                int.TryParse(digits.Substring(2, 1), out int d) &&
+                IsSupportedRoomDimension(c) && IsSupportedRoomDimension(d))
+            {
+                width = c;
+                length = d;
+                return true;
+            }
+        }
+
+        if (digits.Length == 4)
+        {
+            if (int.TryParse(digits.Substring(0, 2), out int a) &&
+                int.TryParse(digits.Substring(2, 2), out int b) &&
+                IsSupportedRoomDimension(a) && IsSupportedRoomDimension(b))
+            {
+                width = a;
+                length = b;
+                return true;
+            }
+        }
+
+        for (int split = 1; split < digits.Length; split++)
+        {
+            string left = digits.Substring(0, split);
+            string right = digits.Substring(split);
+
+            if (!int.TryParse(left, out int a) || !int.TryParse(right, out int b))
+                continue;
+
+            if (IsSupportedRoomDimension(a) && IsSupportedRoomDimension(b))
+            {
+                width = a;
+                length = b;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool IsSupportedRoomDimension(int value)
+    {
+        return value >= 5 && value <= 10;
+    }
+
+    private int CalculateSmokeDetectorCount(float areaSqm)
+    {
+        return areaSqm <= SmokeCoverageSqm ? 1 : 2;
+    }
+
+    private int CalculateDischargeNozzleCount(float areaSqm)
+    {
+        return Mathf.Clamp(Mathf.CeilToInt(areaSqm / NozzleCoverageSqm), 1, 4);
+    }
+
+    private FloorFrame ResolveFloorFrame(float roomWidth, float roomLength)
+    {
+        Bounds floorBounds;
+        if (TryResolveFloorBounds(out floorBounds))
+        {
+            float usableHalfX = Mathf.Max(0.1f, floorBounds.extents.x - minWallOffset);
+            float usableHalfZ = Mathf.Max(0.1f, floorBounds.extents.z - minWallOffset);
+
+            FloorFrame frame = new FloorFrame
+            {
+                center = new Vector3(floorBounds.center.x, roomCenter.position.y, floorBounds.center.z),
+                usableHalfX = usableHalfX,
+                usableHalfZ = usableHalfZ
+            };
+
+            Log(
+                $"Resolved floor frame from bounds | center=({frame.center.x:0.###}, {frame.center.z:0.###}) " +
+                $"| extents=({floorBounds.extents.x:0.###}, {floorBounds.extents.z:0.###}) " +
+                $"| usableHalf=({usableHalfX:0.###}, {usableHalfZ:0.###})"
+            );
+
+            return frame;
+        }
+
+        FloorFrame fallback = new FloorFrame
+        {
+            center = new Vector3(roomCenter.position.x, roomCenter.position.y, roomCenter.position.z),
+            usableHalfX = Mathf.Max(0.1f, roomWidth * 0.5f - minWallOffset),
+            usableHalfZ = Mathf.Max(0.1f, roomLength * 0.5f - minWallOffset)
+        };
+
+        LogWarning(
+            $"Using fallback floor frame from RoomCenter | center=({fallback.center.x:0.###}, {fallback.center.z:0.###}) " +
+            $"| usableHalf=({fallback.usableHalfX:0.###}, {fallback.usableHalfZ:0.###})"
+        );
+
+        return fallback;
+    }
+
+    private bool TryResolveFloorBounds(out Bounds result)
+    {
+        result = default;
+
+        if (TryGetBoundsFromTransform(floorsTransform, out result))
+            return true;
+
+        Transform autoFloors = FindTransformContains("floors");
+        if (autoFloors != null && TryGetBoundsFromTransform(autoFloors, out result))
+        {
+            Log($"Resolved floor bounds from auto-found '{autoFloors.name}'");
+            return true;
+        }
+
+        Transform autoFloor = FindTransformContains("floor");
+        if (autoFloor != null && TryGetBoundsFromTransform(autoFloor, out result))
+        {
+            Log($"Resolved floor bounds from auto-found '{autoFloor.name}'");
             return true;
         }
 
         return false;
     }
 
-    private List<int> ExtractValidRoomParts(string sceneName)
+    private bool TryGetBoundsFromTransform(Transform target, out Bounds combined)
     {
-        List<int> result = new List<int>();
+        combined = default;
 
-        // วิธีง่ายและชัวร์สำหรับช่วง 5..10
-        // ทดลองแยกเป็น 1+1, 1+2, 2+1, 2+2 แล้วเช็คว่าเลขอยู่ในช่วง 5..10
-        for (int split = 1; split < sceneName.Length; split++)
+        if (target == null)
+            return false;
+
+        Renderer[] renderers = target.GetComponentsInChildren<Renderer>(true);
+        bool hasBounds = false;
+
+        foreach (Renderer r in renderers)
         {
-            string left = sceneName.Substring(0, split);
-            string right = sceneName.Substring(split);
+            if (r == null)
+                continue;
 
-            if (int.TryParse(left, out int a) && int.TryParse(right, out int b))
+            if (!hasBounds)
             {
-                if (a >= 5 && a <= 10 && b >= 5 && b <= 10)
-                {
-                    result.Add(a);
-                    result.Add(b);
-                    return result;
-                }
+                combined = r.bounds;
+                hasBounds = true;
+            }
+            else
+            {
+                combined.Encapsulate(r.bounds);
             }
         }
 
-        return result;
-    }
+        if (hasBounds)
+            return true;
 
-    private int GetSmokeCount(int area)
-    {
-        if (area <= 64) return 1;
-        return 2; // >64 ถึง 100
-    }
-
-    private int GetNozzleCount(int area)
-    {
-        if (area <= 24) return 0;      // กันพลาด เผื่อขนาดแปลก
-        if (area <= 30) return 1;
-        if (area <= 60) return 2;
-        if (area <= 90) return 3;
-        return 4; // 91-100
-    }
-
-    private List<Vector3> CalculateSmokePositions(int width, int length, int smokeCount, Vector3 roomCenter)
-    {
-        List<Vector3> positions = new List<Vector3>();
-
-        float halfWidth = width * 0.5f;
-        float halfLength = length * 0.5f;
-
-        if (smokeCount <= 0)
-            return positions;
-
-        if (smokeCount == 1)
+        Collider[] colliders = target.GetComponentsInChildren<Collider>(true);
+        foreach (Collider c in colliders)
         {
-            positions.Add(new Vector3(
-                roomCenter.x,
-                ceilingY,
-                roomCenter.z
-            ));
-            return positions;
+            if (c == null)
+                continue;
+
+            if (!hasBounds)
+            {
+                combined = c.bounds;
+                hasBounds = true;
+            }
+            else
+            {
+                combined.Encapsulate(c.bounds);
+            }
         }
 
-        // 2 smoke = split ตามแกนที่ยาวกว่า
-        bool splitAlongWidth = width >= length;
+        return hasBounds;
+    }
 
-        if (splitAlongWidth)
+    private Transform FindTransformContains(string keyword)
+    {
+        Transform[] all = FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        for (int i = 0; i < all.Length; i++)
         {
-            float x1 = roomCenter.x - halfWidth * 0.5f;
-            float x2 = roomCenter.x + halfWidth * 0.5f;
+            Transform t = all[i];
+            if (t == null)
+                continue;
 
-            x1 = ClampXToRoom(x1, roomCenter.x, halfWidth);
-            x2 = ClampXToRoom(x2, roomCenter.x, halfWidth);
+            if (t.name.ToLowerInvariant().Contains(keyword))
+                return t;
+        }
 
-            positions.Add(new Vector3(x1, ceilingY, roomCenter.z));
-            positions.Add(new Vector3(x2, ceilingY, roomCenter.z));
+        return null;
+    }
+
+    private float ResolveCeilingBottomY()
+    {
+        if (TryGetBottomYFromTransform(ceilingsTransform, out float refY, "CeilingsTransform"))
+            return refY;
+
+        string[] keywords = { "celings" };
+        Transform[] all = FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (string keyword in keywords)
+        {
+            foreach (Transform t in all)
+            {
+                if (t == null)
+                    continue;
+
+                if (!t.name.ToLowerInvariant().Contains(keyword))
+                    continue;
+
+                if (TryGetBottomYFromTransform(t, out float autoY, $"auto-found '{t.name}'"))
+                    return autoY;
+            }
+        }
+
+        LogWarning($"Using fallback ceiling bottom Y: {fallbackCeilingBottomLoc:0.###}");
+        return fallbackCeilingBottomLoc;
+    }
+
+    private bool TryGetBottomYFromTransform(Transform target, out float bottomY, string sourceLabel)
+    {
+        bottomY = 0f;
+
+        if (target == null)
+            return false;
+
+        Renderer[] renderers = target.GetComponentsInChildren<Renderer>(true);
+        if (renderers != null && renderers.Length > 0)
+        {
+            float lowestY = float.MaxValue;
+            bool found = false;
+
+            foreach (Renderer r in renderers)
+            {
+                if (r == null)
+                    continue;
+
+                lowestY = Mathf.Min(lowestY, r.bounds.min.y);
+                found = true;
+            }
+
+            if (found)
+            {
+                bottomY = lowestY;
+                Log($"Resolved ceiling bottom Y from {sourceLabel} renderer = {bottomY:0.###}");
+                return true;
+            }
+        }
+
+        Collider[] colliders = target.GetComponentsInChildren<Collider>(true);
+        if (colliders != null && colliders.Length > 0)
+        {
+            float lowestY = float.MaxValue;
+            bool found = false;
+
+            foreach (Collider c in colliders)
+            {
+                if (c == null)
+                    continue;
+
+                lowestY = Mathf.Min(lowestY, c.bounds.min.y);
+                found = true;
+            }
+
+            if (found)
+            {
+                bottomY = lowestY;
+                Log($"Resolved ceiling bottom Y from {sourceLabel} collider = {bottomY:0.###}");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private List<Vector2> BuildSmokeOffsets(float usableHalfX, float usableHalfZ, int count)
+    {
+        List<Vector2> offsets = new List<Vector2>();
+
+        if (count <= 1)
+        {
+            offsets.Add(Vector2.zero);
+            return offsets;
+        }
+
+        if (usableHalfX >= usableHalfZ)
+        {
+            float x = usableHalfX * 0.5f;
+            offsets.Add(new Vector2(-x, 0f));
+            offsets.Add(new Vector2(+x, 0f));
         }
         else
         {
-            float z1 = roomCenter.z - halfLength * 0.5f;
-            float z2 = roomCenter.z + halfLength * 0.5f;
-
-            z1 = ClampZToRoom(z1, roomCenter.z, halfLength);
-            z2 = ClampZToRoom(z2, roomCenter.z, halfLength);
-
-            positions.Add(new Vector3(roomCenter.x, ceilingY, z1));
-            positions.Add(new Vector3(roomCenter.x, ceilingY, z2));
+            float z = usableHalfZ * 0.5f;
+            offsets.Add(new Vector2(0f, -z));
+            offsets.Add(new Vector2(0f, +z));
         }
 
-        return positions;
+        return offsets;
     }
 
-    private List<Vector3> CalculateNozzlePositions(int width, int length, int nozzleCount, Vector3 roomCenter, List<Vector3> smokePositions)
+    private List<Vector2> BuildNozzleOffsets(float usableHalfX, float usableHalfZ, int count)
     {
-        List<Vector3> positions = new List<Vector3>();
+        List<Vector2> offsets = new List<Vector2>();
 
-        float halfWidth = width * 0.5f;
-        float halfLength = length * 0.5f;
+        float x25 = usableHalfX * 0.5f;
+        float z25 = usableHalfZ * 0.5f;
+        float x22 = usableHalfX * 0.44f;
+        float z22 = usableHalfZ * 0.44f;
 
-        if (nozzleCount <= 0)
-            return positions;
-
-        switch (nozzleCount)
+        switch (count)
         {
             case 1:
-            {
-                positions.Add(new Vector3(roomCenter.x, ceilingY, roomCenter.z));
+                offsets.Add(Vector2.zero);
                 break;
-            }
 
             case 2:
-            {
-                // กระจายตามแกนที่ยาวกว่า
-                bool splitAlongWidth = width >= length;
-
-                if (splitAlongWidth)
+                if (usableHalfX >= usableHalfZ)
                 {
-                    float x1 = roomCenter.x - halfWidth * 0.25f;
-                    float x2 = roomCenter.x + halfWidth * 0.25f;
-
-                    x1 = ClampXToRoom(x1, roomCenter.x, halfWidth);
-                    x2 = ClampXToRoom(x2, roomCenter.x, halfWidth);
-
-                    positions.Add(new Vector3(x1, ceilingY, roomCenter.z));
-                    positions.Add(new Vector3(x2, ceilingY, roomCenter.z));
+                    offsets.Add(new Vector2(-x25, 0f));
+                    offsets.Add(new Vector2(+x25, 0f));
                 }
                 else
                 {
-                    float z1 = roomCenter.z - halfLength * 0.25f;
-                    float z2 = roomCenter.z + halfLength * 0.25f;
-
-                    z1 = ClampZToRoom(z1, roomCenter.z, halfLength);
-                    z2 = ClampZToRoom(z2, roomCenter.z, halfLength);
-
-                    positions.Add(new Vector3(roomCenter.x, ceilingY, z1));
-                    positions.Add(new Vector3(roomCenter.x, ceilingY, z2));
+                    offsets.Add(new Vector2(0f, -z25));
+                    offsets.Add(new Vector2(0f, +z25));
                 }
                 break;
-            }
 
             case 3:
-            {
-                // วางเป็นสามเหลี่ยมสมดุลแบบ practical:
-                // 1 จุดด้านบนกลาง + 2 จุดด้านล่างซ้าย/ขวา
-                float xLeft = ClampXToRoom(roomCenter.x - halfWidth * 0.28f, roomCenter.x, halfWidth);
-                float xRight = ClampXToRoom(roomCenter.x + halfWidth * 0.28f, roomCenter.x, halfWidth);
-                float zTop = ClampZToRoom(roomCenter.z + halfLength * 0.22f, roomCenter.z, halfLength);
-                float zBottom = ClampZToRoom(roomCenter.z - halfLength * 0.22f, roomCenter.z, halfLength);
-
-                positions.Add(new Vector3(roomCenter.x, ceilingY, zTop));
-                positions.Add(new Vector3(xLeft, ceilingY, zBottom));
-                positions.Add(new Vector3(xRight, ceilingY, zBottom));
+                if (usableHalfX >= usableHalfZ)
+                {
+                    offsets.Add(new Vector2(-x22, -z22));
+                    offsets.Add(new Vector2(-x22, +z22));
+                    offsets.Add(new Vector2(+x22, 0f));
+                }
+                else
+                {
+                    offsets.Add(new Vector2(-x22, -z22));
+                    offsets.Add(new Vector2(+x22, -z22));
+                    offsets.Add(new Vector2(0f, +z22));
+                }
                 break;
-            }
 
-            case 4:
-            {
-                // วางเป็น 2x2 บนเพดาน
-                float x1 = ClampXToRoom(roomCenter.x - halfWidth * 0.25f, roomCenter.x, halfWidth);
-                float x2 = ClampXToRoom(roomCenter.x + halfWidth * 0.25f, roomCenter.x, halfWidth);
-                float z1 = ClampZToRoom(roomCenter.z - halfLength * 0.25f, roomCenter.z, halfLength);
-                float z2 = ClampZToRoom(roomCenter.z + halfLength * 0.25f, roomCenter.z, halfLength);
-
-                positions.Add(new Vector3(x1, ceilingY, z1));
-                positions.Add(new Vector3(x2, ceilingY, z1));
-                positions.Add(new Vector3(x1, ceilingY, z2));
-                positions.Add(new Vector3(x2, ceilingY, z2));
+            default:
+                offsets.Add(new Vector2(-x25, -z25));
+                offsets.Add(new Vector2(-x25, +z25));
+                offsets.Add(new Vector2(+x25, -z25));
+                offsets.Add(new Vector2(+x25, +z25));
                 break;
-            }
         }
 
-        // พยายามขยับ nozzle ให้ห่าง smoke detector
-        for (int i = 0; i < positions.Count; i++)
-        {
-            positions[i] = PushAwayFromSmokeIfNeeded(
-                positions[i],
-                smokePositions,
-                roomCenter,
-                halfWidth,
-                halfLength,
-                minimumSmokeNozzleSeparation
-            );
-        }
-
-        return positions;
+        return offsets;
     }
 
-    private Vector3 PushAwayFromSmokeIfNeeded(
-        Vector3 nozzlePos,
-        List<Vector3> smokePositions,
-        Vector3 roomCenter,
-        float halfWidth,
-        float halfLength,
+    private void EnforceMinDistanceBetweenSmokeAndNozzle(
+        List<Vector2> smokeOffsets,
+        List<Vector2> nozzleOffsets,
+        float usableHalfX,
+        float usableHalfZ,
         float minDistance)
     {
-        Vector3 adjusted = nozzlePos;
-
-        for (int i = 0; i < smokePositions.Count; i++)
-        {
-            Vector3 smoke = smokePositions[i];
-
-            Vector2 a = new Vector2(adjusted.x, adjusted.z);
-            Vector2 b = new Vector2(smoke.x, smoke.z);
-
-            float dist = Vector2.Distance(a, b);
-            if (dist < minDistance)
-            {
-                Vector2 dir = (a - b);
-                if (dir.sqrMagnitude < 0.0001f)
-                {
-                    dir = new Vector2(1f, 0f);
-                }
-                dir.Normalize();
-
-                Vector2 pushed = b + dir * minDistance;
-
-                adjusted.x = ClampXToRoom(pushed.x, roomCenter.x, halfWidth);
-                adjusted.z = ClampZToRoom(pushed.y, roomCenter.z, halfLength);
-            }
-        }
-
-        adjusted.y = ceilingY;
-        return adjusted;
-    }
-
-    private float ClampXToRoom(float x, float centerX, float halfWidth)
-    {
-        return Mathf.Clamp(x, centerX - halfWidth + edgePadding, centerX + halfWidth - edgePadding);
-    }
-
-    private float ClampZToRoom(float z, float centerZ, float halfLength)
-    {
-        return Mathf.Clamp(z, centerZ - halfLength + edgePadding, centerZ + halfLength - edgePadding);
-    }
-
-    private void SpawnSmokeDetectors(List<Vector3> positions)
-    {
-        Quaternion rot = Quaternion.Euler(smokeRotationEuler);
-
-        for (int i = 0; i < positions.Count; i++)
-        {
-            GameObject obj = Instantiate(smokeDetectorPrefab, positions[i], rot, spawnedRoot);
-            obj.name = $"SmokeDetector_Auto_{i + 1}";
-            MarkAsSpawned(obj);
-        }
-    }
-
-    private void SpawnDischargeNozzles(List<Vector3> positions)
-    {
-        Quaternion rot = Quaternion.Euler(nozzleRotationEuler);
-
-        for (int i = 0; i < positions.Count; i++)
-        {
-            GameObject obj = Instantiate(dischargeNozzlePrefab, positions[i], rot, spawnedRoot);
-            obj.name = $"DischargeNozzle_Auto_{i + 1}";
-            MarkAsSpawned(obj);
-        }
-    }
-
-    private void MarkAsSpawned(GameObject obj)
-    {
-        obj.tag = SafeEnsureTagOrFallback(obj.tag);
-        AutoSpawnMarker marker = obj.GetComponent<AutoSpawnMarker>();
-        if (!marker)
-        {
-            marker = obj.AddComponent<AutoSpawnMarker>();
-        }
-    }
-
-    private string SafeEnsureTagOrFallback(string currentTag)
-    {
-        // ถ้า project ไม่มี tag นี้จริง Unity จะโยน error ตอน assign tag
-        // เลยใช้ Untagged แล้ว rely กับ component marker แทน
-        return "Untagged";
-    }
-
-    private void ClearSpawnedObjects()
-    {
-        if (!spawnedRoot)
+        if (smokeOffsets == null || nozzleOffsets == null)
             return;
 
-        List<GameObject> toDestroy = new List<GameObject>();
-
-        foreach (Transform child in spawnedRoot)
+        for (int i = 0; i < nozzleOffsets.Count; i++)
         {
-            if (child.GetComponent<AutoSpawnMarker>())
+            Vector2 nozzle = nozzleOffsets[i];
+
+            for (int s = 0; s < smokeOffsets.Count; s++)
             {
-                toDestroy.Add(child.gameObject);
+                Vector2 smoke = smokeOffsets[s];
+                Vector2 delta = nozzle - smoke;
+                float dist = delta.magnitude;
+
+                if (dist >= minDistance)
+                    continue;
+
+                Vector2 dir = dist > 0.001f ? delta.normalized : Vector2.right;
+                nozzle = smoke + dir * minDistance;
+                nozzle.x = Mathf.Clamp(nozzle.x, -usableHalfX, usableHalfX);
+                nozzle.y = Mathf.Clamp(nozzle.y, -usableHalfZ, usableHalfZ);
             }
-        }
 
-        for (int i = 0; i < toDestroy.Count; i++)
-        {
-#if UNITY_EDITOR
-            if (!Application.isPlaying)
-                DestroyImmediate(toDestroy[i]);
-            else
-                Destroy(toDestroy[i]);
-#else
-            Destroy(toDestroy[i]);
-#endif
-        }
-
-        if (debugLogs && toDestroy.Count > 0)
-        {
-            Debug.Log($"[FireSafetyAutoLayout] Cleared old spawned objects: {toDestroy.Count}");
+            nozzleOffsets[i] = nozzle;
         }
     }
-}
 
-public class AutoSpawnMarker : MonoBehaviour
-{
-    // เอาไว้ mark ว่า object นี้ถูก spawn โดย FireSafetyAutoLayout
+    private void SpawnSmokeDetectors(List<Vector2> offsets, Vector3 floorCenter, float ceilingBottomY)
+    {
+        for (int i = 0; i < offsets.Count; i++)
+        {
+            Vector3 worldPos = new Vector3(
+                floorCenter.x + offsets[i].x,
+                ceilingBottomY + smokeDetectorYOffset,
+                floorCenter.z + offsets[i].y
+            );
+
+            GameObject go = Instantiate(smokeDetectorPrefab, smokeDetectorsRoot);
+            go.name = $"SmokeDetector_{(i + 1):00}";
+            go.transform.position = worldPos;
+            go.transform.rotation = Quaternion.Euler(smokeDetectorLocalEuler);
+        }
+    }
+
+    private void SpawnDischargeNozzles(List<Vector2> offsets, Vector3 floorCenter, float ceilingBottomY)
+    {
+        for (int i = 0; i < offsets.Count; i++)
+        {
+            Vector3 worldPos = new Vector3(
+                floorCenter.x + offsets[i].x,
+                ceilingBottomY + dischargeNozzleYOffset,
+                floorCenter.z + offsets[i].y
+            );
+
+            GameObject go = Instantiate(dischargeNozzlePrefab, dischargeNozzlesRoot);
+            go.name = $"DischargeNozzle_{(i + 1):00}";
+            go.transform.position = worldPos;
+            go.transform.rotation = Quaternion.Euler(dischargeNozzleLocalEuler);
+        }
+    }
+
+    private void ClearChildren(Transform root)
+    {
+        if (root == null)
+            return;
+
+        List<GameObject> children = new List<GameObject>();
+        for (int i = 0; i < root.childCount; i++)
+        {
+            children.Add(root.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < children.Count; i++)
+        {
+            if (Application.isPlaying)
+            {
+                Destroy(children[i]);
+            }
+            else
+            {
+#if UNITY_EDITOR
+                DestroyImmediate(children[i]);
+#endif
+            }
+        }
+    }
+
+    private void Log(string message)
+    {
+        if (debugLogs)
+            Debug.Log($"[FireSafetyAutoLayout] {message}", this);
+    }
+
+    private void LogWarning(string message)
+    {
+        if (debugLogs)
+            Debug.LogWarning($"[FireSafetyAutoLayout] {message}", this);
+    }
 }
