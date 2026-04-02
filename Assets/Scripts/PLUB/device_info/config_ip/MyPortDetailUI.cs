@@ -35,6 +35,12 @@ public class MyPortDetailUI : MonoBehaviour
     {
         string guid = SelectionPortCardManager.Instance.currentDeviceGuid;
         int index = SelectionPortCardManager.Instance.currentPortIndex;
+        if (string.IsNullOrEmpty(guid) || index < 0)
+        {
+            Debug.Log("No port selected");
+            AlertPopupManager.Instance.ShowPopup("No port selected!!!\n Must select a port to edit IP");
+            return;
+        }
         Debug.Log($"Edit IP for {guid} port {index}");
         IPKeyboardUI.Instance.Open(guid, index);
     }

@@ -60,6 +60,13 @@ public class IPKeyboardUI : MonoBehaviour
         string newIP = inputDisplay.text;
         Debug.Log($"Updating IP for {currentDeviceGuid} port {currentPortIndex} to {newIP}");
 
+        if (currentDeviceGuid == null || currentPortIndex < 0)
+        {
+            Debug.Log("No port selected for router IP update");
+            AlertPopupManager.Instance.ShowPopup("No port selected for router IP update!!!\n Must select a port to edit IP");
+            return;
+        }
+
         NetworkManager.Instance.UpdatePortIP(
             currentDeviceGuid,
             currentPortIndex,

@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using System.Diagnostics;
 
 public class ServerInfoSetValue : MonoBehaviour
 {
@@ -20,6 +19,12 @@ public class ServerInfoSetValue : MonoBehaviour
         {
             deviceHeat = GetComponent<DeviceHeat>();
         }
+    }
+
+    void Start()
+    {
+        int index = SelectionPortCardManager.Instance.currentPortIndex;
+        Debug.Log($"ServerInfoSetValue Start, current port index: {index}");
     }
 
     private void SetStaticInfo()
