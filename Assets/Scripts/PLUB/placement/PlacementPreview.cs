@@ -74,13 +74,15 @@ public class PlacementPreview : MonoBehaviour
             Renderer[] allRenderers = currentPreview.GetComponentsInChildren<Renderer>();
             foreach (Collider c in overlaps)
             {
-                if (!c.transform.IsChildOf(currentPreview.transform) && c.gameObject.name != "Plane")
+                int roomFloorLayer = LayerMask.NameToLayer("RoomFloor");
+
+                if (!c.transform.IsChildOf(currentPreview.transform) && c.gameObject.layer != roomFloorLayer)
                 {
-                    //Renderer[] allRenderers = currentPreview.GetComponentsInChildren<Renderer>();
                     foreach (Renderer rend in allRenderers)
                     {
                         rend.material = redMat;
                     }
+
                     isColliding = true;
                     Debug.Log(currentPreview.gameObject.name + "--> colliding with: " + c.gameObject.name);
                     break;

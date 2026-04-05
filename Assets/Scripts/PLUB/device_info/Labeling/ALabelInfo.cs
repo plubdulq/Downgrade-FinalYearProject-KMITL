@@ -23,8 +23,8 @@ public class ALabelInfo : MonoBehaviour
 
         if (otherPort == null)
         {
-            //otherDeviceNameText.text = "No Connection";
-            //otherDeviceIPText.text = "";
+            // otherDeviceNameText.text = "No Connection";
+            // otherDeviceIPText.text = "";
             return;
         }
 

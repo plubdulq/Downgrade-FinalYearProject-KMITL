@@ -50,6 +50,7 @@ public class ServerInfoSetValue : MonoBehaviour
         deviceConsumePowerText.text = $"{deviceHeat.GetPowerConsume()} Watt";
         deviceIdlePowerText.text = $"{deviceHeat.GetIdlePower()} Watt";
         deviceMaxPowerText.text = $"{deviceHeat.GetMaxPower()} Watt";
+        Debug.Log($"TempUpdate: Consume={deviceHeat.GetPowerConsume()}W, Idle={deviceHeat.GetIdlePower()}W, Max={deviceHeat.GetMaxPower()}W");
     }
 
     private IEnumerator UpdatePower()
