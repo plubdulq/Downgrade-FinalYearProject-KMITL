@@ -102,7 +102,7 @@ public class DeviceHeat : MonoBehaviour
         if (myData == null) return;
         myData.AmbientHeat = heat;
 
-        Debug.Log($"Device {this.gameObject.name} ambient heat updated to: {myData.AmbientHeat}K");
+        //Debug.Log($"Device {this.gameObject.name} ambient heat updated to: {myData.AmbientHeat}K");
 
         // Visual feedback
         if (myData.AmbientHeat > 1000)
@@ -120,9 +120,9 @@ public class DeviceHeat : MonoBehaviour
     public float GetDeviceTemperature(float airInTemperature)
     {
         if (myData == null) return 0f;
-        Debug.Log($"Old Device Temperature of {this.transform.parent.name}: {deviceTemperature}°C");
+        //Debug.Log($"Old Device Temperature of {this.transform.parent.name}: {deviceTemperature}°C");
         deviceTemperature = airInTemperature + (GetHeatOutput() / 1200f); //อย่าลืมเช็คสูตรอีกรอบ
-        Debug.Log($"New Device Temperature of {this.transform.parent.name}: {deviceTemperature}°C");
+        //Debug.Log($"New Device Temperature of {this.transform.parent.name}: {deviceTemperature}°C");
         return deviceTemperature;
     }
 
