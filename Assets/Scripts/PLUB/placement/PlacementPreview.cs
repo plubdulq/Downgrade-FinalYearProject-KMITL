@@ -57,7 +57,7 @@ public class PlacementPreview : MonoBehaviour
         // ใช้ InputManager หาตำแหน่ง mouse
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         mousePosition.x = Mathf.Round(mousePosition.x / gridSize) * gridSize;
-        mousePosition.y = Mathf.Round(mousePosition.y / gridSize) * gridSize;
+        mousePosition.y = mousePosition.y; //Mathf.Round(mousePosition.y / gridSize) * gridSize;
         mousePosition.z = Mathf.Round(mousePosition.z / gridSize) * gridSize;
         currentPreview.transform.position = mousePosition;
         //Debug.Log("Preview Position: " + currentPreview.transform.position);
@@ -72,30 +72,49 @@ public class PlacementPreview : MonoBehaviour
             Collider[] overlaps = Physics.OverlapBox(center, halfExtents, currentPreview.transform.rotation,~0);
             bool isColliding = false;
             Renderer[] allRenderers = currentPreview.GetComponentsInChildren<Renderer>();
+            int roomFloorLayer = LayerMask.NameToLayer("RoomFloor");
+
+            // foreach (Collider c in overlaps)
+            // {    
+            //     if (!c.transform.IsChildOf(currentPreview.transform) && c.gameObject.layer != roomFloorLayer)
+            //     {
+            //         foreach (Renderer rend in allRenderers)
+            //         {
+            //             rend.material = redMat;
+            //         }
+
+            //         isColliding = true;
+            //         Debug.Log(currentPreview.gameObject.name + "--> colliding with: " + c.gameObject.name);
+            //         break;
+            //     }
+
+            //     foreach (Renderer rend in allRenderers)
+            //     {
+            //         rend.material = greenMat;
+            //     }
+            // }
             foreach (Collider c in overlaps)
             {
-                int roomFloorLayer = LayerMask.NameToLayer("RoomFloor");
+                if (c.transform.IsChildOf(currentPreview.transform))
+                    continue;
 
-                if (!c.transform.IsChildOf(currentPreview.transform) && c.gameObject.layer != roomFloorLayer)
+                string objName = c.gameObject.name;
+
+                if (objName.Contains("rack42U_nodoor"))
                 {
-                    foreach (Renderer rend in allRenderers)
-                    {
-                        rend.material = redMat;
-                    }
-
                     isColliding = true;
-                    Debug.Log(currentPreview.gameObject.name + "--> colliding with: " + c.gameObject.name);
+                    Debug.Log(currentPreview.gameObject.name + " --> colliding with: " + objName);
                     break;
-                }
-
-                foreach (Renderer rend in allRenderers)
-                {
-                    rend.material = greenMat;
                 }
             }
 
             var renderer = currentPreview.GetComponentInChildren<Renderer>();
             renderer.material = isColliding ? redMat : greenMat;
+
+            foreach (Renderer rend in allRenderers)
+            {
+                rend.material = renderer.material;
+            }
 
             // ถ้าคลิกซ้าย → วางจริง
             if (placeObjectAction.action.WasPerformedThisFrame() && !isColliding)

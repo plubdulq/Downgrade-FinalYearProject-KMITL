@@ -7807,10 +7807,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 2561733894627218667}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &6130294578286966575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12572,6 +12576,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hudRoot: {fileID: 1527913718215714108}
   countdownText: {fileID: 2392886683492613177}
+  autoAssignOnAwake: 1
+  debugLogs: 1
 --- !u!1 &1571974524466058553
 GameObject:
   m_ObjectHideFlags: 0
@@ -13566,13 +13572,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plugType: 0
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
+  isOuterPort: 0
+  CustomCableAnchors: []
+  isAnchor: 0
   AutoSnapItem: 0
   CanDropItem: 1
   CanRemoveItem: 1
   ScaleItem: 1
   DisableColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -13582,10 +13593,6 @@ MonoBehaviour:
   ExcludeTransformNames: []
   SoundOnSnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
-  isOuterPort: 0
-  isAnchor: 0
-  plugType: 0
-  CustomCableAnchors: []
   OnSnapEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -22459,6 +22466,7 @@ GameObject:
   - component: {fileID: 8320362179581940914}
   - component: {fileID: 8320362179581940927}
   - component: {fileID: 111141501}
+  - component: {fileID: 2323426241886937389}
   m_Layer: 0
   m_Name: XR Rig Advanced
   m_TagString: Untagged
@@ -22633,6 +22641,21 @@ MonoBehaviour:
   HMDIsActive: 0
   LeftControllerPosition: {x: -0.2, y: -0.2, z: 0.5}
   RightControllerPosition: {x: 0.2, y: -0.2, z: 0.5}
+--- !u!114 &2323426241886937389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2683195716791022644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b829388bf3d7248c5b9df4b22253dfce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerSfx: {fileID: 0}
+  PlugSfx: {fileID: 0}
+  SnapSfx: {fileID: 0}
 --- !u!1 &2683195717451339092
 GameObject:
   m_ObjectHideFlags: 0
@@ -34975,13 +34998,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plugType: 0
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
+  isOuterPort: 0
+  CustomCableAnchors: []
+  isAnchor: 0
   AutoSnapItem: 0
   CanDropItem: 1
   CanRemoveItem: 1
   ScaleItem: 1
   DisableColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -34996,10 +35024,6 @@ MonoBehaviour:
   - Block
   SoundOnSnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
-  isOuterPort: 0
-  isAnchor: 0
-  plugType: 0
-  CustomCableAnchors: []
   OnSnapEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -40902,10 +40926,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Snap: {fileID: 9045774559201997781}
   RestingColor: {r: 1, g: 1, b: 1, a: 0.16862746}
-  ValidSnapColor: {r: 1, g: 1, b: 1, a: 1}
+  ValidColor: {r: 0, g: 1, b: 0, a: 1}
+  InvalidColor: {r: 1, g: 0, b: 0, a: 1}
   RestingScale: 1400
-  ValidSnapScale: 1200
-  ScaleSpeed: 50
+  ActiveScale: 800
+  usePulse: 1
+  pulseSpeed: 5
+  pulseIntensity: 0.3
+  highlightDuration: 1.5
 --- !u!114 &4786920997832897282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43471,13 +43499,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plugType: 0
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
+  isOuterPort: 0
+  CustomCableAnchors: []
+  isAnchor: 0
   AutoSnapItem: 0
   CanDropItem: 1
   CanRemoveItem: 1
   ScaleItem: 1
   DisableColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -43488,10 +43521,6 @@ MonoBehaviour:
   ExcludeTransformNames: []
   SoundOnSnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
-  isOuterPort: 0
-  isAnchor: 0
-  plugType: 0
-  CustomCableAnchors: []
   OnSnapEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -48854,13 +48883,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plugType: 0
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
+  isOuterPort: 0
+  CustomCableAnchors: []
+  isAnchor: 0
   AutoSnapItem: 0
   CanDropItem: 1
   CanRemoveItem: 1
   ScaleItem: 1
   DisableColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -48875,10 +48909,6 @@ MonoBehaviour:
   - Block
   SoundOnSnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
-  isOuterPort: 0
-  isAnchor: 0
-  plugType: 0
-  CustomCableAnchors: []
   OnSnapEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -62150,13 +62180,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plugType: 0
   HeldItem: {fileID: 0}
   StartingItem: {fileID: 0}
+  isOuterPort: 0
+  CustomCableAnchors: []
+  isAnchor: 0
   AutoSnapItem: 0
   CanDropItem: 1
   CanRemoveItem: 1
   ScaleItem: 1
   DisableColliders: 1
+  TriggerColliders: 0
   ParentObjectToSnapZone: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
@@ -62166,10 +62201,6 @@ MonoBehaviour:
   ExcludeTransformNames: []
   SoundOnSnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
   SoundOnUnsnap: {fileID: 8300000, guid: 3ceadf14726b0864fb39bb646c0f9ba0, type: 3}
-  isOuterPort: 0
-  isAnchor: 0
-  plugType: 0
-  CustomCableAnchors: []
   OnSnapEvent:
     m_PersistentCalls:
       m_Calls: []

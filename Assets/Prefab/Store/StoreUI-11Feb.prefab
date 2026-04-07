@@ -7057,10 +7057,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 199823199603969042, guid: 33f41118b33c5ed4dadf9461382302d9,
         type: 3}
+      propertyPath: prefabs.Array.size
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 199823199603969042, guid: 33f41118b33c5ed4dadf9461382302d9,
+        type: 3}
       propertyPath: prefabs.Array.data[0].prefab
       value: 
       objectReference: {fileID: 45179299234597684, guid: 5fd15e98bf56d504e8215fcc2cff0c71,
         type: 3}
+    - target: {fileID: 199823199603969042, guid: 33f41118b33c5ed4dadf9461382302d9,
+        type: 3}
+      propertyPath: prefabs.Array.data[39].prefab
+      value: 
+      objectReference: {fileID: 8591240308944349287, guid: 76f67df9bd3c0044cb79ebbc8a4ff25d,
+        type: 3}
+    - target: {fileID: 199823199603969042, guid: 33f41118b33c5ed4dadf9461382302d9,
+        type: 3}
+      propertyPath: prefabs.Array.data[39].deviceId
+      value: Holster
+      objectReference: {fileID: 0}
     - target: {fileID: 7573467603421254635, guid: 33f41118b33c5ed4dadf9461382302d9,
         type: 3}
       propertyPath: m_Pivot.x

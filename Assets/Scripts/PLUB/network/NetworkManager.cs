@@ -86,7 +86,6 @@ public class NetworkManager : MonoBehaviour
     public PortState GetOtherDevicePort(DeviceNetworkState device, int portIndex)
     {
         if (device == null || portIndex < 0 || portIndex >= device.ports.Count)
-            Debug.Log($"GetOtherDevicePort: Invalid device or portIndex | device={device?.guid}, portIndex={portIndex}");
             return null;
 
         PortState myPort = device.ports[portIndex];
