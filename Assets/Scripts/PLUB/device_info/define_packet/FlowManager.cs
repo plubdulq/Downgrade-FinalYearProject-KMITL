@@ -142,7 +142,7 @@ public class FlowManager : MonoBehaviour
                     if (visited.Contains(nextGuid)) continue;
 
                     var nextDevice = NetworkManager.Instance.devices[nextGuid];
-                    // ✅ 🔥 FIREWALL CHECK ตรงนี้
+                    // FIREWALL CHECK ตรงนี้
                     // if (currentDevice.device_type == "firewall")
                     // {
                     //     bool allowed = IsPacketAllowedByFirewall(

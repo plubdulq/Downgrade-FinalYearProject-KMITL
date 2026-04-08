@@ -17,7 +17,7 @@ public class FirewallUIManager : MonoBehaviour
 
     public TMP_Text policyNameInput;
 
-    // 🔥 toggle mode ตรงนี้
+    // toggle mode ตรงนี้
     [SerializeField] private bool autoGenerateName = true;
     //private int policyCounter = 1;
 
