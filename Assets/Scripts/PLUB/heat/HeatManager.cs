@@ -15,9 +15,6 @@ public class HeatManager : MonoBehaviour
 
     void Start()
     {
-        // allDevices = GameObject.FindObjectsOfType<DeviceHeat>() // อันนี้ใช้เพื่อดึง GameObject ที่มี Component DeviceHeat
-        //                .Select(d => d.gameObject)
-        //                .ToArray();
         C = 1.2f * roomVolume * 1000f; // ปรับค่าตามความเหมาะสม
     }
 
@@ -42,10 +39,6 @@ public class HeatManager : MonoBehaviour
                 
                 DeviceHeat statsB = deviceB.GetComponent<DeviceHeat>();
                 float distance = Vector3.Distance(deviceA.transform.position, deviceB.transform.position)/100;
-                //float ambient = heatOutput / (4 * Mathf.PI * (distance * distance));
-                //totalAmbientHeat += ambient;
-
-                //float decay = Mathf.Exp(-k * distance); // อย่าลืมปรับสูตรเป็นแบบใน doc
 
                 float decay = 1 - distance/2f;
                 float externalHeat = statsB.GetHeatOutput() * decay;

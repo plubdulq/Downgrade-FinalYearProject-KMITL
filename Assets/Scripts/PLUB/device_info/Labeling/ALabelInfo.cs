@@ -20,11 +20,13 @@ public class ALabelInfo : MonoBehaviour
         portNameText.text = $"Port {myPort.portNumber}";
         
         var otherPort = NetworkManager.Instance.GetOtherDevicePort(device, portIndex);
+        Debug.Log($"[AlabelInfo] device: {device.guid}, portIndex: {portIndex}, otherPort: {(otherPort != null ? otherPort.portNumber.ToString() : "null")}");
 
         if (otherPort == null)
         {
-            //otherDeviceNameText.text = "No Connection";
-            //otherDeviceIPText.text = "";
+            // otherDeviceNameText.text = "No Connection";
+            // otherDeviceIPText.text = "";
+            Debug.Log("No other port found for this connection.");
             return;
         }
 

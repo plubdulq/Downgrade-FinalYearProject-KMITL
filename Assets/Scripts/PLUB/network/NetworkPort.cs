@@ -8,7 +8,6 @@ public class NetworkPort : MonoBehaviour
 
     public string cable_guid;
     
-
     public string PortIdentify()
     {
         // หา device จาก parent
@@ -21,7 +20,6 @@ public class NetworkPort : MonoBehaviour
         }
 
         string guid = device.uniqueID;
-        Debug.Log($"Port {portName} belongs to cable_guid {cable_guid}");
         return guid;
     }
 
@@ -32,6 +30,7 @@ public class NetworkPort : MonoBehaviour
         if (cableInfo == null)
         {
             Debug.LogError("CableInfo not found");
+            AlertPopupManager.Instance.ShowPopup("Cable info not found!!!\n Or\n Devices have collision issue");
             return null;
         }
         cable_guid = cableInfo.uniqueID;
@@ -61,11 +60,15 @@ public class NetworkPort : MonoBehaviour
         
         string my_guid = PortIdentify();
         TriggerRegisterCable();
+        cable_guid = GetCableGuid();
+        // if (cable_guid == null)
+        // {
         NetworkManager.Instance.RegisterConnection(
         my_guid,
         portName,
-        GetCableGuid()
+        cable_guid
         );
+        //}
         NetworkManager.Instance.DebugDevices();
         PowerSystemManager.Instance.RecalculatePower();
     }

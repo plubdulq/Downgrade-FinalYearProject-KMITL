@@ -3434,7 +3434,7 @@ PrefabInstance:
     - target: {fileID: 2859656810531894785, guid: 17790093c0769a1459e76e31151896c5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00029
+      value: -0.00268
       objectReference: {fileID: 0}
     - target: {fileID: 2859656810531894785, guid: 17790093c0769a1459e76e31151896c5,
         type: 3}
@@ -3621,6 +3621,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7369692306795848036}
   m_SourcePrefab: {fileID: 100100000, guid: 17790093c0769a1459e76e31151896c5, type: 3}
+--- !u!114 &7953387311901409 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6580217706045262922, guid: 17790093c0769a1459e76e31151896c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6579161692896028331}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &316612964360794103 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6857070610740070748, guid: 17790093c0769a1459e76e31151896c5,
@@ -3643,18 +3655,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfd041e74f2605849acdcee4e18f70ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1687791726297876899 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5485908891906141960, guid: 17790093c0769a1459e76e31151896c5,
-    type: 3}
-  m_PrefabInstance: {fileID: 6579161692896028331}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34f374ec0a9d55f47b1df241fa8d18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1861407312779934054 stripped
@@ -3733,6 +3733,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3367dba44ad98d44a7b199cddf661ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7363346996011392322 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4423165572303174633, guid: 17790093c0769a1459e76e31151896c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6579161692896028331}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7406743910426539235 stripped
@@ -4033,6 +4045,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 131775420317044399}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e395e7b051954d9469eaa4a7ffb30b42,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7312050339662335327}
   m_SourcePrefab: {fileID: 100100000, guid: e395e7b051954d9469eaa4a7ffb30b42, type: 3}
 --- !u!4 &7307835676964684678 stripped
 Transform:
@@ -4214,6 +4230,20 @@ MonoBehaviour:
   wattPerCelsius: 0.3
   onPlug: 0
   powerState: 0
+--- !u!114 &7312050339662335327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7935753180834978108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f374ec0a9d55f47b1df241fa8d18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deviceNameText: {fileID: 7363346996011392322}
+  deviceConsumePowerText: {fileID: 7953387311901409}
 --- !u!1001 &7449578033869790876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5041,7 +5071,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1687791726297876899}
+      objectReference: {fileID: 7312050339662335327}
     - target: {fileID: 2427816751018795297, guid: d5c8714abbcb9144c92ee7523a182656,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target

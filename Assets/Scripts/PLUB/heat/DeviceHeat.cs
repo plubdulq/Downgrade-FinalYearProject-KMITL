@@ -1,151 +1,188 @@
 using UnityEngine;
 using MyProject.Models;
-using System.IO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Security.Cryptography.X509Certificates;
-using System.Diagnostics.Contracts;
 
 public class DeviceHeat : MonoBehaviour
 {
-    //private DeviceDetail myData;
     public DevicePowerModel myData;
 
-    public float wattPerCelsius = 0.3f; // watt per degree Celsius, ปรับค่าตามความเหมาะสม
+    public float wattPerCelsius = 0.3f;
     private float deviceTemperature;
     public int onPlug = 0;
     public int powerState = 0; // 0 = off, 1 = on
 
-    async void LoadDeviceData()
+    public bool IsDataReady { get; private set; } = false;
+
+    private async Task LoadDeviceData()
     {
+        IsDataReady = false;
+
         QueryPowerDB db = new QueryPowerDB();
         List<DevicePowerModel> devices = await db.GetDevicePower();
 
-        string deviceTag = this.gameObject.tag;
-        string deviceName = this.gameObject.name;
+        // 1) หา NetworkDevice จาก object นี้ก่อน
+        NetworkDevice networkDevice = GetComponent<NetworkDevice>();
 
+        // 2) ถ้าไม่เจอ ค่อยหาใน parent
+        if (networkDevice == null)
+        {
+            networkDevice = GetComponentInParent<NetworkDevice>();
+        }
+
+        string localDeviceId = null;
+        if (networkDevice != null)
+        {
+            localDeviceId = networkDevice.device_id;
+        }
+
+        string localDeviceName = gameObject.name.Replace("(Clone)", "").Trim();
+
+        // 3) match ด้วย device_id ก่อน
+        if (!string.IsNullOrWhiteSpace(localDeviceId))
+        {
+            foreach (DevicePowerModel device in devices)
+            {
+                if (device.DeviceID == localDeviceId)
+                {
+                    myData = device;
+
+                    Debug.Log(
+                        $"[DeviceHeat] Match by device_id success | " +
+                        $"SceneObject={gameObject.name} | " +
+                        $"device_id={localDeviceId} | " +
+                        $"DBName={myData.DeviceName}"
+                    );
+
+                    IsDataReady = true;
+                    return;
+                }
+            }
+
+            Debug.LogWarning(
+                $"[DeviceHeat] ไม่พบข้อมูลใน DB ที่ตรงกับ device_id: {localDeviceId} " +
+                $"ของ object: {gameObject.name}"
+            );
+        }
+
+        // 4) fallback: match ด้วยชื่อ object
         foreach (DevicePowerModel device in devices)
         {
-            if (device.DeviceName == deviceName)
+            if (device.DeviceName == localDeviceName)
             {
                 myData = device;
 
                 Debug.Log(
-                    $"Device found: {myData.DeviceName} " +
-                    $"Min={myData.HeatCalculation.MinPower} " +
-                    $"Max={myData.HeatCalculation.MaxPower} " +
-                    $"Load={myData.UserLoadRatio} " +
-                    $"Ambient={myData.AmbientHeat}"
+                    $"[DeviceHeat] Match by DeviceName fallback success | " +
+                    $"SceneObject={gameObject.name} | " +
+                    $"DBName={myData.DeviceName}"
                 );
 
-                break;
+                IsDataReady = true;
+                return;
             }
         }
 
-        if (myData == null)
-        {
-            Debug.LogWarning($"ไม่พบ deviceModel ตรงกับ tag: {this.gameObject.tag}");
-        }
+        Debug.LogWarning(
+            $"[DeviceHeat] ไม่พบข้อมูล deviceModel ทั้งจาก device_id และ DeviceName | " +
+            $"Object={gameObject.name}"
+        );
+    }
+
+    private async void Start()
+    {
+        await LoadDeviceData();
     }
 
     public float GetHeatOutput()
     {
-        if (myData == null)
+        if (!IsDataReady || myData == null)
         {
-            Debug.LogWarning("ยังไม่มีข้อมูล device สำหรับคำนวณ heat");
+            Debug.LogWarning($"[{gameObject.name}] DB ยังโหลดไม่เสร็จ หรือยังไม่มีข้อมูล device");
             return 0f;
         }
-        return onPlug *powerState * (myData.HeatCalculation.MinPower + ((myData.HeatCalculation.MaxPower - myData.HeatCalculation.MinPower) * myData.UserLoadRatio)) * myData.PlacementFactor * Time.deltaTime;
+
+        return onPlug * powerState *
+               (myData.HeatCalculation.MinPower +
+               ((myData.HeatCalculation.MaxPower - myData.HeatCalculation.MinPower) * myData.UserLoadRatio)) *
+               myData.PlacementFactor * Time.deltaTime;
     }
 
     public float GetIdlePower()
     {
-        if (myData == null)
+        if (!IsDataReady || myData == null)
         {
-            Debug.LogWarning("ยังไม่มีข้อมูล myData,HeatCalculation สำหรับคำนวณ idle power");
+            Debug.LogWarning($"[{gameObject.name}] ยังไม่มีข้อมูลสำหรับคำนวณ idle power");
             return 0f;
         }
+
         return myData.HeatCalculation.MinPower;
     }
 
     public float GetMaxPower()
     {
-        if (myData == null)
+        if (!IsDataReady || myData == null)
         {
-            Debug.LogWarning("ยังไม่มีข้อมูล myData,HeatCalculation สำหรับคำนวณ max power");
+            Debug.LogWarning($"[{gameObject.name}] ยังไม่มีข้อมูลสำหรับคำนวณ max power");
             return 0f;
         }
+
         return myData.HeatCalculation.MaxPower;
     }
 
     public float GetPowerConsume()
     {
-        if (myData == null)
+        if (!IsDataReady || myData == null)
         {
-            Debug.LogWarning("ยังไม่มีข้อมูล device สำหรับคำนวณ heat");
+            Debug.LogWarning($"[{gameObject.name}] DB ยังโหลดไม่เสร็จ หรือยังไม่มีข้อมูล device");
             return 0f;
         }
-        //return (myData.basePower + ((myData.maxPower - myData.basePower) * myData.userLoadRatio)) * myData.placementFactor * Time.deltaTime;
-        float power = (myData.HeatCalculation.MinPower + ((myData.HeatCalculation.MaxPower - myData.HeatCalculation.MinPower) * myData.UserLoadRatio)) * myData.PlacementFactor;
-        Debug.Log($"Calculating Power of {this.gameObject.name} : {power} Watt with {myData.UserLoadRatio * 100}% load ratio");
-        return power * powerState * onPlug;
-    }
 
-    private void Start()
-    {
-        LoadDeviceData();
+        float power =
+            (myData.HeatCalculation.MinPower +
+            ((myData.HeatCalculation.MaxPower - myData.HeatCalculation.MinPower) * myData.UserLoadRatio)) *
+            myData.PlacementFactor;
+
+        Debug.Log($"Calculating Power of {gameObject.name} : {power} Watt with {myData.UserLoadRatio * 100}% load ratio");
+        return power * powerState * onPlug;
     }
 
     public void UpdateAmbientHeat(float heat)
     {
-        //Debug.Log($"Device {this.gameObject}   {gameObject.name} ambient heat: {myData.ambientHeat}K");
-        if (myData == null) return;
+        if (!IsDataReady || myData == null) return;
+
         myData.AmbientHeat = heat;
 
-        Debug.Log($"Device {this.gameObject.name} ambient heat updated to: {myData.AmbientHeat}K");
+        Renderer rend = GetComponent<Renderer>();
+        if (rend != null)
+        {
+            rend.material.color = myData.AmbientHeat > 1000 ? Color.red : Color.white;
+        }
 
-        // Visual feedback
-        if (myData.AmbientHeat > 1000)
-        {
-            GetComponent<Renderer>().material.color = Color.red;
-        }
-        else
-        {
-            GetComponent<Renderer>().material.color = Color.white;
-        }
-        float power = (myData.HeatCalculation.MinPower + ((myData.HeatCalculation.MaxPower - myData.HeatCalculation.MinPower) * myData.UserLoadRatio)) * myData.PlacementFactor;
-        Debug.Log($"Calculating Power of {this.gameObject.name} : {power} Watt with {myData.UserLoadRatio * 100}% load ratio");
+        float power =
+            (myData.HeatCalculation.MinPower +
+            ((myData.HeatCalculation.MaxPower - myData.HeatCalculation.MinPower) * myData.UserLoadRatio)) *
+            myData.PlacementFactor;
+
+        Debug.Log($"Calculating Power of {gameObject.name} : {power} Watt with {myData.UserLoadRatio * 100}% load ratio");
     }
 
     public float GetDeviceTemperature(float airInTemperature)
     {
-        if (myData == null) return 0f;
-        Debug.Log($"Old Device Temperature of {this.transform.parent.name}: {deviceTemperature}°C");
-        deviceTemperature = airInTemperature + (GetHeatOutput() / 1200f); //อย่าลืมเช็คสูตรอีกรอบ
-        Debug.Log($"New Device Temperature of {this.transform.parent.name}: {deviceTemperature}°C");
+        if (!IsDataReady || myData == null) return 0f;
+
+        deviceTemperature = airInTemperature + (GetHeatOutput() / 1200f);
         return deviceTemperature;
     }
 
     public void SetUserLoadRatio(float ratio)
     {
-        if (myData == null) return;
+        if (!IsDataReady || myData == null) return;
         myData.UserLoadRatio = ratio;
-
-
     }
 
-
-    //TEST power on
     public void PowerButtonManager()
     {
-        //if (myData == null) return;
-        if (powerState == 0)
-        {
-            powerState = 1;
-        }
-        else
-        {
-            powerState = 0;
-        }
+        powerState = (powerState == 0) ? 1 : 0;
     }
 }

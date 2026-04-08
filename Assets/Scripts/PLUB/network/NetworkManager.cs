@@ -38,6 +38,12 @@ public class NetworkManager : MonoBehaviour
             return;
         }
 
+        if (cableGuid == null)
+        {
+            Debug.LogError("Cable GUID is null");
+            return;
+        }
+
         foreach (var port in device.ports)
         {
             if (port.portNumber.ToString() == portName)
