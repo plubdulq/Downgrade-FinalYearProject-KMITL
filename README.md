@@ -1,6 +1,6 @@
 ## Interactive Virtual Server Room Network Simulation using VR Technology
 
-# A Final Year Project developed as part of the Bachelor of Engineering (Computer Engineering) program at King Mongkut's Institute of Technology Ladkrabang (KMITL).
+A Final Year Project developed as part of the Bachelor of Engineering (Computer Engineering) program at King Mongkut's Institute of Technology Ladkrabang (KMITL).
 
 # Project Overview
 
@@ -16,72 +16,73 @@ The project focuses on visualizing networking concepts such as network topology,
 
 ## Key Features
 
-# Virtual Server Room Design
+Virtual Server Room Design
 * Design and customize server room layouts
 * Configure room dimensions and equipment placement
 * Place racks, servers, network devices, and supporting infrastructure according to real-world constraints
 
-# Real-Time Infrastructure Simulation
+Real-Time Infrastructure Simulation
 * Real-time heat distribution simulation based on equipment placement
 * Power consumption estimation using device utilization and operational characteristics
 * Environmental impact visualization to support infrastructure planning decisions
 
-# Network Infrastructure Configuration
+Network Infrastructure Configuration
 * Configure IP interfaces for network devices
 * Create static routing tables
 * Define firewall rules and security policies
 * Configure load balancing pools and algorithms (Round Robin)
 
-# Traffic & Resource Simulation
+Traffic & Resource Simulation
 * Organize and route cables within the server room
 * Auto apply labels to devices and cable connections
 
-# Fire Safety Simulation
+Fire Safety Simulation
 * Smoke detection system
 * Fire alarm, horn, and strobe warning systems
 * Fire suppression simulation using discharge nozzles
 * Fire safety scenarios
 
-# Interactive Learning System
+Interactive Learning System
 * Device usage guides and tutorials
 * Interactive equipment information
 * In-application guidance for system features and user interfaces
 
-# Realistic Equipment Representation
+Realistic Equipment Representation
 * Realistic 3D models based on actual networking and server room equipment
 * Equipment placement and interaction inspired by real-world deployment practices
 
 ## Screenshots
-# Main Menu
-[![image](./images/main menu1.png)]
-[![image](./images/main menu2.png)]
-[![image](./images/main menu4.png)]
+Main Menu
+| MainMenu1 | MainMenu2 | MainMenu3 |
+|--------|--------|--------|
+[![](./images/mainmenu1.png)]
+[![](./images/mainmenu2.png)]
+[![](./images/mainmenu4.png)]
 
-# Network Configuration
-[![image](./images/config1.png)]
-[![image](./images/config2.png)]
-[![image](./images/config3.png)]
-[![image](./images/config4.png)]
-[![image](./images/config5.png)]
+Network Configuration
+[![](./images/config1.png)]
+[![](./images/config2.png)]
+[![](./images/config3.png)]
+[![](./images/config4.png)]
+[![](./images/config5.png)]
 
+Gameplay Exmaple
+[![](./images/play1.png)]
+[![](./images/play2.png)]
+[![](./images/play3.png)]
+[![](./images/play4.png)]
+[![](./images/play5.png)]
+[![](./images/play6.png)]
+[![](./images/play7.png)]
+[![](./images/play8.png)]
 
-# Gameplay Exmaple
-[![image](./images/play1.png)]
-[![image](./images/play2.png)]
-[![image](./images/play3.png)]
-[![image](./images/play4.png)]
-[![image](./images/play5.png)]
-[![image](./images/play6.png)]
-[![image](./images/play7.png)]
-[![image](./images/play8.png)]
-
-# 3D Models Example
-[![image](./images/example1.png)]
-[![image](./images/example2.png)]
-[![image](./images/example3.png)]
+3D Models Example
+[![](./images/example1.png)]
+[![](./images/example2.png)]
+[![](./images/example3.png)]
 
 ## My Contributions
-# As one of the project developers, my responsibilities included:
+As one of the project developers, my responsibilities included:
 * System architecture design
 * Cloud architecture planning
 * AWS service integration
@@ -99,7 +100,7 @@ The project focuses on visualizing networking concepts such as network topology,
 
 ## Repository Note
 
-# This repository represents the project portfolio and documentation.
+This repository represents the project portfolio and documentation.
 
 Future Improvements
 * Advanced networking simulations
