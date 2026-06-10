@@ -1,12 +1,12 @@
-### Interactive Virtual Server Room Network Simulation using VR Technology
+## Interactive Virtual Server Room Network Simulation using VR Technology
 
 # A Final Year Project developed as part of the Bachelor of Engineering (Computer Engineering) program at King Mongkut's Institute of Technology Ladkrabang (KMITL).
 
-## Project Overview
+# Project Overview
 
-# VR Networking Education is a virtual reality learning platform designed to help beginners understand computer networking concepts through immersive and interactive experiences.
+VR Networking Education is a virtual reality learning platform designed to help beginners understand computer networking concepts through immersive and interactive experiences.
 
-# The project focuses on visualizing networking concepts such as network topology, packet flow, device connectivity, and infrastructure management in a VR environment.
+The project focuses on visualizing networking concepts such as network topology, packet flow, device connectivity, and infrastructure management in a VR environment.
 
 # Objectives
 * Improve networking education through immersive learning
@@ -53,29 +53,32 @@
 
 ## Screenshots
 # Main Menu
-[![image](https://drive.google.com/file/d/1IZ2EvOywqwttEz6XN9L2T7sPCNia-hug/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/1Yew7MMfkBXG94HNkAkXpccL1XNvFpWah/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/1nHE4CN0dv7NQS3fGLBfNW7WT9RR3nvqg/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/1c-cgz0AALnkiDoF7uglBPPiHtXYoBPaS/view?usp=sharing)]
+[![image](./images/main menu1.png)]
+[![image](./images/main menu2.png)]
+[![image](./images/main menu4.png)]
 
 # Network Configuration
-[![image](https://drive.google.com/file/d/1HnLpzA7jsIQl_9Zj1NsSGRYSXruCRxgb/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/1fklahuDxDihOIbgXuNxtfhXfGEaQH-8M/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/1ut2HMA5NI48ddO7SbRDa0epV_jwwspq-/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/1WkIfTDlopBNRrqd2phFYC_84Sker67xv/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/1Vc6LHMrzTTKl5XnfWQGgL5ohIMToqMI7/view?usp=sharing)]
+[![image](./images/config1.png)]
+[![image](./images/config2.png)]
+[![image](./images/config3.png)]
+[![image](./images/config4.png)]
+[![image](./images/config5.png)]
 
-# Learning Environment
-[![image](https://drive.google.com/file/d/1hyZpD5ZECQmGjHEZ9uPq7IkANtOtu5Xp/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/1RSYcF9rXsnCAer43ciuwUiw49kT4HjYm/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/1R9fJND0JFH8sS1esQSjbf6vTglh9Mr6Q/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/15x9HHLpGyPCvabK2Tplmgp1nu5d6Td0Z/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/1FafM20mXu9B3bEDb5-pDL3FLGyqfeid3/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/1jztmC5UDTHIGa_btf-5BCZwTLNlcOnlz/view?usp=sharing)]
 
-# Example: 3D Model
-[![image](https://drive.google.com/file/d/1nHE4CN0dv7NQS3fGLBfNW7WT9RR3nvqg/view?usp=sharing)]
-[![image](https://drive.google.com/file/d/1PkLjXMDN90THlbyxzn8KXa94t0wHomdJ/view?usp=sharing)]
+# Gameplay Exmaple
+[![image](./images/play1.png)]
+[![image](./images/play2.png)]
+[![image](./images/play3.png)]
+[![image](./images/play4.png)]
+[![image](./images/play5.png)]
+[![image](./images/play6.png)]
+[![image](./images/play7.png)]
+[![image](./images/play8.png)]
+
+# 3D Models Example
+[![image](./images/example1.png)]
+[![image](./images/example2.png)]
+[![image](./images/example3.png)]
 
 ## My Contributions
 # As one of the project developers, my responsibilities included:
