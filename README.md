@@ -58,23 +58,19 @@ Main Menu
 | [![](./images/mainmenu1.png)] | [![](./images/mainmenu2.png)] | [![](./images/mainmenu4.png)]|
 
 Network Configuration
-|--------|--------|--------|
+| IP | Firewall | Generate Packet | LB | Route Table |
+|--------|--------|--------|--------|--------|
 | [![](./images/config1.png)] | [![](./images/config2.png)] | [![](./images/config3.png)] | [![](./images/config4.png)] | [![](./images/config5.png)] | 
 
 Gameplay Exmaple
-[![](./images/play1.png)]
-[![](./images/play2.png)]
-[![](./images/play3.png)]
-[![](./images/play4.png)]
-[![](./images/play5.png)]
-[![](./images/play6.png)]
-[![](./images/play7.png)]
-[![](./images/play8.png)]
+| Ex1 | Ex2 | Ex3 | Ex4 | Ex5 | Ex6 | Ex7 | Ex8 |
+|--------|--------|--------|--------|--------|--------|--------|--------|
+|[![](./images/play1.png)]|[![](./images/play2.png)]|[![](./images/play3.png)]|[![](./images/play4.png)]|[![](./images/play5.png)]|[![](./images/play6.png)]|[![](./images/play7.png)]|[![](./images/play8.png)]|
 
 3D Models Example
-[![](./images/example1.png)]
-[![](./images/example2.png)]
-[![](./images/example3.png)]
+| Ex1 | Ex2 | Ex3 |
+|--------|--------|--------|
+|[![](./images/example1.png)]|[![](./images/example2.png)]|[![](./images/example3.png)]|
 
 ## My Contributions
 As one of the project developers, my responsibilities included:
