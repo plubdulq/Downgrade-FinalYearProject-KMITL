@@ -1,14 +1,14 @@
-## Interactive Virtual Server Room Network Simulation using VR Technology
+# Interactive Virtual Server Room Network Simulation using VR Technology
 
 A Final Year Project developed as part of the Bachelor of Engineering (Computer Engineering) program at King Mongkut's Institute of Technology Ladkrabang (KMITL).
 
-# Project Overview
+## Project Overview
 
 VR Networking Education is a virtual reality learning platform designed to help beginners understand computer networking concepts through immersive and interactive experiences.
 
 The project focuses on visualizing networking concepts such as network topology, packet flow, device connectivity, and infrastructure management in a VR environment.
 
-# Objectives
+## Objectives
 * Improve networking education through immersive learning
 * Provide hands-on interaction with networking devices
 * Help learners visualize abstract networking concepts
@@ -55,16 +55,11 @@ Realistic Equipment Representation
 Main Menu
 | MainMenu1 | MainMenu2 | MainMenu3 |
 |--------|--------|--------|
-[![](./images/mainmenu1.png)]
-[![](./images/mainmenu2.png)]
-[![](./images/mainmenu4.png)]
+| [![](./images/mainmenu1.png)] | [![](./images/mainmenu2.png)] | [![](./images/mainmenu4.png)]|
 
 Network Configuration
-[![](./images/config1.png)]
-[![](./images/config2.png)]
-[![](./images/config3.png)]
-[![](./images/config4.png)]
-[![](./images/config5.png)]
+|--------|--------|--------|
+| [![](./images/config1.png)] | [![](./images/config2.png)] | [![](./images/config3.png)] | [![](./images/config4.png)] | [![](./images/config5.png)] | 
 
 Gameplay Exmaple
 [![](./images/play1.png)]
