@@ -60,12 +60,15 @@ Main Menu
 Network Configuration
 | IP | Firewall | Generate Packet | LB | Route Table |
 |--------|--------|--------|--------|--------|
-| [![](./images/config1.png)] | [![](./images/config2.png)] | [![](./images/config3.png)] | [![](./images/config4.png)] | [![](./images/config5.png)] | 
+| [![](./images/config1.png)](./images/config1.png) | [![](./images/config2.png)](./images/config2.png) | [![](./images/config3.png)] | [![](./images/config4.png)] | [![](./images/config5.png)] | 
 
 Gameplay Exmaple
-| Ex1 | Ex2 | Ex3 | Ex4 | Ex5 | Ex6 | Ex7 | Ex8 |
+| Ex1 | Ex2 | Ex3 | Ex4 |
 |--------|--------|--------|--------|--------|--------|--------|--------|
-|[![](./images/play1.png)]|[![](./images/play2.png)]|[![](./images/play3.png)]|[![](./images/play4.png)]|[![](./images/play5.png)]|[![](./images/play6.png)]|[![](./images/play7.png)]|[![](./images/play8.png)]|
+|[![](./images/play1.png)]|[![](./images/play2.png)]|[![](./images/play3.png)]|[![](./images/play4.png)]|
+| Ex5 | Ex6 | Ex7 | Ex8 |
+|--------|--------|--------|--------|
+|[![](./images/play5.png)]|[![](./images/play6.png)]|[![](./images/play7.png)]|[![](./images/play8.png)]|
 
 3D Models Example
 | Ex1 | Ex2 | Ex3 |
