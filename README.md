@@ -1,4 +1,4 @@
-#### Interactive Virtual Server Room Network Simulation using VR Technology
+### Interactive Virtual Server Room Network Simulation using VR Technology
 
 # A Final Year Project developed as part of the Bachelor of Engineering (Computer Engineering) program at King Mongkut's Institute of Technology Ladkrabang (KMITL).
 
@@ -8,7 +8,7 @@
 
 # The project focuses on visualizing networking concepts such as network topology, packet flow, device connectivity, and infrastructure management in a VR environment.
 
-## Objectives
+# Objectives
 * Improve networking education through immersive learning
 * Provide hands-on interaction with networking devices
 * Help learners visualize abstract networking concepts
@@ -51,16 +51,33 @@
 * Realistic 3D models based on actual networking and server room equipment
 * Equipment placement and interaction inspired by real-world deployment practices
 
-### Screenshots
-## Main Menu
+## Screenshots
+# Main Menu
+[![image](https://drive.google.com/file/d/1IZ2EvOywqwttEz6XN9L2T7sPCNia-hug/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/1Yew7MMfkBXG94HNkAkXpccL1XNvFpWah/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/1nHE4CN0dv7NQS3fGLBfNW7WT9RR3nvqg/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/1c-cgz0AALnkiDoF7uglBPPiHtXYoBPaS/view?usp=sharing)]
 
-## Network Configuration
+# Network Configuration
+[![image](https://drive.google.com/file/d/1HnLpzA7jsIQl_9Zj1NsSGRYSXruCRxgb/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/1fklahuDxDihOIbgXuNxtfhXfGEaQH-8M/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/1ut2HMA5NI48ddO7SbRDa0epV_jwwspq-/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/1WkIfTDlopBNRrqd2phFYC_84Sker67xv/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/1Vc6LHMrzTTKl5XnfWQGgL5ohIMToqMI7/view?usp=sharing)]
 
-## Learning Environment
+# Learning Environment
+[![image](https://drive.google.com/file/d/1hyZpD5ZECQmGjHEZ9uPq7IkANtOtu5Xp/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/1RSYcF9rXsnCAer43ciuwUiw49kT4HjYm/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/1R9fJND0JFH8sS1esQSjbf6vTglh9Mr6Q/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/15x9HHLpGyPCvabK2Tplmgp1nu5d6Td0Z/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/1FafM20mXu9B3bEDb5-pDL3FLGyqfeid3/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/1jztmC5UDTHIGa_btf-5BCZwTLNlcOnlz/view?usp=sharing)]
 
-## Example: 3D Model
+# Example: 3D Model
+[![image](https://drive.google.com/file/d/1nHE4CN0dv7NQS3fGLBfNW7WT9RR3nvqg/view?usp=sharing)]
+[![image](https://drive.google.com/file/d/1PkLjXMDN90THlbyxzn8KXa94t0wHomdJ/view?usp=sharing)]
 
-### My Contributions
+## My Contributions
 # As one of the project developers, my responsibilities included:
 * System architecture design
 * Cloud architecture planning
@@ -71,12 +88,11 @@
 
 ## Team Members
 
-| Name | Role |
+| GitHub | Role |
 |--------|--------|
-| Passakorn Polsan | Cloud Architecture, System Design, UI/UX, Development |
-| Sirinya | VR Development, System Design, UI/UX, Development |
-| Paramate | VR Development, UI/UX, Development |
-
+| plubdulq | Cloud Architecture, System Design, UI/UX, Development |
+| chompoosirinya | VR Development, System Design, UI/UX, Development |
+| DfrostG | VR Development, UI/UX, Development |
 
 ## Repository Note
 
