@@ -97,6 +97,7 @@ This repository represents the project portfolio and documentation.
 
 Future Improvements
 * Advanced networking simulations
+* Make heat and power realtime-calculation more accurate
 * Additional challenge scenarios
-* Expanded infrastructure visualization
+* Make board summary all data for user to evaluation
 * Multi-user learning environments
