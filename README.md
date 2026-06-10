@@ -67,7 +67,6 @@ Gameplay Exmaple
 |--------|--------|--------|--------|
 |[![](./images/play1.png)](./images/play1.png) | [![](./images/play2.png)](./images/play2.png) | [![](./images/play3.png)](./images/play3.png) | [![](./images/play4.png)](./images/play4.png) |
 | Ex5 | Ex6 | Ex7 | Ex8 |
-|--------|--------|--------|--------|
 |[![](./images/play5.png)](./images/play5.png) | [![](./images/play6.png)](./images/play6.png) | [![](./images/play7.png)](./images/play7.png) | [![](./images/play8.png)](./images/play8.png) |
 
 3D Models Example
